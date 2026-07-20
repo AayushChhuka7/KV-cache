@@ -1,0 +1,193 @@
+
+\documentclass[Conferencence]{IEEEtran}
+\IEEEoverridecommandlockouts
+\usepackage{cite}
+\usepackage{newtxtext,newtxmath}
+\usepackage{booktabs}
+%\usepackage[a4paper,margin=1in]{geometry}
+%\usepackage{parskip}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{colorlinks, citecolor=blue}
+\usepackage{tabularx}
+
+\title{Analysis of memory mechanisms in LLMs (context window, KV-cache, retrieval-augmented memory)}
+\author{
+	\IEEEauthorblockN{1\textsuperscript{st} Aayush Chhuka}
+	\IEEEauthorblockA{\textit{Department of Computer Science and Engineering} \\
+		\textit{National College of Engineering}\\
+		Lalitapur, Nepal \\
+		aayushchhuka20@gmail.com}
+	
+	\and
+	
+	\IEEEauthorblockN{2\textsuperscript{nd} Aditya Brajacharya}
+	\IEEEauthorblockA{\textit{Department of Computer Science and Engineering} \\
+		\textit{National College of Engineering}\\
+		Lalitapur, Nepal \\
+		aadityabrjacharya123@gmail.com}
+	
+	\and
+	\IEEEauthorblockN{3\textsuperscript{rd} Sudip Dhungana}
+	\IEEEauthorblockA{\textit{Department of Computer Science and Engineering} \\
+		\textit{National College of Engineering}\\
+		Lalitapur, Nepal \\
+		sudipdhungana02@gmail.com}
+}
+\begin{document}
+	\maketitle
+\section{Introduction}
+Recently, Large Language Models (LLMs) have become a core foundation in AI-driven applications due to the sole reason of powerful understanding and generation of natural language. Unlike traditional AI systems, LLMs provide great flexibility and handle wide range of tasks with enhanced adaptability~\cite{shan2025cognitivememoryllms}. To manage active information, LLMs utilize a short-term memory technique known as the context window. Within this window, the model processes previous conversational turns, external documents, and its own prior outputs. To generate logical text, LLMs rely on an autoregressive process which generates tokens one by one based on all previous tokens to understand the broader context of the sequence~\cite{nvidia2025nvfp4}.
+
+A main challenge for LLM deployment is how models manage, access and retain information across interactions. Due to this autoregressive behaviour, the computing cost of a model increases as it recalculates the mathematical relation of previous tokens each and every time a new token is generated~\cite{nvidia2025nvfp4}. This leads to computational overhead within the context window. In some cases input context can be tens and hundreds of times longer than the output it generates~\cite{lu2026mixquant}. 
+
+Consequently, optimizing these memory mechanisms through techniques such as KV-caching and Retrieval-Augmented Memory has become critical for efficient LLMs deployment~\cite{shan2025cognitivememoryllms}. To overcome the limitation of recomputation of past token, the key-value (KV) cache stores the intermediate attention states (Keys and Values) of past tokens in memory during the processing  phase~\cite{xu2026kv}. LLMs struggle and produce hallucinations when answering beyond training data. To overcome this challenge, Retrieval-Augmented Generation (RAG) enhances performance by retrieving relevant documents from external knowledge bases such as database, text files or live internet using semantic similarity to match the meaning of questions~\cite{gao2023ragsurvey}.
+
+Although these mechanisms have significantly improved the capabilities of LLMs, each technique introduces various trade-offs in terms of memory, latency and computational cost. With rapid development in large context model, it is difficult to compare, understand the pros and cons of different memory mechanisms. This report provides comprehensive analysis of memory mechanisms on modern LLMs. It reviews fundamentals behind context windows, KV cache optimization, and retrieval-augmented memory approaches. This report compares these technique in terms of their computational cost and inference time, highlighting their advantages, limitations, and suitable application scenarios.
+ 
+\section{Literature Review}
+\subsection{Memory in Large Language Models}
+ Standard Large Language Models are stateless, which means they process each prompts and requests independently without retaining any information across multiple different interactions. This limits LLM in personalized interaction and consistency in long term conversation. To overcome these challenges, recent studies have introduced various memory mechanisms to preserve necessary information across different interactions while reducing hallucinations through external information retrieval~\cite{shan2025cognitivememoryllms,gao2023ragsurvey}.  
+ 
+ Existing studies have categorized memory into Short Term Memory (STM) and Long Term Memory (LTM).  STM is used to handle the input within the immediate context window which can be the text tokens or embeddings currently available for prompt processing. Once the session ends, the model usually “loses” that context. Similarly LTM are implemented through external databases, vector stores, or graph structures that keep relevant data available and allow the model to “recall” information in future queries~\cite{shan2025cognitivememoryllms}.
+ 
+ \subsection{Context Window}
+ The context window is the amount of text that an LLM can remember and process at one time. It works like the model's short-term memory, allowing it to use previous information while creating a response. User questions, instructions, and earlier conversations all take up space in the context window. When the window becomes full, older information is removed, and the model can no longer use it for generating new responses\cite{shan2025cognitivememoryllms}.
+ 
+ Modern LLMs can support longer context windows, but more text doesn.t mean better results. Liu et al.~\cite{liu2024lost} found the "Lost in the Middle" problem, where models can find information more easily when it is at the start or end of the input but may miss information in the middle. This shows that making the context window bigger alone is not enough, and better ways to manage memory are needed.
+ 
+ \subsection{KV Cache Optimization}
+ KV cache optimization is crucial for LLM deployment as it reduces latency by avoiding recomputing past tokens, lowering operational costs with less compute requirements, and enables deployment on resource-constrained devices by managing large memory and optimizing data transfers. KV Cache stores intermediate key which represents identity of token and
+ value vectors which represents actual content of that token from previous tokens to avoid redundant computation during generation~\cite{xu2026kv}. And when new token is generated, the key and value pair are appended to the cache. The KV cache size is expressed as:
+ \begin{equation}
+ 	KV \sb{per token}=2 \times H \times L \times B \times D\label{eqn:KVpertoken}
+ \end{equation}
+ 
+ In Equation~\eqref{eqn:KVpertoken} \cite{xu2026kv} H is the number of attention heads; D the dimension of each head; L the number of transformer layers; B
+ the bytes per element. These parameters are fixed for a given model, the KV per token
+ is constant for a model.
+ 
+ \begin{equation}
+ 	KV \sb{cache size}=	KV \sb{per token} \times Context Length\label{eqn:KVcachesize}
+ \end{equation} 
+ 
+ Equation \eqref{eqn:KVcachesize} shows that the total KV cache memory increases linearly with the context length. As modern LLMs support context windows containing tens or hundreds of thousands of tokens, the KV cache becomes a major bottleneck in terms of GPU memory consumption, memory bandwidth, and inference latency \cite{xu2026kv,nvidia2025nvfp4}.
+  
+ \subsubsection{Grouped-Query Attention (GQA)}
+  
+ \begin{figure*}[t]
+ 	\centering
+ 	\includegraphics[width=0.8\textwidth]{GQA.png}
+ 	\caption{An structural overview of the Grouped-Query Attention (GQA) mechanism compared alongside Multi-Head Attention (MHA) and Multi-Query Attention (MQA) \cite{ainslie2023gqa}.}
+ 	\label{fig:GQA}
+ \end{figure*}
+ 
+ Although KV caching reduces redundant computation, the cache size increases linearly as the context content grows which eventually leads to high memory consumption. To deal with this, Ainslie et al. \cite{ainslie2023gqa} introduces Grouped-Query Attention (GQA), which groups multiple query heads to share same key and value as in Fig.~\ref{fig:GQA}. This result in reducing cache size while losing little output quality.
+
+ The result from the experiment shows that GQA inference speed is close to that of Multi-Query Attention (MQA)and maintains performance similar to that of standard Multi-Head Attention. Author also introduces an effective way to upgrade existing MHA models into GQA models using mean pooling by taking small amount of time and cost to adapt~\cite{ainslie2023gqa}. 
+ 
+ \subsubsection{KV Cache Quantization}
+ 
+ KV Cache Quantization is the optimization technique which is used to reduce memory requirement to store key and value tensors. Normally, these tensors are stored in high precision format usually FP16, instead of that these cached tensors are represented in lower precision format such as FP8, INT8, FP4. This helps in decreasing memory footprint and allows longer context length while maintaining model accuracy \cite{nvidia2025nvfp4}.
+ 
+ To reduce memory usage, multiple studies have introduced different KV cache quantization methods. FP8 KV cache is widely used because of its balance in memory savings and in model accuracy. A newer method, NVFP4 KV cache has been introduced by NVIDIA, which stores key and value tensors in 4-bit floating point format, reducing KV cache memory by half compare to that of FP8 allowing longer context lengths, supports more users, and lowers memory bandwidth during decoding. Cached values are dequantized for attention computation and quantized again before being stored~\cite{nvidia2025nvfp4}.
+ 
+ Another method is MixQuant which uses mixed precision quantization by providing different precision levels to different cached tensors based on their importance. This reduce memory while maintaining better accuracy than using low level precision for all tensors.
+ 
+\begin{table}[ht]
+	\centering
+	\caption{Comparison of KV cache quantization techniques.}
+	\label{tab:kv_quantization}
+	\small % Scales the text down beautifully for the column
+	\begin{tabularx}{\linewidth}{llXX}
+		\toprule
+		\textbf{Method} & \textbf{Precision} & \textbf{Main Benefit} & \textbf{Trade-off} \\
+		\midrule
+		FP16  & 16-bit & Highest accuracy & Large memory usage \\
+		FP8 & 8-bit & Lower memory & Slight accuracy loss \\
+		NVFP4 & 4-bit & Smaller cache & Quantization overhead \\
+		MixQuant & Mixed precision & Better accuracy-memory trade-off & Higher complexity \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+ 
+ Table~\ref{tab:kv_quantization} summarizes recent KV cache quantization techniques based on the findings in~\cite{nvidia2025nvfp4,lu2026mixquant}.
+ 
+  Although KV Cache Quantization reduces memory usage, it reduces generation quality for a longer context because of using low precision tensor format. As a result, current research focuses on finding the right balance between memory efficiency and model accuracy to enable the practical deployment of modern LLMs~\cite{nvidia2025nvfp4,lu2026mixquant}.
+ 
+  \subsubsection{KV Cache Compression}
+  When context length increases, KV cache occupies large portion of GPU memory.While quantization reduces the precision of cached tensors, KV cache compression decreases the amount of information stored within the key value representations by removing redundancy.It reduces memory consumption while preserving all necessary information for accurate result ~\cite{shan2025cognitivememoryllms}.
+  
+  Many studies have provided different ways to reduce the size of KV cache. One way is low-rank compression, which stores the key and value information in a smaller form while keeping most important informations. Another method is KV merging, where similar key value pairs are combined which reduce the number of stored entries. Recent studies use multi-level compression by keeping important tokens in better quality while compressing less important or older tokens to save memory \cite{shan2025cognitivememoryllms}.
+  
+  \begin{table}[ht]
+  	\centering
+  	\caption{Overview of KV Cache Compression Techniques~\cite{shan2025cognitivememoryllms}.}
+  	\label{tab:kv_compression}
+  	\small
+  	\begin{tabularx}{\linewidth}{lXXX}
+  		\toprule
+  		\textbf{Technique} & \textbf{Principle} & \textbf{Advantage} & \textbf{Limitation} \\
+  		\midrule
+  		Low-Rank & Project KV tensors into lower-dimensional space & Lower memory usage & Reconstruction error \\
+  		\addlinespace
+  		KV Merging & Merge similar KV pairs & Smaller cache size & Possible information loss \\
+  		\addlinespace
+  		Multi-Level & Apply different compression levels & Better memory-quality balance & More complex implementation \\
+  		\bottomrule
+  	\end{tabularx}
+  \end{table}
+  
+  
+  Although KV cache compression uses less GPU memory and allow the model to handle longer input without using too much extra memory, compare to that of normal KV cache. If the data is compressed too much, some important information may be lost, which can reduce the quality of the output.
+  
+ \subsubsection{Memory Management}
+When input becomes longer, the KV cache also becomes larger, which increases memory usage. Memory management techniques helps to store, organize, and access the KV cache more efficiently during inference. Unlike quantization and compression, memory management does not reduce the KV cache size. Instead, it uses hardware memory more efficiently allowing longer inputs.
+
+ Offloading moves less frequently used parts of KV cache from GPU memory to other storage. When that data is needed, it is moved back to the GPU. This reduces GPU memory usage and allows longer context lengths, but moving data between different storage levels can increase latency~\cite{sheng2023flexgen}.
+ 
+ PagedAttention uses similar method as virtual memory in operating systems by dividing the KV cache into small fixed-size pages. Instead of assigning a large memory space for each request, it only uses memory pages. This reduces memory waste, and allows more requests to run together~\cite{kwon2023vllm}.
+ 
+ Shared Attention reduce memory usage by allowing different requests to share the same KV cache when they have similar prompts. It avoids storing the same information again and reduces extra computation, which improve performance when many users are using the model~\cite{fawaz2024beyond}.
+ 
+ \begin{table}[ht]
+ 	\centering
+ 	\caption{Comparison of KV cache memory management techniques.}
+ 	\label{tab:kv_management}
+ 	\small
+ 	\begin{tabularx}{\linewidth}{lXXX}
+ 		\toprule
+ 		\textbf{Technique} & \textbf{Main Idea} & \textbf{Advantage} & \textbf{Limitation} \\
+ 		\midrule
+ 		Offloading & Move KV cache to CPU & Lower GPU memory usage & Transfer latency \\
+ 		\addlinespace
+ 		PagedAttention & Page-based KV allocation & Better GPU utilization & More complex memory management \\
+ 		\addlinespace
+ 		Shared Attention & Reuse common KV cache & Higher throughput & Requires shared contexts \\
+ 		\bottomrule
+ 	\end{tabularx}
+ \end{table}
+ 
+ \subsection{Retrieval-Augmented Generation (RAG)}
+
+Large Language Models use knowledge from their training data, results they provided may be wrong or old.A larger context window doesn't fixed this problem as it still cannot get new information. Retrieval-Augmented Generation (RAG) first finds the documents and  generate better answers using those documents \cite{gao2023ragsurvey}.
+
+A basic RAG system has three main parts: a retriever, a knowledge source, and a generator. The retriever finds useful information  based on the user's questions, from sources like databases or documents. The retrieved information is added to the prompt, and the model uses it to generate more accurate answers \cite{gao2023ragsurvey}.
+
+RAG increases the accuracy of LLM  by finding information from external sources. It reduces wrong answers without needing to train the model again. RAG acts like an external memory by storing information outside the model, so the model does not need to rely only on a larger context window \cite{gao2023ragsurvey}.
+ 
+ The performance of RAG depends on the data source. If the information is falsy and misleading, generated output is affected. Not only that, RAG also takes more time and computation because it needs to search for information before generating a response. Recent studies focus on improving retrieval quality and reducing search time~\cite{gao2023ragsurvey}.
+ 
+ To overcome this, most common method is re-ranking. The retrieval of documentation is as usual. The documents are ranked based on the usefulness by ranking model before passing to LLM. Gao et al. \cite{gao2023ragsurvey} showed that re-ranking improves the quality of retrieved information, but it also requires extra computation.Another method is iterative method where model search information multiple times. This method is useful for complex questions that require information from multiple documents \cite{gao2023ragsurvey}.
+ 
+ Self RAG, a newer method where model decide if it needs to extra information or not. Rather than searching for every question, it retrieves information when needed. Asai et al.~\cite{asai2023selfrag} showed that this method reduces unnecessary retrieval and improves answer quality.
+ 
+ Graph-based retrieval is another way to improve RAG systems. Unlike normal retrieval methods, GraphRAG stores information as connected points and relationships in a knowledge graph. Instead of finding only separate text parts, it finds related information that helps the model understand connections between ideas. Edge et al.~\cite{edge2024graphrag} showed that GraphRAG is useful for complex questions, but creating the knowledge graph needs extra work.  Better RAG performance depends on not only finding similar text but also choosing useful information and organizing knowledge properly.
+ 
+ Compared with increasing the context window and improving the KV cache, RAG stores information outside the model instead of keeping everything in memory. It helps improve answer accuracy and reduce wrong information, but it also takes extra time because the model needs to search for information before answering. Therefore, RAG is useful for tasks where correct information is more important than fast response time.
+ 
+\bibliographystyle{IEEEtran}
+\bibliography{reference}
+
+\end{document}
