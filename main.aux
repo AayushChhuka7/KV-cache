@@ -6,71 +6,63 @@
 \citation{nvidia2025nvfp4}
 \citation{nvidia2025nvfp4}
 \citation{lu2026mixquant}
-\citation{shan2025cognitivememoryllms}
 \citation{xu2026kv}
-\citation{gao2023ragsurvey}
-\citation{shan2025cognitivememoryllms,gao2023ragsurvey}
-\citation{shan2025cognitivememoryllms}
-\citation{shan2025cognitivememoryllms}
-\@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}{section.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {II}Literature Review}{1}{section.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-A}}Memory in Large Language Models}{1}{subsection.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-B}}Context Window}{1}{subsection.2.2}\protected@file@percent }
-\citation{liu2024lost}
+\citation{xu2026kv}
 \citation{xu2026kv}
 \citation{xu2026kv}
 \citation{xu2026kv,nvidia2025nvfp4}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {II}Literature Review}{1}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-A}}Background}{1}{subsection.2.1}\protected@file@percent }
+\newlabel{eqn:KVpertoken}{{1}{1}{Background}{equation.1}{}}
+\newlabel{eqn:KVcachesize}{{2}{1}{Background}{equation.2}{}}
 \citation{ainslie2023gqa}
 \citation{ainslie2023gqa}
 \citation{ainslie2023gqa}
 \citation{ainslie2023gqa}
 \citation{nvidia2025nvfp4}
 \citation{nvidia2025nvfp4}
-\citation{nvidia2025nvfp4,lu2026mixquant}
-\citation{nvidia2025nvfp4,lu2026mixquant}
+\citation{lu2026mixquant}
+\citation{sharma2025minikv}
+\citation{nvidia2025nvfp4,lu2026mixquant,sharma2025minikv}
+\citation{nvidia2025nvfp4,lu2026mixquant,sharma2025minikv}
 \citation{shan2025cognitivememoryllms}
 \citation{shan2025cognitivememoryllms}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-C}}KV Cache Optimization}{2}{subsection.2.3}\protected@file@percent }
-\newlabel{eqn:KVpertoken}{{1}{2}{KV Cache Optimization}{equation.1}{}}
-\newlabel{eqn:KVcachesize}{{2}{2}{KV Cache Optimization}{equation.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-C}1}Grouped-Query Attention (GQA)}{2}{figure.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-C}2}KV Cache Quantization}{2}{subsubsection.2.3.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Comparison of KV cache quantization techniques.}}{2}{table.1}\protected@file@percent }
-\newlabel{tab:kv_quantization}{{I}{2}{Comparison of KV cache quantization techniques}{table.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-C}3}KV Cache Compression}{2}{subsubsection.2.3.3}\protected@file@percent }
-\citation{shan2025cognitivememoryllms}
+\citation{chang2025xkv}
+\citation{shan2025cognitivememoryllms,chang2025xkv}
+\citation{shan2025cognitivememoryllms,chang2025xkv}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-B}}Attention Level Techniques}{2}{subsection.2.2}\protected@file@percent }
+\newlabel{sec:attention}{{\mbox  {II-B}}{2}{Attention Level Techniques}{subsection.2.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-C}}KV Cache Quantization}{2}{subsection.2.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Comparison of KV cache quantization techniques.}}{2}{table.caption.2}\protected@file@percent }
+\newlabel{tab:kv_quantization}{{I}{2}{Comparison of KV cache quantization techniques}{table.caption.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-D}}KV Cache Compression}{2}{subsection.2.4}\protected@file@percent }
 \citation{sheng2023flexgen}
 \citation{kwon2023vllm}
 \citation{fawaz2024beyond}
-\citation{gao2023ragsurvey}
-\citation{gao2023ragsurvey}
-\citation{gao2023ragsurvey}
-\citation{gao2023ragsurvey}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces An structural overview of the Grouped-Query Attention (GQA) mechanism compared alongside Multi-Head Attention (MHA) and Multi-Query Attention (MQA) \cite  {ainslie2023gqa}.}}{3}{figure.1}\protected@file@percent }
-\newlabel{fig:GQA}{{1}{3}{An structural overview of the Grouped-Query Attention (GQA) mechanism compared alongside Multi-Head Attention (MHA) and Multi-Query Attention (MQA) \cite {ainslie2023gqa}}{figure.1}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Overview of KV Cache Compression Techniques~\cite  {shan2025cognitivememoryllms}.}}{3}{table.2}\protected@file@percent }
-\newlabel{tab:kv_compression}{{II}{3}{Overview of KV Cache Compression Techniques~\cite {shan2025cognitivememoryllms}}{table.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {II-C}4}Memory Management}{3}{subsubsection.2.3.4}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Comparison of KV cache memory management techniques.}}{3}{table.3}\protected@file@percent }
-\newlabel{tab:kv_management}{{III}{3}{Comparison of KV cache memory management techniques}{table.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-D}}Retrieval-Augmented Generation (RAG)}{3}{subsection.2.4}\protected@file@percent }
-\citation{gao2023ragsurvey}
-\citation{gao2023ragsurvey}
-\citation{asai2023selfrag}
-\citation{edge2024graphrag}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces An structural overview of the Grouped-Query Attention (GQA) mechanism compared alongside Multi-Head Attention (MHA) and Multi-Query Attention (MQA)~\cite  {ainslie2023gqa}.}}{3}{figure.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:GQA}{{1}{3}{An structural overview of the Grouped-Query Attention (GQA) mechanism compared alongside Multi-Head Attention (MHA) and Multi-Query Attention (MQA)~\cite {ainslie2023gqa}}{figure.caption.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Overview of KV Cache Compression Techniques~\cite  {shan2025cognitivememoryllms,chang2025xkv}.}}{3}{table.caption.3}\protected@file@percent }
+\newlabel{tab:kv_compression}{{II}{3}{Overview of KV Cache Compression Techniques~\cite {shan2025cognitivememoryllms,chang2025xkv}}{table.caption.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-E}}Memory Management}{3}{subsection.2.5}\protected@file@percent }
+\newlabel{sec:memory}{{\mbox  {II-E}}{3}{Memory Management}{subsection.2.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Comparison of KV cache memory management techniques.}}{3}{table.caption.4}\protected@file@percent }
+\newlabel{tab:kv_management}{{III}{3}{Comparison of KV cache memory management techniques}{table.caption.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-F}}Synthesis: A Comparative Decision Framework}{3}{subsection.2.6}\protected@file@percent }
 \bibstyle{IEEEtran}
 \bibdata{reference}
 \bibcite{shan2025cognitivememoryllms}{1}
 \bibcite{nvidia2025nvfp4}{2}
 \bibcite{lu2026mixquant}{3}
 \bibcite{xu2026kv}{4}
-\bibcite{gao2023ragsurvey}{5}
-\bibcite{liu2024lost}{6}
-\bibcite{ainslie2023gqa}{7}
+\bibcite{ainslie2023gqa}{5}
+\bibcite{sharma2025minikv}{6}
+\@writefile{lot}{\contentsline {table}{\numberline {IV}{\ignorespaces Comparative synthesis of KV cache optimization techniques across all categories.}}{4}{table.caption.5}\protected@file@percent }
+\newlabel{tab:synthesis}{{IV}{4}{Comparative synthesis of KV cache optimization techniques across all categories}{table.caption.5}{}}
+\@writefile{toc}{\contentsline {section}{References}{4}{section*.6}\protected@file@percent }
+\bibcite{chang2025xkv}{7}
 \bibcite{sheng2023flexgen}{8}
 \bibcite{kwon2023vllm}{9}
 \bibcite{fawaz2024beyond}{10}
-\bibcite{asai2023selfrag}{11}
-\bibcite{edge2024graphrag}{12}
-\@writefile{toc}{\contentsline {section}{References}{4}{section*.1}\protected@file@percent }
-\gdef \@abspage@last{4}
+\gdef \@abspage@last{5}

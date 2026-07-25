@@ -51,24 +51,28 @@ Y.~Xu, N.~K. Khaira, and T.~Singh, ``Kv cache optimization strategies for
   \url{https://arxiv.org/abs/2603.20397}
 \BIBentrySTDinterwordspacing
 
-\bibitem{gao2023ragsurvey}
-Y.~Gao, Y.~Xiong, X.~Gao, K.~Jia, J.~Pan, Y.~Bi, Y.~Dai, J.~Sun, Q.~Guo,
-  M.~Wang, and H.~Wang, ``Retrieval-augmented generation for large language
-  models: A survey,'' \emph{arXiv preprint arXiv:2312.10997}, 2023.
-
-\bibitem{liu2024lost}
-\BIBentryALTinterwordspacing
-N.~F. Liu, K.~Lin, J.~Hewitt, A.~Paranjape, M.~Bevilacqua, F.~Petroni, and
-  P.~Liang, ``Lost in the middle: How language models use long contexts,''
-  \emph{Transactions of the Association for Computational Linguistics},
-  vol.~12, pp. 157--173, 2024. [Online]. Available:
-  \url{https://aclanthology.org/2024.tacl-1.9/}
-\BIBentrySTDinterwordspacing
-
 \bibitem{ainslie2023gqa}
 J.~Ainslie, J.~Lee-Thorp, M.~de~Jong, Y.~Zemlyanskiy, F.~Lebr{\'o}n, and
   S.~Sanghai, ``Gqa: Training generalized multi-query transformer models from
   multi-head checkpoints,'' \emph{arXiv preprint arXiv:2305.13245}, 2023.
+
+\bibitem{sharma2025minikv}
+\BIBentryALTinterwordspacing
+A.~Sharma, H.~Ding, J.~Li, N.~Dani, and M.~Zhang, ``Minikv: Pushing the limits
+  of 2-bit kv cache via compression and system co-design for efficient long
+  context inference,'' in \emph{Findings of the Association for Computational
+  Linguistics: ACL 2025}.\hskip 1em plus 0.5em minus 0.4em\relax Association
+  for Computational Linguistics, 2025, pp. 18\,506--18\,523. [Online].
+  Available: \url{https://aclanthology.org/2025.findings-acl.952/}
+\BIBentrySTDinterwordspacing
+
+\bibitem{chang2025xkv}
+\BIBentryALTinterwordspacing
+C.-C. Chang, C.-Y. Lin \emph{et~al.}, ``{xKV}: Cross-layer {KV}-cache
+  compression via aligned singular vector extraction,'' in \emph{International
+  Conference on Machine Learning (ICML)}, 2026, arXiv:2503.18893. [Online].
+  Available: \url{https://arxiv.org/abs/2503.18893}
+\BIBentrySTDinterwordspacing
 
 \bibitem{sheng2023flexgen}
 Y.~Sheng, L.~Zheng, B.~Yuan, Z.~Li, M.~Ryabinin, D.~Y. Fu, B.~Chen, C.~Barrett,
@@ -86,21 +90,5 @@ W.~Kwon, Z.~Li, S.~Zhang, Y.~Sheng, L.~Zheng, C.~H. Yu, T.~Cao, B.-G. Jeon,
 \bibitem{fawaz2024beyond}
 M.~Fawaz, A.~Awad, and W.~El-Hajj, ``Beyond kv caching: Shared attention for
   efficient llms,'' \emph{arXiv preprint arXiv:2407.12866}, 2024.
-
-\bibitem{asai2023selfrag}
-\BIBentryALTinterwordspacing
-A.~Asai, Z.~Wu, Y.~Wang, A.~Sil, and H.~Hajishirzi, ``Self-rag: Learning to
-  retrieve, generate, and critique through self-reflection,'' in \emph{The
-  Twelfth International Conference on Learning Representations (ICLR)}, 2024.
-  [Online]. Available: \url{https://openreview.net/forum?id=hSyW5go0v8}
-\BIBentrySTDinterwordspacing
-
-\bibitem{edge2024graphrag}
-\BIBentryALTinterwordspacing
-D.~Edge, H.~Trinh, Y.~Cheng, J.~Bradley, A.~Chao, A.~Mody, and J.~Larson,
-  ``From local to global: A graphrag approach to query-focused summarization,''
-  \emph{arXiv preprint arXiv:2404.16130}, 2024. [Online]. Available:
-  \url{https://arxiv.org/abs/2404.16130}
-\BIBentrySTDinterwordspacing
 
 \end{thebibliography}
