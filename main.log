@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.7.19)  25 JUL 2026 17:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.7.19)  26 JUL 2026 13:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -513,170 +513,146 @@ Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
 \TX@delta=\dimen276
 \TX@cols=\count327
 \TX@ftn=\toks29
-) (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption.sty
-Package: caption 2023/08/05 v3.6o Customizing captions (AR)
- (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption3.sty
-Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
-\caption@tempdima=\dimen277
-\captionmargin=\dimen278
-\caption@leftmargin=\dimen279
-\caption@rightmargin=\dimen280
-\caption@width=\dimen281
-\caption@indent=\dimen282
-\caption@parindent=\dimen283
-\caption@hangindent=\dimen284
-Package caption Info: Unknown document class (or package),
-(caption)             standard defaults will be used.
-Package caption Info: \@makecaption = \long macro:#1#2->\ifx \@captype \@IEEEtablestring \footnotesize \bgroup \par \centering \@IEEEtabletopskipstrut {\normalfont \footnotesize #1}\\{\normalfont \footnotesize \scshape #2}\par \addvspace {0.5\baselineskip }\egroup \@IEEEtablecaptionsepspace \else \@IEEEfigurecaptionsepspace \setbox \@tempboxa \hbox {\normalfont \footnotesize {#1.}\nobreakspace \nobreakspace #2}\ifdim \wd \@tempboxa >\hsize \setbox \@tempboxa \hbox {\normalfont \footnotesize {#1.}\nobreakspace \nobreakspace }\parbox [t]{\hsize }{\normalfont \footnotesize \noindent \unhbox \@tempboxa #2}\else \ifCLASSOPTIONconference \hbox to\hsize {\normalfont \footnotesize \hfil \box \@tempboxa \hfil }\else \hbox to\hsize {\normalfont \footnotesize \box \@tempboxa \hfil }\fi \fi \fi  on input line 1175.
 )
-
-Package caption Warning: Unknown document class (or package),
-(caption)                standard defaults will be used.
-See the caption package documentation for explanation.
-
-\c@caption@flags=\count328
-\c@continuedfloat=\count329
-Package caption Info: hyperref package is loaded.
-)
-LaTeX Font Info:    Trying to load font information for OT1+ntxtlf on input line 40.
+LaTeX Font Info:    Trying to load font information for OT1+ntxtlf on input line 38.
  (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/newtx\ot1ntxtlf.fd
 File: ot1ntxtlf.fd 2021/05/24 v1.0 font definition file for OT1/ntx/tlf
 )
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.0pt on input line 40.
+(Font)              scaled to size 10.0pt on input line 38.
  (main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 40.
-LaTeX Font Info:    Trying to load font information for OML+ntxmi on input line 40.
+LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 38.
+LaTeX Font Info:    Trying to load font information for OML+ntxmi on input line 38.
  (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/newtx\omlntxmi.fd
 File: omlntxmi.fd 2015/08/25 Fontinst v1.933 font definitions for OML/ntxmi.
 )
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 40.
-LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 40.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 38.
+LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 38.
  (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxexa.fd
 File: untxexa.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxexa.
 )
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 40.
-LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line 40.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 38.
+LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line 38.
  (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/newtx\lmsntxsy.fd
 File: lmsntxsy.fd 2016/07/02 Fontinst v1.933 font definitions for LMS/ntxsy.
 )
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 40.
-LaTeX Font Info:    Trying to load font information for LMX+ntxexx on input line 40.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 38.
+LaTeX Font Info:    Trying to load font information for LMX+ntxexx on input line 38.
  (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/newtx\lmxntxexx.fd
 File: lmxntxexx.fd 2016/07/03 Fontinst v1.933 font definitions for LMX/ntxexx.
 )
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 5.0pt on input line 40.
+(Font)              scaled to size 5.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 5.0pt on input line 40.
+(Font)              scaled to size 5.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/it' will be
-(Font)              scaled to size 5.0pt on input line 40.
+(Font)              scaled to size 5.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/it' will be
-(Font)              scaled to size 5.0pt on input line 40.
+(Font)              scaled to size 5.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 7.0pt on input line 40.
+(Font)              scaled to size 7.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 7.0pt on input line 40.
+(Font)              scaled to size 7.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/it' will be
-(Font)              scaled to size 7.0pt on input line 40.
+(Font)              scaled to size 7.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/it' will be
-(Font)              scaled to size 7.0pt on input line 40.
+(Font)              scaled to size 7.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 8.0pt on input line 40.
+(Font)              scaled to size 8.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 8.0pt on input line 40.
+(Font)              scaled to size 8.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/it' will be
-(Font)              scaled to size 8.0pt on input line 40.
+(Font)              scaled to size 8.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/it' will be
-(Font)              scaled to size 8.0pt on input line 40.
+(Font)              scaled to size 8.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 9.0pt on input line 40.
+(Font)              scaled to size 9.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 9.0pt on input line 40.
+(Font)              scaled to size 9.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/it' will be
-(Font)              scaled to size 9.0pt on input line 40.
+(Font)              scaled to size 9.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/it' will be
-(Font)              scaled to size 9.0pt on input line 40.
+(Font)              scaled to size 9.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 10.0pt on input line 40.
+(Font)              scaled to size 10.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/it' will be
-(Font)              scaled to size 10.0pt on input line 40.
+(Font)              scaled to size 10.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/it' will be
-(Font)              scaled to size 10.0pt on input line 40.
+(Font)              scaled to size 10.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 11.0pt on input line 40.
+(Font)              scaled to size 11.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 11.0pt on input line 40.
+(Font)              scaled to size 11.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/it' will be
-(Font)              scaled to size 11.0pt on input line 40.
+(Font)              scaled to size 11.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/it' will be
-(Font)              scaled to size 11.0pt on input line 40.
+(Font)              scaled to size 11.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 12.0pt on input line 40.
+(Font)              scaled to size 12.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 12.0pt on input line 40.
+(Font)              scaled to size 12.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/it' will be
-(Font)              scaled to size 12.0pt on input line 40.
+(Font)              scaled to size 12.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/it' will be
-(Font)              scaled to size 12.0pt on input line 40.
+(Font)              scaled to size 12.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 17.0pt on input line 40.
+(Font)              scaled to size 17.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 17.0pt on input line 40.
+(Font)              scaled to size 17.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/it' will be
-(Font)              scaled to size 17.0pt on input line 40.
+(Font)              scaled to size 17.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/it' will be
-(Font)              scaled to size 17.0pt on input line 40.
+(Font)              scaled to size 17.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 20.0pt on input line 40.
+(Font)              scaled to size 20.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 20.0pt on input line 40.
+(Font)              scaled to size 20.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/it' will be
-(Font)              scaled to size 20.0pt on input line 40.
+(Font)              scaled to size 20.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/it' will be
-(Font)              scaled to size 20.0pt on input line 40.
+(Font)              scaled to size 20.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 24.0pt on input line 40.
+(Font)              scaled to size 24.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 24.0pt on input line 40.
+(Font)              scaled to size 24.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/it' will be
-(Font)              scaled to size 24.0pt on input line 40.
+(Font)              scaled to size 24.0pt on input line 38.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/it' will be
-(Font)              scaled to size 24.0pt on input line 40.
+(Font)              scaled to size 24.0pt on input line 38.
 
 -- Lines per column: 56 (exact).
 (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count330
-\scratchdimen=\dimen285
+\scratchcounter=\count328
+\scratchdimen=\dimen277
 \scratchbox=\box59
-\nofMPsegments=\count331
-\nofMParguments=\count332
+\nofMPsegments=\count329
+\nofMParguments=\count330
 \everyMPshowfont=\toks30
-\MPscratchCnt=\count333
-\MPscratchDim=\dimen286
-\MPnumerator=\count334
-\makeMPintoPDFobject=\count335
+\MPscratchCnt=\count331
+\MPscratchDim=\dimen278
+\MPnumerator=\count332
+\makeMPintoPDFobject=\count333
 \everyMPtoPDFconversion=\toks31
 ) (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -684,585 +660,593 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-\c@mv@tabular=\count336
-\c@mv@boldtabular=\count337
-LaTeX Info: Command `\dddot' is already robust on input line 40.
-LaTeX Info: Command `\ddddot' is already robust on input line 40.
-Package hyperref Info: Link coloring ON on input line 40.
+\c@mv@tabular=\count334
+\c@mv@boldtabular=\count335
+LaTeX Info: Command `\dddot' is already robust on input line 38.
+LaTeX Info: Command `\ddddot' is already robust on input line 38.
+Package hyperref Info: Link coloring ON on input line 38.
  (main.out) (main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
 
-Package caption Info: Begin \AtBeginDocument code.
-Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Trying to load font information for OT1+minntx on input line 42.
+LaTeX Font Info:    Trying to load font information for OT1+minntx on input line 40.
  (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/newtx\ot1minntx.fd
 File: ot1minntx.fd 2023/09/09 v1.1 font definition file for OT1/minntx
 )
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 10.95pt on input line 42.
+(Font)              scaled to size 10.95pt on input line 40.
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 8.0pt on input line 42.
+(Font)              scaled to size 8.0pt on input line 40.
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 6.1pt on input line 42.
+(Font)              scaled to size 6.1pt on input line 40.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 10.95pt on input line 42.
+(Font)              scaled to size 10.95pt on input line 40.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 8.0pt on input line 42.
+(Font)              scaled to size 8.0pt on input line 40.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 6.1pt on input line 42.
+(Font)              scaled to size 6.1pt on input line 40.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 10.95pt on input line 42.
+(Font)              scaled to size 10.95pt on input line 40.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 8.0pt on input line 42.
+(Font)              scaled to size 8.0pt on input line 40.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 6.1pt on input line 42.
+(Font)              scaled to size 6.1pt on input line 40.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 10.95pt on input line 42.
+(Font)              scaled to size 10.95pt on input line 40.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 8.0pt on input line 42.
+(Font)              scaled to size 8.0pt on input line 40.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 6.1pt on input line 42.
-LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 42.
+(Font)              scaled to size 6.1pt on input line 40.
+LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 40.
  (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxmia.fd
 File: untxmia.fd 2024/04/09 Fontinst v1.933 font definitions for U/ntxmia.
 )
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 10.95pt on input line 42.
+(Font)              scaled to size 10.95pt on input line 40.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 8.0pt on input line 42.
+(Font)              scaled to size 8.0pt on input line 40.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 6.1pt on input line 42.
-LaTeX Font Info:    Trying to load font information for U+ntxsym on input line 42.
+(Font)              scaled to size 6.1pt on input line 40.
+LaTeX Font Info:    Trying to load font information for U+ntxsym on input line 40.
  (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxsym.fd
 File: untxsym.fd 2023/08/16 Fontinst v1.933 font definitions for U/ntxsym.
 )
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 10.95pt on input line 42.
+(Font)              scaled to size 10.95pt on input line 40.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 8.0pt on input line 42.
+(Font)              scaled to size 8.0pt on input line 40.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 6.1pt on input line 42.
-LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 42.
+(Font)              scaled to size 6.1pt on input line 40.
+LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 40.
  (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxsyc.fd
 File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
 )
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 10.95pt on input line 42.
+(Font)              scaled to size 10.95pt on input line 40.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 8.0pt on input line 42.
+(Font)              scaled to size 8.0pt on input line 40.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 6.1pt on input line 42.
+(Font)              scaled to size 6.1pt on input line 40.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 10.95pt on input line 42.
+(Font)              scaled to size 10.95pt on input line 40.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 8.0pt on input line 42.
+(Font)              scaled to size 8.0pt on input line 40.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 6.1pt on input line 42.
+(Font)              scaled to size 6.1pt on input line 40.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/sc' will be
-(Font)              scaled to size 10.0pt on input line 42.
+(Font)              scaled to size 10.0pt on input line 40.
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 10.0pt on input line 57.
+(Font)              scaled to size 10.0pt on input line 55.
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 7.3pt on input line 57.
+(Font)              scaled to size 7.3pt on input line 55.
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 5.5pt on input line 57.
+(Font)              scaled to size 5.5pt on input line 55.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 10.0pt on input line 57.
+(Font)              scaled to size 10.0pt on input line 55.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 7.3pt on input line 57.
+(Font)              scaled to size 7.3pt on input line 55.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 5.5pt on input line 57.
+(Font)              scaled to size 5.5pt on input line 55.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 10.0pt on input line 57.
+(Font)              scaled to size 10.0pt on input line 55.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 7.3pt on input line 57.
+(Font)              scaled to size 7.3pt on input line 55.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 5.5pt on input line 57.
+(Font)              scaled to size 5.5pt on input line 55.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 10.0pt on input line 57.
+(Font)              scaled to size 10.0pt on input line 55.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 7.3pt on input line 57.
+(Font)              scaled to size 7.3pt on input line 55.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 5.5pt on input line 57.
+(Font)              scaled to size 5.5pt on input line 55.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 10.0pt on input line 57.
+(Font)              scaled to size 10.0pt on input line 55.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 7.3pt on input line 57.
+(Font)              scaled to size 7.3pt on input line 55.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 5.5pt on input line 57.
+(Font)              scaled to size 5.5pt on input line 55.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 10.0pt on input line 57.
+(Font)              scaled to size 10.0pt on input line 55.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 7.3pt on input line 57.
+(Font)              scaled to size 7.3pt on input line 55.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 5.5pt on input line 57.
+(Font)              scaled to size 5.5pt on input line 55.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 10.0pt on input line 57.
+(Font)              scaled to size 10.0pt on input line 55.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 7.3pt on input line 57.
+(Font)              scaled to size 7.3pt on input line 55.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 5.5pt on input line 57.
+(Font)              scaled to size 5.5pt on input line 55.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 10.0pt on input line 57.
+(Font)              scaled to size 10.0pt on input line 55.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 7.3pt on input line 57.
+(Font)              scaled to size 7.3pt on input line 55.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 5.5pt on input line 57.
+(Font)              scaled to size 5.5pt on input line 55.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 7.3pt on input line 58.
+(Font)              scaled to size 7.3pt on input line 56.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 5.5pt on input line 58.
+(Font)              scaled to size 5.5pt on input line 56.
  [1{C:/Users/aayus/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}
 
 
 {C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ot1-tlf-pc.enc}]
-<GQA.png, id=69, 1104.125pt x 425.59pt>
+<GQA.png, id=85, 1104.125pt x 425.59pt>
 File: GQA.png Graphic file (type png)
 <use GQA.png>
-Package pdftex.def Info: GQA.png  used on input line 76.
+Package pdftex.def Info: GQA.png  used on input line 74.
 (pdftex.def)             Requested size: 283.80157pt x 109.39095pt.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/sc' will be
+(Font)              scaled to size 8.0pt on input line 92.
 
-Underfull \hbox (badness 10000) in paragraph at lines 111--111
+Underfull \hbox (badness 10000) in paragraph at lines 109--109
 []|\OT1/ntxtlf/b/n/9 Main
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 111--111
+Underfull \hbox (badness 10000) in paragraph at lines 109--109
 []|\OT1/minntx/m/n/9 Highest
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 111--111
+Underfull \hbox (badness 10000) in paragraph at lines 109--109
 []|\OT1/minntx/m/n/9 Large
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 111--111
+Underfull \hbox (badness 10000) in paragraph at lines 109--109
 \OT1/minntx/m/n/9 mem-ory
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 111--111
+Underfull \hbox (badness 10000) in paragraph at lines 109--109
 []|\OT1/minntx/m/n/9 Lower
  []
 
 
-Underfull \hbox (badness 1968) in paragraph at lines 111--111
+Underfull \hbox (badness 1968) in paragraph at lines 109--109
 []|\OT1/minntx/m/n/9 Slight ac-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 111--111
+Underfull \hbox (badness 10000) in paragraph at lines 109--109
 []|\OT1/minntx/m/n/9 Smaller
  []
 
 
-Overfull \hbox (6.882pt too wide) in paragraph at lines 111--111
+Overfull \hbox (6.882pt too wide) in paragraph at lines 109--109
 []|\OT1/minntx/m/n/9 Quantization
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 111--111
+Underfull \hbox (badness 10000) in paragraph at lines 109--109
 []|\OT1/minntx/m/n/9 Better
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 111--111
+Underfull \hbox (badness 10000) in paragraph at lines 109--109
 \OT1/minntx/m/n/9 accuracy-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 111--111
+Underfull \hbox (badness 10000) in paragraph at lines 109--109
 \OT1/minntx/m/n/9 memory
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 111--111
+Underfull \hbox (badness 10000) in paragraph at lines 109--109
 []|\OT1/minntx/m/n/9 Higher
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 111--111
+Underfull \hbox (badness 10000) in paragraph at lines 109--109
 \OT1/minntx/m/n/9 com-plex-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 111--111
+Underfull \hbox (badness 10000) in paragraph at lines 109--109
 []|\OT1/minntx/m/n/9 Custom
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 144--144
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 142--142
 []|\OT1/minntx/m/n/9 Project
  []
 
 
-Underfull \hbox (badness 3758) in paragraph at lines 144--144
+Underfull \hbox (badness 3758) in paragraph at lines 142--142
 \OT1/minntx/m/n/9 into lower-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 144--144
+Underfull \hbox (badness 10000) in paragraph at lines 142--142
 \OT1/minntx/m/n/9 dimensional
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 144--144
+Underfull \hbox (badness 10000) in paragraph at lines 142--142
 []|\OT1/minntx/m/n/9 Lower
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 144--144
+Underfull \hbox (badness 10000) in paragraph at lines 142--142
 \OT1/minntx/m/n/9 mem-ory
  []
 
 
-Overfull \hbox (9.52893pt too wide) in paragraph at lines 144--144
+Overfull \hbox (9.52893pt too wide) in paragraph at lines 142--142
 []|\OT1/minntx/m/n/9 Reconstruction
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 144--144
+Underfull \hbox (badness 10000) in paragraph at lines 142--142
 []|\OT1/minntx/m/n/9 Smaller
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 144--144
+Underfull \hbox (badness 10000) in paragraph at lines 142--142
 []|\OT1/minntx/m/n/9 Possible
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 144--144
+Underfull \hbox (badness 10000) in paragraph at lines 142--142
 \OT1/minntx/m/n/9 in-for-ma-tion
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 144--144
+Underfull \hbox (badness 10000) in paragraph at lines 142--142
 []|\OT1/minntx/m/n/9 Apply
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 144--144
+Underfull \hbox (badness 10000) in paragraph at lines 142--142
 \OT1/minntx/m/n/9 dif-fer-ent
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 144--144
+Underfull \hbox (badness 10000) in paragraph at lines 142--142
 \OT1/minntx/m/n/9 com-pres-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 144--144
+Underfull \hbox (badness 10000) in paragraph at lines 142--142
 []|\OT1/minntx/m/n/9 Better
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 144--144
+Underfull \hbox (badness 10000) in paragraph at lines 142--142
 \OT1/minntx/m/n/9 memory-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 144--144
+Underfull \hbox (badness 10000) in paragraph at lines 142--142
 \OT1/minntx/m/n/9 quality
  []
 
 
-Underfull \hbox (badness 1609) in paragraph at lines 144--144
+Underfull \hbox (badness 1609) in paragraph at lines 142--142
 []|\OT1/minntx/m/n/9 More com-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 144--144
+Underfull \hbox (badness 10000) in paragraph at lines 142--142
 []|\OT1/minntx/m/n/9 Share a
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 144--144
+Underfull \hbox (badness 10000) in paragraph at lines 142--142
 \OT1/minntx/m/n/9 low-rank
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 144--144
+Underfull \hbox (badness 10000) in paragraph at lines 142--142
 \OT1/minntx/m/n/9 rep-re-sen-ta-
  []
 
 
-Underfull \hbox (badness 3769) in paragraph at lines 144--144
+Underfull \hbox (badness 3769) in paragraph at lines 142--142
 \OT1/minntx/m/n/9 tion across
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 144--144
+Underfull \hbox (badness 10000) in paragraph at lines 142--142
 \OT1/minntx/m/n/9 mul-ti-ple
  []
 
 
-Underfull \hbox (badness 4013) in paragraph at lines 144--144
+Underfull \hbox (badness 4013) in paragraph at lines 142--142
 []|\OT1/minntx/m/n/9 Up to $8\LMS/ntxsy/m/n/9 ^^B$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 144--144
+Underfull \hbox (badness 10000) in paragraph at lines 142--142
 \OT1/minntx/m/n/9 com-pres-
  []
 
 
-Underfull \hbox (badness 2503) in paragraph at lines 144--144
+Underfull \hbox (badness 2503) in paragraph at lines 142--142
 []|\OT1/minntx/m/n/9 Extra SVD
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 144--144
+Underfull \hbox (badness 10000) in paragraph at lines 142--142
 \OT1/minntx/m/n/9 com-pu-ta-
  []
 
-[2]
-Underfull \hbox (badness 10000) in paragraph at lines 174--174
+
+Underfull \hbox (badness 10000) in paragraph at lines 172--172
 []|\OT1/minntx/m/n/9 Move KV
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 174--174
+Underfull \hbox (badness 10000) in paragraph at lines 172--172
 \OT1/minntx/m/n/9 cache to
  []
 
 
-Underfull \hbox (badness 1546) in paragraph at lines 174--174
+Underfull \hbox (badness 1546) in paragraph at lines 172--172
 []|\OT1/minntx/m/n/9 Lower GPU
  []
 
 
-Underfull \hbox (badness 4048) in paragraph at lines 174--174
+Underfull \hbox (badness 4048) in paragraph at lines 172--172
 []|\OT1/minntx/m/n/9 Transfer la-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 174--174
+Underfull \hbox (badness 10000) in paragraph at lines 172--172
 []|\OT1/minntx/m/n/9 Page-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 174--174
+Underfull \hbox (badness 10000) in paragraph at lines 172--172
 \OT1/minntx/m/n/9 based KV
  []
 
 
-Underfull \hbox (badness 2689) in paragraph at lines 174--174
+Underfull \hbox (badness 2689) in paragraph at lines 172--172
 []|\OT1/minntx/m/n/9 Better GPU
  []
 
 
-Underfull \hbox (badness 6961) in paragraph at lines 174--174
+Underfull \hbox (badness 6961) in paragraph at lines 172--172
 []|\OT1/minntx/m/n/9 More com-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 174--174
+Underfull \hbox (badness 10000) in paragraph at lines 172--172
 []|\OT1/minntx/m/n/9 Reuse
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 174--174
+Underfull \hbox (badness 10000) in paragraph at lines 172--172
 []|\OT1/minntx/m/n/9 Higher
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 174--174
+Underfull \hbox (badness 10000) in paragraph at lines 172--172
 []|\OT1/minntx/m/n/9 Requires
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 174--174
+Underfull \hbox (badness 10000) in paragraph at lines 172--172
 \OT1/minntx/m/n/9 shared
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
 []|\OT1/ntxtlf/b/n/9 Primary
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
 \OT1/ntxtlf/b/n/9 Bot-tle-neck
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
 []|\OT1/ntxtlf/b/n/9 Memory/Latency
  []
 
 
-Underfull \hbox (badness 7256) in paragraph at lines 206--206
+Underfull \hbox (badness 7256) in paragraph at lines 205--205
 []|\OT1/ntxtlf/b/n/9 Accuracy Trade-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
 \OT1/minntx/m/n/9 level; near-MQA
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
 []|\OT1/minntx/m/n/9 General-purpose,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
 \OT1/minntx/m/n/9 latency-sensitive
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
 \OT1/minntx/m/n/9 single-user
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
 []|\OT1/minntx/m/n/9 Balanced,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
 \OT1/minntx/m/n/9 general-purpose
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
 []|\OT1/minntx/m/n/9 Memory ca-pac-ity
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
 \OT1/minntx/m/n/9 many con-cur-rent
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
 []|\OT1/minntx/m/n/9 Memory-accuracy
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
 []|\OT1/minntx/m/n/9 Variable, tensor-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
 []|\OT1/minntx/m/n/9 Accuracy-sensitive
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
 \OT1/minntx/m/n/9 tasks need-ing
  []
 
 
-Underfull \hbox (badness 3623) in paragraph at lines 206--206
+Underfull \hbox (badness 3623) in paragraph at lines 205--205
 \OT1/minntx/m/n/9 im-proves through-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
 []|\OT1/minntx/m/n/9 Long-context
  []
 
 
-Underfull \hbox (badness 3557) in paragraph at lines 206--206
+Underfull \hbox (badness 3557) in paragraph at lines 205--205
 []|\OT1/minntx/m/n/9 Reconstruction er-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
 []|\OT1/minntx/m/n/9 Memory-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
 \OT1/minntx/m/n/9 constrained,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
 \OT1/minntx/m/n/9 accuracy-tolerant
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
 []|\OT1/minntx/m/n/9 Possible
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
 []|\OT1/minntx/m/n/9 Memory-quality
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
 []|\OT1/minntx/m/n/9 Adaptive, token-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
 []|\OT1/minntx/m/n/9 Long doc-u-ments
  []
 
 
-Underfull \hbox (badness 1609) in paragraph at lines 206--206
+Underfull \hbox (badness 1609) in paragraph at lines 205--205
 []|\OT1/minntx/m/n/9 Up to 8$\LMS/ntxsy/m/n/9 ^^B$\OT1/minntx/m/n/9 , 25.6$\LMS/ntxsy/m/n/9 ^^B$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
 \OT1/minntx/m/n/9 com-bined with
  []
 
 
-Underfull \hbox (badness 6396) in paragraph at lines 206--206
+Underfull \hbox (badness 6396) in paragraph at lines 205--205
 \OT1/minntx/m/n/9 adds trans-fer la-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
 []|\OT1/minntx/m/n/9 Memory-
  []
 
 
-Underfull \hbox (badness 1796) in paragraph at lines 206--206
+Underfull \hbox (badness 1796) in paragraph at lines 205--205
 \OT1/minntx/m/n/9 constrained GPUs,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
 []|\OT1/minntx/m/n/9 Better GPU
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
 \OT1/minntx/m/n/9 uti-liza-tion, higher
  []
 
 
-Underfull \hbox (badness 5681) in paragraph at lines 206--206
+Underfull \hbox (badness 5681) in paragraph at lines 205--205
 []|\OT1/minntx/m/n/9 Multi-tenant serv-
  []
 
 
-Underfull \hbox (badness 2591) in paragraph at lines 206--206
+Underfull \hbox (badness 2591) in paragraph at lines 205--205
 []|\OT1/minntx/m/n/9 Higher through-put
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
 []|\OT1/minntx/m/n/9 High-concurrency,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--206
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
 \OT1/minntx/m/n/9 shared-prompt
  []
 
-[3 <./GQA.png>] (main.bbl
+[3 <./GQA.png>]
+Underfull \vbox (badness 7064) has occurred while \output is active []
+
+ [4]
+Underfull \hbox (badness 1845) in paragraph at lines 289--290
+[]\OT1/ntxtlf/b/n/10 Quantization (FP8/NVFP4/MiniKV). \OT1/minntx/m/n/10 Quan-ti-za-tion re-
+ []
+
+[5] (main.bbl
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
 (Font)              scaled to size 6.0pt on input line 28.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
@@ -1279,15 +1263,12 @@ LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
 (Font)              scaled to size 6.0pt on input line 28.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
 (Font)              scaled to size 6.0pt on input line 28.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 
 Overfull \hbox (35.368pt too wide) in paragraph at lines 33--38
 \OT1/minntx/m/n/8 optimizing-[]inference-[]for-[]long-[]context-[]and-[]large-[]batch-[]sizes-[]with-[]nvfp4-[]kv-[]cache/$[][] 
  []
 
-[4])
+)
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -1299,28 +1280,26 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[5
-
-] (main.aux)
+[6] (main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2020/03/25>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: BC18DECCD237A6EBF27B352CD6AC9333;1388.
+(rerunfilecheck)             Checksum: CCAE0E93CD28E90AA6CABF39EED88484;2094.
  ) 
 Here is how much of TeX's memory you used:
- 15977 strings out of 467871
- 249265 string characters out of 5418376
- 668143 words of memory out of 5000000
- 44586 multiletter control sequences out of 15000+600000
- 724600 words of font info for 216 fonts, out of 8000000 for 9000
+ 14669 strings out of 467871
+ 223794 string characters out of 5418376
+ 645329 words of memory out of 5000000
+ 43271 multiletter control sequences out of 15000+600000
+ 728469 words of font info for 225 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,11n,117p,825b,628s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXMI.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txmiaX.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txsys.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmb.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmr.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmri.pfb>
-Output written on main.pdf (5 pages, 287660 bytes).
+ 75i,11n,79p,825b,550s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXMI.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXMI7.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txexs.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txmiaX.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txsys.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmb.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmr.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmri.pfb>
+Output written on main.pdf (6 pages, 322806 bytes).
 PDF statistics:
- 175 PDF objects out of 1000 (max. 8388607)
- 32 named destinations out of 1000 (max. 500000)
- 78 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 222 PDF objects out of 1000 (max. 8388607)
+ 37 named destinations out of 1000 (max. 500000)
+ 110 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -11,8 +11,6 @@
 \usepackage{hyperref}
 \hypersetup{colorlinks, citecolor=blue}
 \usepackage{tabularx}
-\usepackage{caption}
-\captionsetup{skip=3pt}
 
 \title{KV Cache Optimization in LLMs: A Taxonomy and Decision Framework for Efficient Inference}
 \author{
@@ -176,6 +174,7 @@ Shared Attention reduce memory usage by allowing different requests to share the
 
 
 \subsection{Synthesis: A Comparative Decision Framework}
+\label{sec:synthesis}
 Sections~\ref{sec:attention} to~\ref{sec:memory} reviewed four different categories KV cache optimization techniques:attention-level redesign, quantization, compression, and memory management. Although each category aim to solve same problem of the linear growth of KV cache size with context length described in Equation~\eqref{eqn:KVcachesize}, each method focuses on a different part of the inference process and solves different performance issues. Table~\ref{tab:synthesis} provides a summary of these techniques and compares them based on the main bottleneck they address
 
 \begin{table*}[htbp]
@@ -211,6 +210,137 @@ This comparison provides a practical way to select KV cache optimization techniq
 If the main objective is computation cost or latency for a single user, attention-based methods like GQA are suitable as they reduce KV cache size without adding extra overhead during inference. For systems that supports many users at the same time, memory management techniques such as Paged Attention and Shared Attention are effective because they improve GPU memory usage and increase throughput without changing the cache precision.
 
 If model accuracy is the main priority, techniques such as MixQuant and multi-level compression provide a better balance between memory reduction and accuracy compared to applying low precision. Overall, these methods are not alternatives where only one can be used. They can work together, and combining techniques like quantization and memory management can help achieve better performance when deploying large LLMs.
+
+\section{Methodology}
+\subsection{Theoretical Framework and Justification}
+
+In existing research, different KV cache optimization methods are discussed seperately, and different studies use different ways to categories these techniques. To provide a consistent comparison, this report organizes KV cache optimization methods using a \textit{bottleneck-oriented taxonomy}. Each technique is categorized based on the part of the KV cache system it improves. Some methods reduce factors in the KV cache size equation (Eq.~\eqref{eqn:KVpertoken}), while others focus on improving cache storage and access.
+
+Equation~\eqref{eqn:KVpertoken} shows that the KV cache size depends on four main factors: the number of attention heads ($H$), the number of transformer layers ($L$), the bytes used for each element ($B$), and the head dimension ($D$). Based on these factors, KV cache optimization techniques can be grouped into four categories:
+
+\begin{itemize}
+	\item \textbf{Attention-level techniques} (e.g., GQA) reduce the effective number of attention heads ($H$) by allowing multiple query heads to share key-value projections.
+
+	\item \textbf{Quantization techniques} (e.g., FP8, NVFP4, MiniKV) reduce the bytes per element ($B$) by using lower numerical precision.
+
+	\item \textbf{Compression techniques} (e.g., low-rank compression, xKV) reduce redundant information stored in the KV cache by compressing representations across layers or within the cache.
+
+	\item \textbf{Memory management techniques} (e.g., PagedAttention and offloading) do not reduce the actual KV cache size. Instead, they improve how the cache is stored, managed, and accessed during inference.
+\end{itemize}
+
+Rather than categorizing different techniques based on publishing year or research paper, this framework groups techniques based on the problem they solves. This makes it easier to compare different methods and understand which technique is more suitable for different situations.
+
+\subsection{Research Design}
+
+This study follows a \textit{comparative literature survey design} based on the bottleneck-oriented taxonomy introduced in the previous subsection. Instead of collecting new experimental results, it reviewed and compares findings from existing research papers. Since one single paper introduces many different techniques and same techniques may be discussed in multiple different sources, rather than focusing on research papers, it focuses on analysis of each KV cache optimization technique.
+
+Each technique collected from the literature is evaluated using four common criteria across all categories:
+
+\begin{itemize}
+	\item \textbf{Memory impact} is measured by how much the technique reduces KV cache size or GPU memory usage.
+	\item \textbf{Latency/throughput impact} describes how the technique affects inference speed, response time, and serving performance.
+	\item \textbf{Accuracy trade-off} considers whether the technique causes any reduction in model performance or output quality.
+	\item \textbf{Implementation complexity} evaluates the difficulty of applying the technique, including the need for model changes, retraining, or specialized hardware support.
+\end{itemize}
+
+Using the same evaluation criteria for all techniques allows methods from different categories, such as quantization and memory management, to be compared fairly. This consistent comparison approach supports the cross-category analysis and decision framework presented in Section~\ref{sec:synthesis}, where techniques are evaluated based on their advantages, limitations, and suitable application scenarios.
+
+\subsection{Complexity Analysis Procedure}
+\label{sec:complexity}
+
+To compare the techniques, each method is evaluated using equations shown in Eq.~\eqref{eqn:KVpertoken} and~\eqref{eqn:KVcachesize}. If a paper already provides experimental results, such as compression ratios or memory savings, those results are used directly. If it doesn't we just replace variable in the formulas based on the changes (e.g. head grouping, low-rank compression, token pruning), made in each technique. Simlarly for quantization techniques (like INT8 or FP4 quantization) which uses lower precision, evaluation is done by shrinking the bytes per number without changing how the math or complexity works.
+
+Discussion of computational complexity and memory complexity is done seperately. Although KV caching avoids recomputing the Key and Value for tokens that have already been generated, each new token still needs to attend to all previously cached tokens. Therefore, decoding complexity does not change. Instead, most KV cache optimization techniques improve inference performance by reducing memory usage, memory bandwidth, or runtime overhead.
+
+\textbf{Baseline.} Without a KV cache, autoregressive decoding recomputes the Key and Value projections for all previously generated tokens at every decoding step. When generating $i$-th token, it has to process all previous $i-1$ tokens again. As this process is repeated for every new token, the total computational complexity becomes
+
+\[
+	\sum_{i=1}^{N}O(i)=O(N^2).
+\]
+
+The KV cache stores the previously computed Key and Value vectors, so they do not need to be recomputed during decoding. When a new token is generated, only its Key and Value vectors are calculated, while attention is still performed over all previously cached tokens. Therefore, the asymptotic decoding complexity with respect to the sequence length remains
+
+\[
+	O(N^2),
+\]
+
+Although the asymptotic complexity remains the same, the actual computational cost is much lower, resulting in faster inference and higher throughput~\cite{xu2026kv}.
+
+Based on Eq.~\eqref{eqn:KVpertoken} and~\eqref{eqn:KVcachesize}, the KV cache memory requirement can be expressed as:
+
+\[
+	O(L \cdot H \cdot D \cdot B \cdot N).
+\]
+
+%GQA
+
+\textbf{Attention-Level (GQA).} In standard Multi-Head Attention (MHA), each query head has its own Key-Value (KV) head, which is why the memory requirement includes the factor $H$ in Eq.~\eqref{eqn:KVpertoken}. Grouped Query Attention (GQA) reduces memory usage by allowing multiple query heads to share the same Key-Value (KV) head. Instead of having $H$ query heads, query head are divided into $g$ groups that share a single Key-Value head, reducing the number of stored KV heads from $H$ to $H/g$~\cite{ainslie2023gqa}. Therefore, by replacing  $H$ with $H/g$ the memory complexity becomes
+
+\[
+	O\left(
+	L\cdot\frac{H}{g}\cdot D\cdot B\cdot N
+	\right).
+\]
+
+This reduces the KV cache memory usage and the amount of memory bandwidth needed during inference, while keeping the same overall decoding complexity.
+
+%Quantization
+
+\textbf{Quantization (FP8/NVFP4/MiniKV).} Quantization reduces the number of bytes used to store each element, which decreases value of $B$ in Eq.~\eqref{eqn:KVpertoken}. Other factors $L$, $H$, $D$, or $N$ are not modified. For example, FP8 uses half the storage of FP16, while NVFP4 uses half the storage of FP8~\cite{nvidia2025nvfp4}. Replacing  $B$ with smaller $B'$ gives
+
+\[
+	O(L\cdot H\cdot D\cdot B'\cdot N).
+\]
+
+Since $B'$ is only a smaller constant than $B$, quantization does not change the overall asymptotic memory complexity. Instead, it reduces the amount of memory required by a constant factor. MiniKV further improves memory efficiency by combining low-precision storage with adaptive token selection. Instead of keeping all $N$ tokens in the KV cache, it only selects $N'$ important tokens, where $N'< N$. As a result, the memory complexity is reduced to
+
+\[
+	O(L\cdot H\cdot D\cdot B'\cdot N'),
+\]
+
+Experimental results show that MiniKV can reduce KV cache memory by more than 80\%~\cite{sharma2025minikv}.
+
+%Compression
+
+\textbf{Compression (Low-Rank / xKV).} Low-rank compression reduces the size of the head dimension by representing it with a lower-dimensional rank $r$, where $r<D$. This decreases the amount of memory needed to store the KV cache. Replacing $D$ with $r$ in the memory equation gives
+
+\[
+	O(L\cdot H\cdot r\cdot B\cdot N)
+\]
+
+xKV improves memory efficiency by sharing a low-rank KV representation across every $k$ consecutive transformer layers. This shared representation is obtained using Singular Value Decomposition (SVD)~\cite{chang2025xkv}. By sharing the KV representation across multiple layers, the effective number of stored layer representations is reduced from $L$ to $L/k$. Therefore, the memory complexity becomes
+
+\[
+	O\left(
+	\frac{L}{k}\cdot H\cdot D\cdot B\cdot N
+	\right),
+\]
+
+One limitation of xKV is that it requires a one-time offline preprocessing step to compute the Singular Value Decomposition (SVD). This preprocessing is carried out for each group of
+$k$ transformer layers and has a computational complexity of
+
+\[
+	O(D^2\cdot k)
+\]
+
+%Memory Management
+
+\textbf{Memory Management (PagedAttention).} Memory management techniques do not change the KV cache memory complexity shown in Eq.~\eqref{eqn:KVpertoken}. Therefore, the overall memory requirement remains
+
+\[
+	O(L\cdot H\cdot D\cdot B\cdot N).
+\]
+
+Instead of reducing the size of the KV cache itself, these techniques improves memory allocation and utilization. In traditional contiguous memory allocation memory is reserved based on maximum possible length which leads to internal fragmentation (unused memory). PagedAttention solves this issue by dividing KV cache into fixed sized pages and memory is allcoated only when needed~\cite{kwon2023vllm}. Therefore, memory waste is bounded by
+
+\[
+	O(\text{page size})
+\]
+
+for each active sequence, instead of increasing with the maximum reserved context length.
+
+%runtime
+
 \bibliographystyle{IEEEtran}
 \bibliography{reference}
 
