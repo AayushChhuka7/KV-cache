@@ -1,0 +1,4 @@
+Technique,Category,Avg Peak GPU MB,Avg CPU RSS MB,Avg KV MB,Avg Latency (s),Avg Tokens/s,Avg TTFT (s),Notes
+NVFP4 (simulated),quantization,0.0,0.0,2.06,0.0,0.0,0.0,NVFP4 (4-bit fp) KV cache simulation; halving FP8 memory. [analytical simulation]
+MiniKV (simulated),quantization_eviction,0.0,0.0,0.15,0.0,0.0,0.0,MiniKV 2-bit + adaptive token eviction; reports >80% memory reduction in the original paper. [analytical simulation]
+xKV (simulated),compression,0.0,0.0,0.26,0.0,0.0,0.0,"Cross-layer SVD KV cache compression, ~8× memory reduction in the original paper. [analytical simulation]"

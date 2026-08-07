@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kvbench"
+version = "0.1.0"
+description = "Research-grade benchmarking framework for KV cache optimization techniques in LLMs."
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [
+  { name = "Aayush Chhuka" },
+  { name = "Aditya Brajacharya" },
+  { name = "Sudip Dhungana" },
+]
+license = { text = "MIT" }
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+[tool.setuptools]
+packages = ["kvbench", "kvbench.utils", "kvbench.profiling",
+            "kvbench.techniques", "kvbench.experiments", "kvbench.reporting"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

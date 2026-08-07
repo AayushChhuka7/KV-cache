@@ -1,0 +1,827 @@
+{
+  "config": {
+    "seed": 42,
+    "trials": 1,
+    "warmup_steps": 2,
+    "max_new_tokens": 32,
+    "model": "sshleifer/tiny-gpt2",
+    "mha_model": "gpt2",
+    "gqa_model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+    "use_cuda": true,
+    "dtype": "float16",
+    "context_lengths": [
+      256,
+      1024
+    ],
+    "batch_sizes": [
+      1,
+      2
+    ],
+    "prompts": [
+      "The history of computing began with analog machines and mechanical calculators.",
+      "Modern transformer architectures rely on self-attention to model long-range dependencies.",
+      "Key-value caching avoids the redundant recomputation of past token projections.",
+      "Memory bandwidth often becomes the primary bottleneck during autoregressive decoding.",
+      "Quantization reduces the precision of stored tensors to save memory at a small accuracy cost.",
+      "PagedAttention partitions the KV cache into fixed-size blocks to reduce fragmentation.",
+      "Grouped-query attention shares key and value heads across multiple query heads.",
+      "Cross-layer compression exploits redundancy between consecutive transformer layers."
+    ],
+    "output_dir": "results",
+    "save_raw": true,
+    "generate_plots": true,
+    "run_simulations": true
+  },
+  "technique_meta": {
+    "NVFP4 (simulated)": {
+      "category": "quantization",
+      "description": "NVFP4 (4-bit fp) KV cache simulation; halving FP8 memory.",
+      "is_simulation": true,
+      "extra": {}
+    },
+    "MiniKV (simulated)": {
+      "category": "quantization_eviction",
+      "description": "MiniKV 2-bit + adaptive token eviction; reports >80% memory reduction in the original paper.",
+      "is_simulation": true,
+      "extra": {}
+    },
+    "xKV (simulated)": {
+      "category": "compression",
+      "description": "Cross-layer SVD KV cache compression, ~8\u00d7 memory reduction in the original paper.",
+      "is_simulation": true,
+      "extra": {}
+    }
+  },
+  "results": [
+    {
+      "technique": "NVFP4 (simulated)",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 0.0,
+      "analytic_kv_mb": 1.375,
+      "wall_time_s": 0.0,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 0.0,
+      "tokens_per_s": 0.0,
+      "time_to_first_token_s": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 0.0,
+      "peak_rss_mb": 0.0,
+      "notes": "NVFP4 (4-bit fp) KV cache simulation; halving FP8 memory. [analytical simulation]",
+      "raw": {
+        "wall_time_s": [
+          0.0
+        ],
+        "tokens_per_s": [
+          0.0
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          0.0
+        ],
+        "time_to_first_token_s": [
+          0.0
+        ]
+      }
+    },
+    {
+      "technique": "NVFP4 (simulated)",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 0.0,
+      "analytic_kv_mb": 2.75,
+      "wall_time_s": 0.0,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 0.0,
+      "tokens_per_s": 0.0,
+      "time_to_first_token_s": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 0.0,
+      "peak_rss_mb": 0.0,
+      "notes": "NVFP4 (4-bit fp) KV cache simulation; halving FP8 memory. [analytical simulation]",
+      "raw": {
+        "wall_time_s": [
+          0.0
+        ],
+        "tokens_per_s": [
+          0.0
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          0.0
+        ],
+        "time_to_first_token_s": [
+          0.0
+        ]
+      }
+    },
+    {
+      "technique": "NVFP4 (simulated)",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 0.0,
+      "analytic_kv_mb": 1.375,
+      "wall_time_s": 0.0,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 0.0,
+      "tokens_per_s": 0.0,
+      "time_to_first_token_s": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 0.0,
+      "peak_rss_mb": 0.0,
+      "notes": "NVFP4 (4-bit fp) KV cache simulation; halving FP8 memory. [analytical simulation]",
+      "raw": {
+        "wall_time_s": [
+          0.0
+        ],
+        "tokens_per_s": [
+          0.0
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          0.0
+        ],
+        "time_to_first_token_s": [
+          0.0
+        ]
+      }
+    },
+    {
+      "technique": "NVFP4 (simulated)",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 0.0,
+      "analytic_kv_mb": 2.75,
+      "wall_time_s": 0.0,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 0.0,
+      "tokens_per_s": 0.0,
+      "time_to_first_token_s": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 0.0,
+      "peak_rss_mb": 0.0,
+      "notes": "NVFP4 (4-bit fp) KV cache simulation; halving FP8 memory. [analytical simulation]",
+      "raw": {
+        "wall_time_s": [
+          0.0
+        ],
+        "tokens_per_s": [
+          0.0
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          0.0
+        ],
+        "time_to_first_token_s": [
+          0.0
+        ]
+      }
+    },
+    {
+      "technique": "MiniKV (simulated)",
+      "category": "quantization_eviction",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 0.0,
+      "analytic_kv_mb": 0.103125,
+      "wall_time_s": 0.0,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 0.0,
+      "tokens_per_s": 0.0,
+      "time_to_first_token_s": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 0.0,
+      "peak_rss_mb": 0.0,
+      "notes": "MiniKV 2-bit + adaptive token eviction; reports >80% memory reduction in the original paper. [analytical simulation]",
+      "raw": {
+        "wall_time_s": [
+          0.0
+        ],
+        "tokens_per_s": [
+          0.0
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          0.0
+        ],
+        "time_to_first_token_s": [
+          0.0
+        ]
+      }
+    },
+    {
+      "technique": "MiniKV (simulated)",
+      "category": "quantization_eviction",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 0.0,
+      "analytic_kv_mb": 0.20625,
+      "wall_time_s": 0.0,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 0.0,
+      "tokens_per_s": 0.0,
+      "time_to_first_token_s": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 0.0,
+      "peak_rss_mb": 0.0,
+      "notes": "MiniKV 2-bit + adaptive token eviction; reports >80% memory reduction in the original paper. [analytical simulation]",
+      "raw": {
+        "wall_time_s": [
+          0.0
+        ],
+        "tokens_per_s": [
+          0.0
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          0.0
+        ],
+        "time_to_first_token_s": [
+          0.0
+        ]
+      }
+    },
+    {
+      "technique": "MiniKV (simulated)",
+      "category": "quantization_eviction",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 0.0,
+      "analytic_kv_mb": 0.103125,
+      "wall_time_s": 0.0,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 0.0,
+      "tokens_per_s": 0.0,
+      "time_to_first_token_s": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 0.0,
+      "peak_rss_mb": 0.0,
+      "notes": "MiniKV 2-bit + adaptive token eviction; reports >80% memory reduction in the original paper. [analytical simulation]",
+      "raw": {
+        "wall_time_s": [
+          0.0
+        ],
+        "tokens_per_s": [
+          0.0
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          0.0
+        ],
+        "time_to_first_token_s": [
+          0.0
+        ]
+      }
+    },
+    {
+      "technique": "MiniKV (simulated)",
+      "category": "quantization_eviction",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 0.0,
+      "analytic_kv_mb": 0.20625,
+      "wall_time_s": 0.0,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 0.0,
+      "tokens_per_s": 0.0,
+      "time_to_first_token_s": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 0.0,
+      "peak_rss_mb": 0.0,
+      "notes": "MiniKV 2-bit + adaptive token eviction; reports >80% memory reduction in the original paper. [analytical simulation]",
+      "raw": {
+        "wall_time_s": [
+          0.0
+        ],
+        "tokens_per_s": [
+          0.0
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          0.0
+        ],
+        "time_to_first_token_s": [
+          0.0
+        ]
+      }
+    },
+    {
+      "technique": "xKV (simulated)",
+      "category": "compression",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 0.0,
+      "analytic_kv_mb": 0.171875,
+      "wall_time_s": 0.0,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 0.0,
+      "tokens_per_s": 0.0,
+      "time_to_first_token_s": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 0.0,
+      "peak_rss_mb": 0.0,
+      "notes": "Cross-layer SVD KV cache compression, ~8\u00d7 memory reduction in the original paper. [analytical simulation]",
+      "raw": {
+        "wall_time_s": [
+          0.0
+        ],
+        "tokens_per_s": [
+          0.0
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          0.0
+        ],
+        "time_to_first_token_s": [
+          0.0
+        ]
+      }
+    },
+    {
+      "technique": "xKV (simulated)",
+      "category": "compression",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 0.0,
+      "analytic_kv_mb": 0.34375,
+      "wall_time_s": 0.0,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 0.0,
+      "tokens_per_s": 0.0,
+      "time_to_first_token_s": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 0.0,
+      "peak_rss_mb": 0.0,
+      "notes": "Cross-layer SVD KV cache compression, ~8\u00d7 memory reduction in the original paper. [analytical simulation]",
+      "raw": {
+        "wall_time_s": [
+          0.0
+        ],
+        "tokens_per_s": [
+          0.0
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          0.0
+        ],
+        "time_to_first_token_s": [
+          0.0
+        ]
+      }
+    },
+    {
+      "technique": "xKV (simulated)",
+      "category": "compression",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 0.0,
+      "analytic_kv_mb": 0.171875,
+      "wall_time_s": 0.0,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 0.0,
+      "tokens_per_s": 0.0,
+      "time_to_first_token_s": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 0.0,
+      "peak_rss_mb": 0.0,
+      "notes": "Cross-layer SVD KV cache compression, ~8\u00d7 memory reduction in the original paper. [analytical simulation]",
+      "raw": {
+        "wall_time_s": [
+          0.0
+        ],
+        "tokens_per_s": [
+          0.0
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          0.0
+        ],
+        "time_to_first_token_s": [
+          0.0
+        ]
+      }
+    },
+    {
+      "technique": "xKV (simulated)",
+      "category": "compression",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 0.0,
+      "analytic_kv_mb": 0.34375,
+      "wall_time_s": 0.0,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 0.0,
+      "tokens_per_s": 0.0,
+      "time_to_first_token_s": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 0.0,
+      "peak_rss_mb": 0.0,
+      "notes": "Cross-layer SVD KV cache compression, ~8\u00d7 memory reduction in the original paper. [analytical simulation]",
+      "raw": {
+        "wall_time_s": [
+          0.0
+        ],
+        "tokens_per_s": [
+          0.0
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          0.0
+        ],
+        "time_to_first_token_s": [
+          0.0
+        ]
+      }
+    }
+  ],
+  "raw_trials": [
+    {
+      "technique": "NVFP4 (simulated)",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 0.0,
+      "analytic_kv_mb": 1.375,
+      "wall_time_s": 0.0,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 0,
+      "tokens_per_s": 0.0,
+      "time_to_first_token_s": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 0.0,
+      "peak_rss_mb": 0.0,
+      "notes": "NVFP4 (4-bit fp) KV cache simulation; halving FP8 memory. [analytical simulation]",
+      "raw": {
+        "wall_time_s": [
+          4.0099999750964344e-05
+        ]
+      }
+    },
+    {
+      "technique": "NVFP4 (simulated)",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 0.0,
+      "analytic_kv_mb": 2.75,
+      "wall_time_s": 0.0,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 0,
+      "tokens_per_s": 0.0,
+      "time_to_first_token_s": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 0.0,
+      "peak_rss_mb": 0.0,
+      "notes": "NVFP4 (4-bit fp) KV cache simulation; halving FP8 memory. [analytical simulation]",
+      "raw": {
+        "wall_time_s": [
+          1.2100004823878407e-05
+        ]
+      }
+    },
+    {
+      "technique": "NVFP4 (simulated)",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 0.0,
+      "analytic_kv_mb": 1.375,
+      "wall_time_s": 0.0,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 0,
+      "tokens_per_s": 0.0,
+      "time_to_first_token_s": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 0.0,
+      "peak_rss_mb": 0.0,
+      "notes": "NVFP4 (4-bit fp) KV cache simulation; halving FP8 memory. [analytical simulation]",
+      "raw": {
+        "wall_time_s": [
+          9.60000033956021e-06
+        ]
+      }
+    },
+    {
+      "technique": "NVFP4 (simulated)",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 0.0,
+      "analytic_kv_mb": 2.75,
+      "wall_time_s": 0.0,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 0,
+      "tokens_per_s": 0.0,
+      "time_to_first_token_s": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 0.0,
+      "peak_rss_mb": 0.0,
+      "notes": "NVFP4 (4-bit fp) KV cache simulation; halving FP8 memory. [analytical simulation]",
+      "raw": {
+        "wall_time_s": [
+          7.699985872022808e-06
+        ]
+      }
+    },
+    {
+      "technique": "MiniKV (simulated)",
+      "category": "quantization_eviction",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 0.0,
+      "analytic_kv_mb": 0.103125,
+      "wall_time_s": 0.0,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 0,
+      "tokens_per_s": 0.0,
+      "time_to_first_token_s": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 0.0,
+      "peak_rss_mb": 0.0,
+      "notes": "MiniKV 2-bit + adaptive token eviction; reports >80% memory reduction in the original paper. [analytical simulation]",
+      "raw": {
+        "wall_time_s": [
+          1.920000067912042e-05
+        ]
+      }
+    },
+    {
+      "technique": "MiniKV (simulated)",
+      "category": "quantization_eviction",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 0.0,
+      "analytic_kv_mb": 0.20625,
+      "wall_time_s": 0.0,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 0,
+      "tokens_per_s": 0.0,
+      "time_to_first_token_s": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 0.0,
+      "peak_rss_mb": 0.0,
+      "notes": "MiniKV 2-bit + adaptive token eviction; reports >80% memory reduction in the original paper. [analytical simulation]",
+      "raw": {
+        "wall_time_s": [
+          1.5300000086426735e-05
+        ]
+      }
+    },
+    {
+      "technique": "MiniKV (simulated)",
+      "category": "quantization_eviction",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 0.0,
+      "analytic_kv_mb": 0.103125,
+      "wall_time_s": 0.0,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 0,
+      "tokens_per_s": 0.0,
+      "time_to_first_token_s": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 0.0,
+      "peak_rss_mb": 0.0,
+      "notes": "MiniKV 2-bit + adaptive token eviction; reports >80% memory reduction in the original paper. [analytical simulation]",
+      "raw": {
+        "wall_time_s": [
+          1.1900003300979733e-05
+        ]
+      }
+    },
+    {
+      "technique": "MiniKV (simulated)",
+      "category": "quantization_eviction",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 0.0,
+      "analytic_kv_mb": 0.20625,
+      "wall_time_s": 0.0,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 0,
+      "tokens_per_s": 0.0,
+      "time_to_first_token_s": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 0.0,
+      "peak_rss_mb": 0.0,
+      "notes": "MiniKV 2-bit + adaptive token eviction; reports >80% memory reduction in the original paper. [analytical simulation]",
+      "raw": {
+        "wall_time_s": [
+          1.1500000255182385e-05
+        ]
+      }
+    },
+    {
+      "technique": "xKV (simulated)",
+      "category": "compression",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 0.0,
+      "analytic_kv_mb": 0.171875,
+      "wall_time_s": 0.0,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 0,
+      "tokens_per_s": 0.0,
+      "time_to_first_token_s": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 0.0,
+      "peak_rss_mb": 0.0,
+      "notes": "Cross-layer SVD KV cache compression, ~8\u00d7 memory reduction in the original paper. [analytical simulation]",
+      "raw": {
+        "wall_time_s": [
+          1.930000144056976e-05
+        ]
+      }
+    },
+    {
+      "technique": "xKV (simulated)",
+      "category": "compression",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 0.0,
+      "analytic_kv_mb": 0.34375,
+      "wall_time_s": 0.0,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 0,
+      "tokens_per_s": 0.0,
+      "time_to_first_token_s": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 0.0,
+      "peak_rss_mb": 0.0,
+      "notes": "Cross-layer SVD KV cache compression, ~8\u00d7 memory reduction in the original paper. [analytical simulation]",
+      "raw": {
+        "wall_time_s": [
+          1.1399999493733048e-05
+        ]
+      }
+    },
+    {
+      "technique": "xKV (simulated)",
+      "category": "compression",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 0.0,
+      "analytic_kv_mb": 0.171875,
+      "wall_time_s": 0.0,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 0,
+      "tokens_per_s": 0.0,
+      "time_to_first_token_s": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 0.0,
+      "peak_rss_mb": 0.0,
+      "notes": "Cross-layer SVD KV cache compression, ~8\u00d7 memory reduction in the original paper. [analytical simulation]",
+      "raw": {
+        "wall_time_s": [
+          9.100011084228754e-06
+        ]
+      }
+    },
+    {
+      "technique": "xKV (simulated)",
+      "category": "compression",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 0.0,
+      "analytic_kv_mb": 0.34375,
+      "wall_time_s": 0.0,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 0,
+      "tokens_per_s": 0.0,
+      "time_to_first_token_s": 0.0,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 0.0,
+      "peak_rss_mb": 0.0,
+      "notes": "Cross-layer SVD KV cache compression, ~8\u00d7 memory reduction in the original paper. [analytical simulation]",
+      "raw": {
+        "wall_time_s": [
+          9.700001101009548e-06
+        ]
+      }
+    }
+  ]
+}
