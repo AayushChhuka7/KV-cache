@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.7.19)  26 JUL 2026 13:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.7.19)  7 AUG 2026 21:24
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -733,520 +733,615 @@ LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
 (Font)              scaled to size 8.0pt on input line 40.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
 (Font)              scaled to size 6.1pt on input line 40.
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 42.
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/sc' will be
-(Font)              scaled to size 10.0pt on input line 40.
-LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 10.0pt on input line 55.
-LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 7.3pt on input line 55.
-LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 5.5pt on input line 55.
-LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 10.0pt on input line 55.
-LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 7.3pt on input line 55.
-LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 5.5pt on input line 55.
-LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 10.0pt on input line 55.
-LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 7.3pt on input line 55.
-LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 5.5pt on input line 55.
-LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 10.0pt on input line 55.
-LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 7.3pt on input line 55.
-LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 5.5pt on input line 55.
-LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 10.0pt on input line 55.
-LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 7.3pt on input line 55.
-LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 5.5pt on input line 55.
-LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 10.0pt on input line 55.
-LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 7.3pt on input line 55.
-LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 5.5pt on input line 55.
-LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 10.0pt on input line 55.
-LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 7.3pt on input line 55.
-LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 5.5pt on input line 55.
-LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 10.0pt on input line 55.
-LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 7.3pt on input line 55.
-LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 5.5pt on input line 55.
-LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 7.3pt on input line 56.
-LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 5.5pt on input line 56.
+(Font)              scaled to size 10.0pt on input line 49.
  [1{C:/Users/aayus/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}
 
 
-{C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ot1-tlf-pc.enc}]
-<GQA.png, id=85, 1104.125pt x 425.59pt>
+{C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}{C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ot1-tlf-pc.enc}]
+LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
+(Font)              scaled to size 10.0pt on input line 64.
+LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
+(Font)              scaled to size 7.3pt on input line 64.
+LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
+(Font)              scaled to size 5.5pt on input line 64.
+LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
+(Font)              scaled to size 10.0pt on input line 64.
+LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
+(Font)              scaled to size 7.3pt on input line 64.
+LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
+(Font)              scaled to size 5.5pt on input line 64.
+LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
+(Font)              scaled to size 10.0pt on input line 64.
+LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
+(Font)              scaled to size 7.3pt on input line 64.
+LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
+(Font)              scaled to size 5.5pt on input line 64.
+LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
+(Font)              scaled to size 10.0pt on input line 64.
+LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
+(Font)              scaled to size 7.3pt on input line 64.
+LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
+(Font)              scaled to size 5.5pt on input line 64.
+LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
+(Font)              scaled to size 10.0pt on input line 64.
+LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
+(Font)              scaled to size 7.3pt on input line 64.
+LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
+(Font)              scaled to size 5.5pt on input line 64.
+LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
+(Font)              scaled to size 10.0pt on input line 64.
+LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
+(Font)              scaled to size 7.3pt on input line 64.
+LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
+(Font)              scaled to size 5.5pt on input line 64.
+LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
+(Font)              scaled to size 10.0pt on input line 64.
+LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
+(Font)              scaled to size 7.3pt on input line 64.
+LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
+(Font)              scaled to size 5.5pt on input line 64.
+LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
+(Font)              scaled to size 10.0pt on input line 64.
+LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
+(Font)              scaled to size 7.3pt on input line 64.
+LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
+(Font)              scaled to size 5.5pt on input line 64.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 7.3pt on input line 65.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 5.5pt on input line 65.
+<GQA.png, id=123, 1104.125pt x 425.59pt>
 File: GQA.png Graphic file (type png)
 <use GQA.png>
-Package pdftex.def Info: GQA.png  used on input line 74.
+Package pdftex.def Info: GQA.png  used on input line 83.
 (pdftex.def)             Requested size: 283.80157pt x 109.39095pt.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/sc' will be
-(Font)              scaled to size 8.0pt on input line 92.
+(Font)              scaled to size 8.0pt on input line 101.
 
-Underfull \hbox (badness 10000) in paragraph at lines 109--109
+Underfull \hbox (badness 10000) in paragraph at lines 118--118
 []|\OT1/ntxtlf/b/n/9 Main
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 109--109
+Underfull \hbox (badness 10000) in paragraph at lines 118--118
 []|\OT1/minntx/m/n/9 Highest
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 109--109
+Underfull \hbox (badness 10000) in paragraph at lines 118--118
 []|\OT1/minntx/m/n/9 Large
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 109--109
+Underfull \hbox (badness 10000) in paragraph at lines 118--118
 \OT1/minntx/m/n/9 mem-ory
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 109--109
+Underfull \hbox (badness 10000) in paragraph at lines 118--118
 []|\OT1/minntx/m/n/9 Lower
  []
 
 
-Underfull \hbox (badness 1968) in paragraph at lines 109--109
+Underfull \hbox (badness 1968) in paragraph at lines 118--118
 []|\OT1/minntx/m/n/9 Slight ac-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 109--109
+Underfull \hbox (badness 10000) in paragraph at lines 118--118
 []|\OT1/minntx/m/n/9 Smaller
  []
 
 
-Overfull \hbox (6.882pt too wide) in paragraph at lines 109--109
+Overfull \hbox (6.882pt too wide) in paragraph at lines 118--118
 []|\OT1/minntx/m/n/9 Quantization
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 109--109
+Underfull \hbox (badness 10000) in paragraph at lines 118--118
 []|\OT1/minntx/m/n/9 Better
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 109--109
+Underfull \hbox (badness 10000) in paragraph at lines 118--118
 \OT1/minntx/m/n/9 accuracy-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 109--109
+Underfull \hbox (badness 10000) in paragraph at lines 118--118
 \OT1/minntx/m/n/9 memory
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 109--109
+Underfull \hbox (badness 10000) in paragraph at lines 118--118
 []|\OT1/minntx/m/n/9 Higher
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 109--109
+Underfull \hbox (badness 10000) in paragraph at lines 118--118
 \OT1/minntx/m/n/9 com-plex-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 109--109
+Underfull \hbox (badness 10000) in paragraph at lines 118--118
 []|\OT1/minntx/m/n/9 Custom
  []
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 142--142
+Underfull \hbox (badness 10000) in paragraph at lines 151--151
 []|\OT1/minntx/m/n/9 Project
  []
 
 
-Underfull \hbox (badness 3758) in paragraph at lines 142--142
+Underfull \hbox (badness 3758) in paragraph at lines 151--151
 \OT1/minntx/m/n/9 into lower-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 142--142
+Underfull \hbox (badness 10000) in paragraph at lines 151--151
 \OT1/minntx/m/n/9 dimensional
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 142--142
+Underfull \hbox (badness 10000) in paragraph at lines 151--151
 []|\OT1/minntx/m/n/9 Lower
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 142--142
+Underfull \hbox (badness 10000) in paragraph at lines 151--151
 \OT1/minntx/m/n/9 mem-ory
  []
 
 
-Overfull \hbox (9.52893pt too wide) in paragraph at lines 142--142
+Overfull \hbox (9.52893pt too wide) in paragraph at lines 151--151
 []|\OT1/minntx/m/n/9 Reconstruction
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 142--142
+Underfull \hbox (badness 10000) in paragraph at lines 151--151
 []|\OT1/minntx/m/n/9 Smaller
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 142--142
+Underfull \hbox (badness 10000) in paragraph at lines 151--151
 []|\OT1/minntx/m/n/9 Possible
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 142--142
+Underfull \hbox (badness 10000) in paragraph at lines 151--151
 \OT1/minntx/m/n/9 in-for-ma-tion
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 142--142
+Underfull \hbox (badness 10000) in paragraph at lines 151--151
 []|\OT1/minntx/m/n/9 Apply
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 142--142
+Underfull \hbox (badness 10000) in paragraph at lines 151--151
 \OT1/minntx/m/n/9 dif-fer-ent
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 142--142
+Underfull \hbox (badness 10000) in paragraph at lines 151--151
 \OT1/minntx/m/n/9 com-pres-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 142--142
+Underfull \hbox (badness 10000) in paragraph at lines 151--151
 []|\OT1/minntx/m/n/9 Better
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 142--142
+Underfull \hbox (badness 10000) in paragraph at lines 151--151
 \OT1/minntx/m/n/9 memory-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 142--142
+Underfull \hbox (badness 10000) in paragraph at lines 151--151
 \OT1/minntx/m/n/9 quality
  []
 
 
-Underfull \hbox (badness 1609) in paragraph at lines 142--142
+Underfull \hbox (badness 1609) in paragraph at lines 151--151
 []|\OT1/minntx/m/n/9 More com-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 142--142
+Underfull \hbox (badness 10000) in paragraph at lines 151--151
 []|\OT1/minntx/m/n/9 Share a
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 142--142
+Underfull \hbox (badness 10000) in paragraph at lines 151--151
 \OT1/minntx/m/n/9 low-rank
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 142--142
+Underfull \hbox (badness 10000) in paragraph at lines 151--151
 \OT1/minntx/m/n/9 rep-re-sen-ta-
  []
 
 
-Underfull \hbox (badness 3769) in paragraph at lines 142--142
+Underfull \hbox (badness 3769) in paragraph at lines 151--151
 \OT1/minntx/m/n/9 tion across
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 142--142
+Underfull \hbox (badness 10000) in paragraph at lines 151--151
 \OT1/minntx/m/n/9 mul-ti-ple
  []
 
 
-Underfull \hbox (badness 4013) in paragraph at lines 142--142
+Underfull \hbox (badness 4013) in paragraph at lines 151--151
 []|\OT1/minntx/m/n/9 Up to $8\LMS/ntxsy/m/n/9 ^^B$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 142--142
+Underfull \hbox (badness 10000) in paragraph at lines 151--151
 \OT1/minntx/m/n/9 com-pres-
  []
 
 
-Underfull \hbox (badness 2503) in paragraph at lines 142--142
+Underfull \hbox (badness 2503) in paragraph at lines 151--151
 []|\OT1/minntx/m/n/9 Extra SVD
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 142--142
+Underfull \hbox (badness 10000) in paragraph at lines 151--151
 \OT1/minntx/m/n/9 com-pu-ta-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 172--172
+Underfull \hbox (badness 10000) in paragraph at lines 181--181
 []|\OT1/minntx/m/n/9 Move KV
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 172--172
+Underfull \hbox (badness 10000) in paragraph at lines 181--181
 \OT1/minntx/m/n/9 cache to
  []
 
 
-Underfull \hbox (badness 1546) in paragraph at lines 172--172
+Underfull \hbox (badness 1546) in paragraph at lines 181--181
 []|\OT1/minntx/m/n/9 Lower GPU
  []
 
 
-Underfull \hbox (badness 4048) in paragraph at lines 172--172
+Underfull \hbox (badness 4048) in paragraph at lines 181--181
 []|\OT1/minntx/m/n/9 Transfer la-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 172--172
+Underfull \hbox (badness 10000) in paragraph at lines 181--181
 []|\OT1/minntx/m/n/9 Page-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 172--172
+Underfull \hbox (badness 10000) in paragraph at lines 181--181
 \OT1/minntx/m/n/9 based KV
  []
 
 
-Underfull \hbox (badness 2689) in paragraph at lines 172--172
+Underfull \hbox (badness 2689) in paragraph at lines 181--181
 []|\OT1/minntx/m/n/9 Better GPU
  []
 
 
-Underfull \hbox (badness 6961) in paragraph at lines 172--172
+Underfull \hbox (badness 6961) in paragraph at lines 181--181
 []|\OT1/minntx/m/n/9 More com-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 172--172
+Underfull \hbox (badness 10000) in paragraph at lines 181--181
 []|\OT1/minntx/m/n/9 Reuse
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 172--172
+Underfull \hbox (badness 10000) in paragraph at lines 181--181
 []|\OT1/minntx/m/n/9 Higher
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 172--172
+Underfull \hbox (badness 10000) in paragraph at lines 181--181
 []|\OT1/minntx/m/n/9 Requires
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 172--172
+Underfull \hbox (badness 10000) in paragraph at lines 181--181
 \OT1/minntx/m/n/9 shared
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+Underfull \hbox (badness 10000) in paragraph at lines 214--214
 []|\OT1/ntxtlf/b/n/9 Primary
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+Underfull \hbox (badness 10000) in paragraph at lines 214--214
 \OT1/ntxtlf/b/n/9 Bot-tle-neck
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+Underfull \hbox (badness 10000) in paragraph at lines 214--214
 []|\OT1/ntxtlf/b/n/9 Memory/Latency
  []
 
 
-Underfull \hbox (badness 7256) in paragraph at lines 205--205
+Underfull \hbox (badness 7256) in paragraph at lines 214--214
 []|\OT1/ntxtlf/b/n/9 Accuracy Trade-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+Underfull \hbox (badness 10000) in paragraph at lines 214--214
 \OT1/minntx/m/n/9 level; near-MQA
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+Underfull \hbox (badness 10000) in paragraph at lines 214--214
 []|\OT1/minntx/m/n/9 General-purpose,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+Underfull \hbox (badness 10000) in paragraph at lines 214--214
 \OT1/minntx/m/n/9 latency-sensitive
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+Underfull \hbox (badness 10000) in paragraph at lines 214--214
 \OT1/minntx/m/n/9 single-user
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+Underfull \hbox (badness 10000) in paragraph at lines 214--214
 []|\OT1/minntx/m/n/9 Balanced,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+Underfull \hbox (badness 10000) in paragraph at lines 214--214
 \OT1/minntx/m/n/9 general-purpose
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+Underfull \hbox (badness 10000) in paragraph at lines 214--214
 []|\OT1/minntx/m/n/9 Memory ca-pac-ity
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+Underfull \hbox (badness 10000) in paragraph at lines 214--214
 \OT1/minntx/m/n/9 many con-cur-rent
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+Underfull \hbox (badness 10000) in paragraph at lines 214--214
 []|\OT1/minntx/m/n/9 Memory-accuracy
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+Underfull \hbox (badness 10000) in paragraph at lines 214--214
 []|\OT1/minntx/m/n/9 Variable, tensor-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+Underfull \hbox (badness 10000) in paragraph at lines 214--214
 []|\OT1/minntx/m/n/9 Accuracy-sensitive
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+Underfull \hbox (badness 10000) in paragraph at lines 214--214
 \OT1/minntx/m/n/9 tasks need-ing
  []
 
 
-Underfull \hbox (badness 3623) in paragraph at lines 205--205
+Underfull \hbox (badness 3623) in paragraph at lines 214--214
 \OT1/minntx/m/n/9 im-proves through-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+Underfull \hbox (badness 10000) in paragraph at lines 214--214
 []|\OT1/minntx/m/n/9 Long-context
  []
 
 
-Underfull \hbox (badness 3557) in paragraph at lines 205--205
+Underfull \hbox (badness 3557) in paragraph at lines 214--214
 []|\OT1/minntx/m/n/9 Reconstruction er-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+Underfull \hbox (badness 10000) in paragraph at lines 214--214
 []|\OT1/minntx/m/n/9 Memory-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+Underfull \hbox (badness 10000) in paragraph at lines 214--214
 \OT1/minntx/m/n/9 constrained,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+Underfull \hbox (badness 10000) in paragraph at lines 214--214
 \OT1/minntx/m/n/9 accuracy-tolerant
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+Underfull \hbox (badness 10000) in paragraph at lines 214--214
 []|\OT1/minntx/m/n/9 Possible
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+Underfull \hbox (badness 10000) in paragraph at lines 214--214
 []|\OT1/minntx/m/n/9 Memory-quality
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+Underfull \hbox (badness 10000) in paragraph at lines 214--214
 []|\OT1/minntx/m/n/9 Adaptive, token-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+Underfull \hbox (badness 10000) in paragraph at lines 214--214
 []|\OT1/minntx/m/n/9 Long doc-u-ments
  []
 
 
-Underfull \hbox (badness 1609) in paragraph at lines 205--205
+Underfull \hbox (badness 1609) in paragraph at lines 214--214
 []|\OT1/minntx/m/n/9 Up to 8$\LMS/ntxsy/m/n/9 ^^B$\OT1/minntx/m/n/9 , 25.6$\LMS/ntxsy/m/n/9 ^^B$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+Underfull \hbox (badness 10000) in paragraph at lines 214--214
 \OT1/minntx/m/n/9 com-bined with
  []
 
 
-Underfull \hbox (badness 6396) in paragraph at lines 205--205
+Underfull \hbox (badness 6396) in paragraph at lines 214--214
 \OT1/minntx/m/n/9 adds trans-fer la-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+Underfull \hbox (badness 10000) in paragraph at lines 214--214
 []|\OT1/minntx/m/n/9 Memory-
  []
 
 
-Underfull \hbox (badness 1796) in paragraph at lines 205--205
+Underfull \hbox (badness 1796) in paragraph at lines 214--214
 \OT1/minntx/m/n/9 constrained GPUs,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+Underfull \hbox (badness 10000) in paragraph at lines 214--214
 []|\OT1/minntx/m/n/9 Better GPU
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+Underfull \hbox (badness 10000) in paragraph at lines 214--214
 \OT1/minntx/m/n/9 uti-liza-tion, higher
  []
 
 
-Underfull \hbox (badness 5681) in paragraph at lines 205--205
+Underfull \hbox (badness 5681) in paragraph at lines 214--214
 []|\OT1/minntx/m/n/9 Multi-tenant serv-
  []
 
 
-Underfull \hbox (badness 2591) in paragraph at lines 205--205
+Underfull \hbox (badness 2591) in paragraph at lines 214--214
 []|\OT1/minntx/m/n/9 Higher through-put
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+Underfull \hbox (badness 10000) in paragraph at lines 214--214
 []|\OT1/minntx/m/n/9 High-concurrency,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+Underfull \hbox (badness 10000) in paragraph at lines 214--214
 \OT1/minntx/m/n/9 shared-prompt
  []
 
-[3 <./GQA.png>]
-Underfull \vbox (badness 7064) has occurred while \output is active []
-
- [4]
-Underfull \hbox (badness 1845) in paragraph at lines 289--290
+[3 <./GQA.png>] [4] [5]
+Underfull \hbox (badness 1845) in paragraph at lines 298--299
 []\OT1/ntxtlf/b/n/10 Quantization (FP8/NVFP4/MiniKV). \OT1/minntx/m/n/10 Quan-ti-za-tion re-
  []
 
-[5] (main.bbl
+
+Underfull \hbox (badness 10000) in paragraph at lines 366--367
+[]\OT1/pcr/m/n/10 run_trial(prompts, max_new_tokens,
+ []
+
+[6]
+Underfull \hbox (badness 1603) in paragraph at lines 369--370
+\OT1/minntx/m/n/10 er-ates over each (tech-nique, con-text length, batch size,
+ []
+
+
+Underfull \hbox (badness 3078) in paragraph at lines 481--482
+[]\OT1/ntxtlf/b/n/10 (i) Attention-level (GQA) re-duces the cache size
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 481--482
+\OT1/minntx/m/n/10 model by a fac-tor equal to \OT1/pcr/m/n/10 num_attention_heads
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 481--482
+\OT1/pcr/m/n/10 / num_key_value_heads\OT1/minntx/m/n/10 . In our runs with
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 481--482
+\OT1/pcr/m/n/10 TinyLlama/TinyLlama-1.1B-Chat-v1.0 \OT1/minntx/m/n/10 (32
+ []
+
+LaTeX Font Info:    Trying to load font information for OML+ntxtlf on input line 483.
+LaTeX Font Info:    No file OMLntxtlf.fd. on input line 483.
+
+LaTeX Font Warning: Font shape `OML/ntxtlf/m/n' undefined
+(Font)              using `OML/ntxmi/m/it' instead
+(Font)              for symbol `textgreater' on input line 483.
+
+LaTeX Font Info:    Font shape `OML/ntxtlf/m/n' will be
+(Font)              scaled to size 10.0pt on input line 485.
+
+Underfull \hbox (badness 10000) in alignment at lines 508--508
+[][][][] 
+ []
+
+<memory_vs_context.png, id=219, 542.025pt x 325.215pt>
+File: memory_vs_context.png Graphic file (type png)
+<use memory_vs_context.png>
+Package pdftex.def Info: memory_vs_context.png  used on input line 513.
+(pdftex.def)             Requested size: 165.12378pt x 99.0738pt.
+<throughput_vs_context.png, id=220, 542.025pt x 325.215pt>
+File: throughput_vs_context.png Graphic file (type png)
+<use throughput_vs_context.png>
+Package pdftex.def Info: throughput_vs_context.png  used on input line 514.
+(pdftex.def)             Requested size: 165.12378pt x 99.0738pt.
+<latency_vs_context.png, id=221, 542.025pt x 325.215pt>
+File: latency_vs_context.png Graphic file (type png)
+<use latency_vs_context.png>
+Package pdftex.def Info: latency_vs_context.png  used on input line 515.
+(pdftex.def)             Requested size: 165.12378pt x 99.0738pt.
+<memory_vs_batch.png, id=222, 542.025pt x 325.215pt>
+File: memory_vs_batch.png Graphic file (type png)
+<use memory_vs_batch.png>
+Package pdftex.def Info: memory_vs_batch.png  used on input line 522.
+(pdftex.def)             Requested size: 232.19843pt x 139.31866pt.
+<summary_tokens_per_s.png, id=223, 578.16pt x 252.945pt>
+File: summary_tokens_per_s.png Graphic file (type png)
+<use summary_tokens_per_s.png>
+Package pdftex.def Info: summary_tokens_per_s.png  used on input line 523.
+(pdftex.def)             Requested size: 232.19843pt x 101.58533pt.
+<summary_kv_mb.png, id=224, 578.16pt x 252.945pt>
+File: summary_kv_mb.png Graphic file (type png)
+<use summary_kv_mb.png>
+Package pdftex.def Info: summary_kv_mb.png  used on input line 530.
+(pdftex.def)             Requested size: 309.60315pt x 135.44968pt.
+[7] [8] [9 <./memory_vs_context.png> <./throughput_vs_context.png> <./latency_vs_context.png> <./memory_vs_batch.png> <./summary_tokens_per_s.png> <./summary_kv_mb.png>]
+Underfull \hbox (badness 3199) in paragraph at lines 561--562
+\OT1/ntxtlf/b/n/10 Model lim-i-ta-tions. \OT1/minntx/m/n/10 The de-fault mod-els are in-ten-tion-
+ []
+
+
+Underfull \hbox (badness 1960) in paragraph at lines 561--562
+\OT1/minntx/m/n/10 ally small (\OT1/pcr/m/n/10 sshleifer/tiny-gpt2 \OT1/minntx/m/n/10 for the base-line,
+ []
+
+
+Underfull \hbox (badness 6284) in paragraph at lines 573--574
+\OT1/minntx/m/n/10 en-forced here. Set-ting \OT1/pcr/m/n/10 KVBENCH_LOG_LEVEL=DEBUG
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 573--574
+\OT1/minntx/m/n/10 and re-running with \OT1/pcr/m/n/10 deterministic=True \OT1/minntx/m/n/10 in-side
+ []
+
+[10] (main.bbl
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
 (Font)              scaled to size 6.0pt on input line 28.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
@@ -1280,26 +1375,32 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[6] (main.aux)
+[11
+
+] (main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2020/03/25>
  ***********
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: CCAE0E93CD28E90AA6CABF39EED88484;2094.
+(rerunfilecheck)             Checksum: E0CB6F60A4DBC9D4BE9B3AE0F154DB0D;3489.
  ) 
 Here is how much of TeX's memory you used:
- 14669 strings out of 467871
- 223794 string characters out of 5418376
- 645329 words of memory out of 5000000
- 43271 multiletter control sequences out of 15000+600000
- 728469 words of font info for 225 fonts, out of 8000000 for 9000
+ 14822 strings out of 467871
+ 226545 string characters out of 5418376
+ 651740 words of memory out of 5000000
+ 43386 multiletter control sequences out of 15000+600000
+ 733240 words of font info for 239 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,11n,79p,825b,550s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXMI.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXMI7.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txexs.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txmiaX.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txsys.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmb.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmr.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmri.pfb>
-Output written on main.pdf (6 pages, 322806 bytes).
+ 75i,11n,79p,1216b,560s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXMI.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXMI7.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txexs.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txmiaX.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txsys.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrb8a.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmb.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmbi.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmr.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmri.pfb>
+Output written on main.pdf (11 pages, 875668 bytes).
 PDF statistics:
- 222 PDF objects out of 1000 (max. 8388607)
- 37 named destinations out of 1000 (max. 500000)
- 110 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 335 PDF objects out of 1000 (max. 8388607)
+ 59 named destinations out of 1000 (max. 500000)
+ 220 words of extra memory for PDF output out of 10000 (max. 10000000)
 
