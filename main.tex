@@ -3,14 +3,20 @@
 \IEEEoverridecommandlockouts%
 \usepackage{cite}
 \usepackage{newtxtext,newtxmath}
+\usepackage[scaled=0.95]{newtxtt} % monospace matched to newtx body size
 \usepackage{booktabs}
 %\usepackage[a4paper,margin=1in]{geometry}
 %\usepackage{parskip}
 \usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage[hyphens]{url}
+\usepackage{xurl}
 \usepackage{hyperref}
-\hypersetup{colorlinks, citecolor=blue}
+\hypersetup{colorlinks, citecolor=blue, breaklinks=true}
 \usepackage{tabularx}
+
+% Breakable typewriter text for long code/model identifiers (no hyperlink).
+\DeclareUrlCommand\code{\urlstyle{tt}}
 
 \title{KV Cache Optimization in LLMs: A Taxonomy and Decision Framework for Efficient Inference}
 \author{
@@ -442,7 +448,7 @@ The experiments are intended to run on commodity hardware. \texttt{kvbench} sele
 \section{Results}
 \label{sec:results}
 
-This section reports the numbers produced by \texttt{kvbench} on the benchmark configuration described in Section~\ref{sec:setup}. The reference model is \texttt{sshleifer/tiny-gpt2} (FP16 baseline, 2 attention layers, head dimension matched to the model embedding size). For each technique we report the analytical KV cache size in MB at a context length of $256$ tokens and a batch size of $1$, the resulting memory reduction relative to the FP16 baseline, and the qualitative latency impact drawn from the original papers. The three simulated techniques (NVFP4, MiniKV, xKV) report the analytical cache size derived from Eq.~\eqref{eqn:KVpertoken}; measured latency columns are zero for these rows because no GPU kernel is executed.
+This section includes the numerical results obtained from \texttt{kvbench} using the benchmark setup explained in Section~IV. The reference model used in this study is \code{sshleifer/tiny-gpt2} (FP16 baseline, 2 attention layers, head dimension matching the model embedding size). The analytical size of the KV cache for each approach is expressed in megabytes (MB) when context length and batch size are 256 and 1, respectively; memory saving compared to the FP16 baseline and the qualitative latency impact as mentioned in the original papers are listed. NVFP4, MiniKV, and xKV, which are the three approaches simulated, have analytical cache size calculated using Equation (1); the latency columns are zero because there is no GPU kernel run.
 
 \begin{table*}[htbp]
 	\centering
@@ -478,17 +484,17 @@ This section reports the numbers produced by \texttt{kvbench} on the benchmark c
 
 \subsection{Quantitative observations}
 
-\textbf{(i) Attention-level (GQA) reduces the cache size at the architectural level.} The KV cache memory of a GQA model is smaller than that of a comparable MHA model by a factor equal to \texttt{num\_attention\_heads / num\_key\_value\_heads}. In our runs with \texttt{TinyLlama/TinyLlama-1.1B-Chat-v1.0} (32 query heads, 4 KV heads, group size 8), the measured \texttt{analytic\_kv\_mb} drops by approximately $8\times$ relative to a same-shape MHA model. Tokens/sec is also higher at long contexts because the attention kernel reads less data per token.
+\textbf{(i) Attention-level (GQA) makes the cache size smaller at the architectural level.} The KV cache memory of a GQA model is smaller than that of an equivalent MHA model in \code{num_attention_heads}~/~\code{num_key_value_heads} factor. Based on our experimental results of \code{TinyLlama/TinyLlama-1.1B-Chat-v1.0} (32 query heads, 4 KV heads, group size 8), the measured \code{analytic_kv_mb} is reduced by about $8\times$ times compared to a same-shape MHA model. Tokens per second is also improved under long-context settings since the attention kernel reads less data per token.
 
-\textbf{(ii) Quantization (INT8 / FP8 / NVFP4 / MiniKV) reduces the per-element size.} INT8 and FP8 store one byte per element versus two for FP16, which yields approximately $50\%$ reduction in the analytic KV cache size at every measured (context, batch). The peak GPU memory is not expected to drop by the same factor because the model weights dominate; the cache reduction is most visible when the cache is large relative to the model (long contexts, large batches). NVFP4 halves the FP8 cache size, and MiniKV combines 2-bit storage with adaptive token eviction to reach the headline \textgreater\,$80\%$ memory reduction reported by~\cite{sharma2025minikv}.
+\textbf{(ii) Quantization (INT8 / FP8 / NVFP4 / MiniKV) makes the per-element size smaller.} Since INT8 and FP8 take one byte per element against two bytes of FP16, the analytic KV cache size is reduced by about half for every context/batch size. It is not expected that the peak GPU memory can be reduced by the same ratio since model weights take most of memory, whereas the cache reduction is most obvious when the cache is larger compared to the model (long contexts, large batches). NVFP4 reduces the FP8 cache size by half, and MiniKV utilizes 2-bit storage along with adaptive token eviction to obtain the reported memory reduction of >80\% as explained in~\cite{sharma2025minikv}.
 
-\textbf{(iii) Compression (low-rank, xKV) trades accuracy for memory.} Low-rank compression scales memory linearly with the chosen rank. For \texttt{head\_dim=64} a rank-32 projector reaches roughly $50\%$ of the FP16 baseline. xKV reaches approximately $8\times$ reduction in the analytical formula, and \textgreater\,$25\times$ when combined with 4-bit quantization, at the cost of one SVD preprocessing pass per layer group.
+\textbf{(iii) Compression (low-rank, xKV) compromises the accuracy for memory savings.} Low-rank compression has linear scaling of memory with respect to the selected rank. When \texttt{head\_dim = 64}, a rank-32 projector reaches around $50\%$ of the FP16 baseline. xKV provides around $8\times$ reduction according to the analytic equation, and over $25\times$ when combined with 4-bit quantization, while compromising one SVD preprocessing step per layer group.
 
-\textbf{(iv) Memory management (PagedAttention, Offloading) does not change the per-token size.} PagedAttention eliminates the worst-case over-allocation, so the peak reserved memory is closer to the actual cache size. CPU Offloading shifts the older portion of the cache to pinned CPU memory; the GPU window controls the trade-off between GPU memory and transfer latency.
+\textbf{(iv) Memory management (PagedAttention, Offloading) does not change the per-token size.} PagedAttention removes the worst-case over-allocation so the peak reserved memory will be closer to the actual cache size. CPU Offloading transfers the older part of the cache into the pinned CPU memory, while the GPU window manages the balance between GPU memory and transfer latency.
 
 \subsection{Scaling with context length}
 
-Table~\ref{tab:scaling} shows how the analytical KV cache size grows with context length for the simulated techniques. The growth is linear in the number of tokens, as predicted by Eq.~\eqref{eqn:KVcachesize}, with each technique maintaining a constant ratio relative to the FP16 baseline.
+Table VIII shows that the analytical size of the KV cache is proportional to the length of context in the simulation of these techniques. There is linear proportionality with respect to the number of tokens, in accordance with Eq. (2).
 
 \begin{table*}[htbp]
 	\centering
@@ -534,52 +540,53 @@ Table~\ref{tab:scaling} shows how the analytical KV cache size grows with contex
 
 \subsection{Comparison with the taxonomy}
 
-The empirical numbers agree with the theoretical expectations of the taxonomy in Section~\ref{sec:synthesis}. Quantization techniques reduce the analytic KV size by a constant factor; the cross-layer compression xKV and the eviction-based MiniKV reach the largest reductions. GQA reduces the cache at the architectural level, which means the reduction is present even before any optimization is applied. Memory management techniques leave the per-token size unchanged but reduce over-allocation and improve serving throughput.
+This is consistent with the theoretical predictions of the taxonomy provided in Section II-F. Quantization methods reduce the size of the analytic KV in a fixed ratio; the cross-layer xKV and the eviction based MiniKV have the highest reductions. The GQA method reduces the size of the cache at an architectural level, which means the reduction will be realized even before optimization. The memory management methods do not change the token size but minimize over-allocation and improve serving performance.
 
 \section{Discussion}
 \label{sec:discussion}
 
-The taxonomy, the complexity analysis, and the experimental results together support four practical observations.
+Taxonomy, complexity analysis, and experiments altogether provide four useful conclusions.
 
-First, the choice of optimization technique is primarily driven by the bottleneck of the target deployment. If the deployment is GPU memory bound, quantization and cross-layer compression provide the largest absolute reductions; if it is latency bound for a single user, attention-level techniques such as GQA provide the reduction at the architectural level without adding per-step overhead; if it is throughput bound for many concurrent users, memory management techniques such as PagedAttention and Shared Attention provide the largest gains without changing cache precision.
+The first one is that the choice of the optimization method depends mainly on the particular type of bottleneck in the target system. If the bottleneck is related to the capacity of GPU memory, then quantization and cross-layer compression provide the highest improvements; if it is about the latency bottleneck for a single user, then attention-level methods like GQA provide the most significant improvements on the architecture level with no per-step overhead cost; if the problem lies in the limited throughput due to many users, then memory management approaches like PagedAttention and Shared Attention provide the highest improvements without changing cache precision.
 
-Second, the techniques are not alternatives where only one can be used. Combining xKV with 4-bit quantization reaches a combined compression ratio of approximately $25.6\times$ with only a small reduction in accuracy~\cite{chang2025xkv}, and stacking PagedAttention on top of quantization is standard practice in production serving. The taxonomy therefore serves as a composition guide rather than a one-versus-rest comparison.
+Second, the approaches are not mutually exclusive such that only one of them can be utilized. The use of xKV together with 4-bit quantization yields a total compression ratio of 25.6× with minimal loss in accuracy~\cite{chang2025xkv}, while PagedAttention stacking on top of quantization is common practice in deployment service. Thus, the proposed taxonomy acts as a way of composition rather than a one-to-rest approach.
 
-Third, the speed-versus-memory trade-off is non-uniform across techniques. Quantization primarily trades accuracy for memory; compression trades reconstruction quality for memory; attention-level redesign trades model architecture for cache size at the model level; memory management trades utilization efficiency for memory waste. A single deployment typically benefits from a combination that addresses more than one of these axes.
+Thirdly, the trade-off between speed and memory is not uniform among methods. In quantization, there is a trade-off between accuracy and memory, while in compression there is a trade-off between quality of reconstruction and memory, and in attention-level redesign there is a trade-off between model architecture and cache size. It is typical for a single deployment to take advantage of a combination of multiple dimensions.
 
-Fourth, the analytic KV cache size from Eq.~\eqref{eqn:KVpertoken} matches the measured peak GPU memory only loosely. The model's weights dominate the peak GPU memory in our runs, so the cache reduction is most visible at long contexts and large batch sizes. This is consistent with the design choice in \texttt{kvbench} of reporting both \texttt{peak\_gpu\_mb} and \texttt{analytic\_kv\_mb} side by side.
+Fourthly, the analytical KV cache size from Eq. (1) is only a loose match to the measured peak GPU memory size. The weight of the model takes up the vast majority of the peak GPU memory in our experiments, and hence, the trade-off of cache size is very clear in long context and big batch size settings. This aligns with the design of kvbench which reports both \texttt{peak\_gpu\_mb} and \texttt{analytic\_kv\_mb}.
 
 \section{Limitations}
 \label{sec:limitations}
+{\sloppy
+This work has several limitations, listed below by category. 
 
-This work is subject to a number of limitations, organized below by category.
+\noindent\textbf{Dataset limitations.} \texttt{kvbench} uses a fixed set of eight short prompts to fill the context window. These prompts are repeated and combined to achieve the desired context length. The framework measures memory and latency with controlled inputs instead of accuracy on a downstream benchmark. End task accuracy, including perplexity, MMLU, and long-context retrieval, is not measured here.
 
-\noindent\textbf{Dataset limitations.} \texttt{kvbench} uses a fixed set of eight short prompts to populate the context window, which is repeated and concatenated to reach the desired context length. The framework therefore measures \textit{memory and latency under controlled inputs} rather than accuracy on a downstream benchmark. End-task accuracy (perplexity, MMLU, long-context retrieval) is not measured here.
+\noindent\textbf{Computational constraints.} Absolute numbers for latency and throughput depend on the underlying computer. Different hardware (A100 vs RTX 4090 vs CPU) will give completely different absolute numbers. However, all the numbers are reported by the framework so that the relative ranking of different methods is still valid regardless of absolute numbers being platform dependent. The CPU path is much slower compared to CUDA one; numbers should be compared on the same platform.
 
-\noindent\textbf{Computational constraints.} Absolute latency and throughput numbers depend on the host machine. Different hardware (e.g., A100 versus RTX 4090 versus CPU) produces very different absolute numbers. The framework reports all metrics so that the \textit{relative} ranking of techniques is meaningful even when absolute numbers are platform-specific. The CPU fallback path is significantly slower than the CUDA path; results should be compared within a single machine.
+\noindent\textbf{Model limitations.} The standard models used in the experiments are deliberately small (\code{sshleifer/tiny-gpt2} for the baseline, \code{TinyLlama/TinyLlama-1.1B-Chat-v1.0} for GQA, \code{gpt2} for the MHA comparison). While they are adequate for comparing the two methods from the perspective of memory and latency, they do not replicate the exact throughput performance of frontier models like Llama-3.x or Mistral at large context sizes.
 
-\noindent\textbf{Model limitations.} The default models are intentionally small (\texttt{sshleifer/tiny-gpt2} for the baseline, \texttt{TinyLlama/TinyLlama-1.1B-Chat-v1.0} for GQA, \texttt{gpt2} for the MHA comparison). They are sufficient to compare the techniques on memory and latency, but they do not reproduce the absolute throughput of frontier models such as Llama-3.x or Mistral at long contexts. Users who want production-grade numbers should set \texttt{KVBENCH\_MODEL} to the target model.
+\noindent\textbf{Evaluation limitations.} INT8 uses symmetric per-channel quantization with no outlier treatment or asymmetric scaling. FP8 uses \code{torch.float8_e5m2} if available; otherwise, 1 byte approximation. For devices without FP8 tensor cores, the dequantization cost becomes the main bottleneck. The low-rank compression uses random Kaiming-uniform projection matrices rather than calibrated SVD, which produces worse reconstruction performance, but memory-latency trade-offs still match the original work.
 
-\noindent\textbf{Evaluation limitations.} INT8 uses per-channel symmetric quantization without outlier handling or asymmetric ranges. FP8 uses \texttt{torch.float8\_e5m2} where supported, otherwise a 1-byte approximation; on hardware that lacks FP8 tensor cores, the dequantization overhead is the dominant cost. Low-rank compression uses random Kaiming-uniform projectors rather than calibration-based SVD, so the reconstruction quality is poor even though the memory and latency trade-off is faithful to the original paper.
+\noindent\textbf{Simulated techniques.} NVFP4, MiniKV, and xKV techniques are simulated analytically as they cannot be coded into GPU kernels due to unavailability or proprietary nature of the kernels themselves. This means that instead of measurement-based estimates, the simulators give only analytical estimation of savings in memory usage and of latency overhead based on previously published values. As a result, latency estimates for the relevant rows in the table are equal to zero.
 
-\noindent\textbf{Simulated techniques.} NVFP4, MiniKV, and xKV are implemented as analytical simulators rather than as real GPU kernels because their kernels are proprietary or unavailable as pip packages. The simulators report the analytical memory savings and an estimated latency overhead derived from the published numbers, not measured numbers. The latency columns are zero for these rows and the cells are tagged \texttt{[analytical simulation]} in the output.
+\noindent\textbf{PagedAttention requires vLLM.} PagedAttention uses vLLM. vLLM is not available for native Windows and non-NVIDIA GPUs. In those cases, PagedAttentionVLLM runs a pure PyTorch simulation which reflects the same qualitative properties (no over-allocation per-sequence, lower memory usage peak) but has much lower performance. To obtain full results for PagedAttention, test the framework under WSL2 or Linux OS.
 
-\noindent\textbf{PagedAttention requires vLLM.} vLLM is not supported on native Windows or on non-NVIDIA GPUs. On these platforms \texttt{PagedAttentionVLLM} falls back to a pure-PyTorch simulation that captures the qualitative behaviour (no per-sequence over-allocation, lower peak memory) but at much lower throughput. For full PagedAttention numbers, run the framework inside WSL2 or on a Linux machine.
+\noindent\textbf{Inference speed.} The Time To First Token (TTFT) is calculated using wall clock time divided by the number of generated tokens, which is a pessimistic estimator of TTFT when context length is large. Cold-start vs Warm Cache is not accounted for, as at the beginning of each experiment there is a newly loaded model and a freshly allocated allocator. Production servers often have a pre-warmed KV cache filled in from previous requests.
 
-\noindent\textbf{Inference speed.} Time-to-first-token (TTFT) is approximated as wall-clock divided by tokens generated, which overestimates TTFT on long contexts. Cold-start versus warm-cache is not modelled: each trial starts from a freshly loaded model and a freshly reset allocator. Real serving systems often see warm KV caches that are already populated from prior requests, which the framework does not simulate.
+\noindent\textbf{Generalization and scalability.} By default, the context-length sweep is set to $[128, 512, 2048, 4096]$ and the batch sweep to $[1, 2, 4]$, choices which are consistent with off-the-shelf hardware capabilities. The framework does not conduct any sweeps to context lengths of 32k and 128k or multi-tenant prefix-sharing workloads for large-scale deployment. The findings are meant to be indicative.
 
-\noindent\textbf{Generalization and scalability.} The default context-length sweep is $[128, 512, 2048, 4096]$ and the default batch sweep is $[1, 2, 4]$, which is what fits on commodity hardware. The framework does not sweep to $32$k or $128$k context lengths, and does not evaluate multi-tenant prefix-sharing workloads at scale. Results are intended to be indicative, not exhaustive.
-
-\noindent\textbf{Determinism.} PyTorch operations that are not deterministic on CUDA (for example flash-attention reductions) are not enforced here. Setting \texttt{KVBENCH\_LOG\_LEVEL=DEBUG} and re-running with \texttt{deterministic=True} inside \texttt{seed\_everything()} produces more reproducible numbers at a small throughput cost.
+\noindent\textbf{Determinism.} Non-deterministic functions like flash-attention reductions in CUDA calls from PyTorch will not be made deterministic in this case. Using \code{KVBENCH_LOG_LEVEL=DEBUG} and running with \code{deterministic=True} inside \code{seed_everything()} will give better numbers with a small throughput hit.
+\par}
 
 \section{Conclusion}
 \label{sec:conclusion}
 
-This paper presented a bottleneck-oriented taxonomy of KV cache optimization techniques for LLM inference, organized the techniques into four categories (attention-level redesign, quantization, compression, and memory management), and compared them using a common set of metrics implemented in \texttt{kvbench}. The framework measures ten techniques under identical conditions and emits both per-cell and per-technique tables, plus six publication-quality plots. Three techniques whose kernels are proprietary (NVFP4, MiniKV, xKV) are included as analytical simulators so that the comparison is complete.
+This paper presented a bottleneck oriented taxonomy of KV cache optimization techniques for LLM inference, which classified the techniques in terms of four categories (attention-level redesign, quantization, compression, and memory management), compared them via a set of unified metrics implemented in \texttt{kvbench}, and visualized the results using both per-cell and per-technique tables plus six plots in publication quality. Three techniques (NVFP4, MiniKV, xKV) with proprietary kernels were included as analytical simulators, such that the comparison covers all techniques mentioned in the taxonomy.
 
-The headline observation is that the choice of optimization technique is dictated by the bottleneck of the deployment. For GPU-memory-bound workloads, NVFP4, MiniKV, and xKV deliver the largest reductions; for latency-bound single-user workloads, GQA delivers the reduction at the architectural level; for throughput-bound multi-tenant workloads, PagedAttention and Shared Attention deliver the largest gains. The techniques compose: combining cross-layer compression with quantization, or quantization with PagedAttention, is standard practice and is supported by both the taxonomy and the framework.
+The key takeaway of this work is that the optimal optimization technique depends on the system bottlenecks. For GPU-memory-bound workloads, NVFP4, MiniKV, and xKV showed the largest gains in throughput. For latency-critical single-tenant workloads, GQA reported the largest reductions in the architectural level. For throughput-critical multi-tenant workloads, PagedAttention and Shared Attention showed the largest gains. Cross-layer compression and quantization are typically combined, and so are quantization and PagedAttention, which is reflected in both the taxonomy and the framework.
 
-Future work will replace the analytical simulators with real GPU kernels as they become pip-installable, add end-task accuracy benchmarks (perplexity, long-context retrieval), and extend the framework to multi-tenant prefix-sharing workloads at long context lengths.
+Future directions include replacing the analytical simulators with actual GPU kernels once they are available as pip packages, adding the end-task accuracy benchmarks (such as perplexity and long-context retrieval), and supporting the multi-tenant prefix-sharing workloads at very long context lengths.
 
 
 \bibliographystyle{IEEEtran}
