@@ -18,12 +18,21 @@
 % Breakable typewriter text for long code/model identifiers (no hyperlink).
 \DeclareUrlCommand\code{\urlstyle{tt}}
 
+% \linebreakand: start a new centered row of authors (IEEEtran V1.8b lacks it).
+\makeatletter
+\newcommand{\linebreakand}{%
+	\end{@IEEEauthorhalign}%
+	\hfill\mbox{}\par
+	\mbox{}\hfill\begin{@IEEEauthorhalign}%
+}
+\makeatother
+
 \title{KV Cache Optimization in LLMs: A Taxonomy and Decision Framework for Efficient Inference}
 \author{
 	\IEEEauthorblockN{1\textsuperscript{st} Aayush Chhuka}
 	\IEEEauthorblockA{\textit{Department of Computer Science and Engineering} \\
 		\textit{National College of Engineering}\\
-		Lalitapur, Nepal \\
+		Lalitpur, Nepal \\
 		aayushchhuka20@gmail.com}
 	
 	\and
@@ -31,21 +40,21 @@
 	\IEEEauthorblockN{2\textsuperscript{nd} Aditya Brajacharya}
 	\IEEEauthorblockA{\textit{Department of Computer Science and Engineering} \\
 		\textit{National College of Engineering}\\
-		Lalitapur, Nepal \\
+		Lalitpur, Nepal \\
 		aadityabrjacharya123@gmail.com}
-	
-	\and
+
+	\linebreakand
 	\IEEEauthorblockN{3\textsuperscript{rd} Sudip Dhungana}
 	\IEEEauthorblockA{\textit{Department of Computer Science and Engineering} \\
 		\textit{National College of Engineering}\\
-		Lalitapur, Nepal \\
+		Lalitpur, Nepal \\
 		sudipdhungana02@gmail.com}
 }
 \begin{document}
 \maketitle
 
 \begin{abstract}
-Large Language Models (LLMs) rely on the key-value (KV) cache to avoid recomputing past token projections during autoregressive generation, but the cache grows linearly with the context length and becomes a major bottleneck for GPU memory, memory bandwidth, and inference latency. This paper presents a \textit{bottleneck-oriented taxonomy} that organizes ten KV cache optimization techniques into four categories - attention-level redesign, quantization, compression, and memory management - and compares them using a common set of metrics. The comparison is supported by a reproducible benchmarking framework, \texttt{kvbench}, which measures peak GPU memory, CPU resident-set size, wall-clock latency, throughput, and analytic KV cache size across the same set of prompts, seeds, and (context, batch) configurations. Three techniques whose kernels are proprietary (NVFP4, MiniKV, xKV) are included as high-fidelity analytical simulations. The framework and the comparison together act as a practical decision framework for selecting KV cache optimization methods under different memory, latency, and accuracy constraints.
+Large Language Models rely on the Key-Value (KV) cache to save on computing projections of previously generated tokens in autoregressive inference. Nevertheless, the KV cache scales linearly with the context size and becomes a major limiting factor for GPU memory, memory bandwidth, and inference latency. In this work, we propose a taxonomy based on bottleneck identification and analyze ten KV cache optimizations techniques belonging to four different classes---attention level redesign, quantization, compression, and memory management---in a unified way with respect to a set of common metrics. The analysis is based on a reproducible benchmarking framework, \texttt{kvbench}, measuring the peak GPU memory, CPU resident-set size, wall-clock latency, throughput, and analytical KV cache size on an identical set of prompts, seeds, and (context, batch) settings. Three optimizations whose kernels are proprietary (NVFP4, MiniKV, xKV) are simulated by high-fidelity analytical models. The proposed framework and the comparison serve as a decision framework for choosing KV cache optimization techniques in various scenarios of memory, latency, and accuracy constraints.
 \end{abstract}
 
 \begin{IEEEkeywords}
