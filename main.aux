@@ -25,7 +25,6 @@
 \citation{nvidia2025nvfp4,lu2026mixquant,sharma2025minikv}
 \citation{nvidia2025nvfp4,lu2026mixquant,sharma2025minikv}
 \citation{shan2025cognitivememoryllms}
-\citation{shan2025cognitivememoryllms}
 \newlabel{eqn:KVpertoken}{{1}{2}{Background}{equation.1}{}}
 \newlabel{eqn:KVcachesize}{{2}{2}{Background}{equation.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-B}}Attention Level Techniques}{2}{subsection.2.2}\protected@file@percent }
@@ -34,6 +33,7 @@
 \@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Comparison of KV cache quantization techniques.}}{2}{table.1}\protected@file@percent }
 \newlabel{tab:kv_quantization}{{I}{2}{Comparison of KV cache quantization techniques}{table.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-D}}KV Cache Compression}{2}{subsection.2.4}\protected@file@percent }
+\citation{shan2025cognitivememoryllms}
 \citation{chang2025xkv}
 \citation{shan2025cognitivememoryllms,chang2025xkv}
 \citation{sheng2023flexgen}
@@ -54,9 +54,9 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-B}}Research Design}{4}{subsection.3.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-C}}Complexity Analysis Procedure}{4}{subsection.3.3}\protected@file@percent }
 \newlabel{sec:complexity}{{\mbox  {III-C}}{4}{Complexity Analysis Procedure}{subsection.3.3}{}}
-\citation{xu2026kv}
 \@writefile{lot}{\contentsline {table}{\numberline {IV}{\ignorespaces Comparative synthesis of KV cache optimization techniques across all categories.}}{5}{table.4}\protected@file@percent }
 \newlabel{tab:synthesis}{{IV}{5}{Comparative synthesis of KV cache optimization techniques across all categories}{table.4}{}}
+\citation{xu2026kv}
 \citation{ainslie2023gqa}
 \citation{nvidia2025nvfp4}
 \citation{sharma2025minikv}
@@ -67,7 +67,6 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-A}}Implementation}{6}{subsection.4.1}\protected@file@percent }
 \newlabel{sec:implementation}{{\mbox  {IV-A}}{6}{Implementation}{subsection.4.1}{}}
 \citation{sharma2025minikv}
-\citation{chang2025xkv}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-B}}Hardware and Software}{7}{subsection.4.2}\protected@file@percent }
 \newlabel{sec:hardware}{{\mbox  {IV-B}}{7}{Hardware and Software}{subsection.4.2}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {V}Results}{7}{section.5}\protected@file@percent }
@@ -81,20 +80,19 @@
 \newlabel{tab:techniques}{{V}{8}{Techniques implemented and evaluated by \texttt {kvbench}}{table.5}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {VI}{\ignorespaces Hardware and software configuration used to run \texttt  {kvbench}. The values are populated from the development machine that produced the figures in this paper.}}{8}{table.6}\protected@file@percent }
 \newlabel{tab:hardware}{{VI}{8}{Hardware and software configuration used to run \texttt {kvbench}. The values are populated from the development machine that produced the figures in this paper}{table.6}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {VII}{\ignorespaces Analytical KV cache size at \texttt  {ctx=256}, \texttt  {batch=1} for the FP16 baseline and each optimization technique. Memory reduction is computed against the FP16 baseline.}}{8}{table.7}\protected@file@percent }
-\newlabel{tab:results_summary}{{VII}{8}{Analytical KV cache size at \texttt {ctx=256}, \texttt {batch=1} for the FP16 baseline and each optimization technique. Memory reduction is computed against the FP16 baseline}{table.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Behaviour of the simulated techniques as the context length grows at \texttt  {batch=1}. \textbf  {Left:} peak GPU memory versus context length; the GQA curve is the lowest among the architectural techniques, while MiniKV and xKV reach the lowest absolute cache sizes. \textbf  {Centre:} throughput in tokens per second; quantization preserves the FP16 throughput baseline while compression and eviction add small overheads. \textbf  {Right:} per-token latency on a log scale; PagedAttention and the baseline dominate the low-latency region, while CPU Offloading pays a fixed transfer cost per generated token.}}{8}{figure.2}\protected@file@percent }
+\newlabel{fig:context_curves}{{2}{8}{Behaviour of the simulated techniques as the context length grows at \texttt {batch=1}. \textbf {Left:} peak GPU memory versus context length; the GQA curve is the lowest among the architectural techniques, while MiniKV and xKV reach the lowest absolute cache sizes. \textbf {Centre:} throughput in tokens per second; quantization preserves the FP16 throughput baseline while compression and eviction add small overheads. \textbf {Right:} per-token latency on a log scale; PagedAttention and the baseline dominate the low-latency region, while CPU Offloading pays a fixed transfer cost per generated token}{figure.2}{}}
+\citation{chang2025xkv}
+\@writefile{lot}{\contentsline {table}{\numberline {VII}{\ignorespaces Analytical KV cache size at \texttt  {ctx=256}, \texttt  {batch=1} for the FP16 baseline and each optimization technique. Memory reduction is computed against the FP16 baseline.}}{9}{table.7}\protected@file@percent }
+\newlabel{tab:results_summary}{{VII}{9}{Analytical KV cache size at \texttt {ctx=256}, \texttt {batch=1} for the FP16 baseline and each optimization technique. Memory reduction is computed against the FP16 baseline}{table.7}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {VIII}{\ignorespaces Analytical KV cache size (MB) at \texttt  {batch=1} for the simulated techniques as the context length grows. The values come from the smoke-test run reported in \texttt  {coding/results/\_smoke/}.}}{9}{table.8}\protected@file@percent }
 \newlabel{tab:scaling}{{VIII}{9}{Analytical KV cache size (MB) at \texttt {batch=1} for the simulated techniques as the context length grows. The values come from the smoke-test run reported in \texttt {coding/results/\_smoke/}}{table.8}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Behaviour of the simulated techniques as the context length grows at \texttt  {batch=1}. \textbf  {Left:} peak GPU memory versus context length; the GQA curve is the lowest among the architectural techniques, while MiniKV and xKV reach the lowest absolute cache sizes. \textbf  {Centre:} throughput in tokens per second; quantization preserves the FP16 throughput baseline while compression and eviction add small overheads. \textbf  {Right:} per-token latency on a log scale; PagedAttention and the baseline dominate the low-latency region, while CPU Offloading pays a fixed transfer cost per generated token.}}{9}{figure.2}\protected@file@percent }
-\newlabel{fig:context_curves}{{2}{9}{Behaviour of the simulated techniques as the context length grows at \texttt {batch=1}. \textbf {Left:} peak GPU memory versus context length; the GQA curve is the lowest among the architectural techniques, while MiniKV and xKV reach the lowest absolute cache sizes. \textbf {Centre:} throughput in tokens per second; quantization preserves the FP16 throughput baseline while compression and eviction add small overheads. \textbf {Right:} per-token latency on a log scale; PagedAttention and the baseline dominate the low-latency region, while CPU Offloading pays a fixed transfer cost per generated token}{figure.2}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Behaviour of the techniques across batch sizes and an aggregated summary. \textbf  {Left:} peak KV cache size at \texttt  {context\_length=1024} as the batch grows from 1 to 4; all techniques scale linearly in the batch dimension, preserving their relative ordering. \textbf  {Right:} average tokens per second across all (context, batch) configurations; GQA and PagedAttention lead, the FP16 baseline and the quantized variants form the middle band, and CPU Offloading is at the low end because of the per-token transfer.}}{9}{figure.3}\protected@file@percent }
 \newlabel{fig:batch_and_summary_tps}{{3}{9}{Behaviour of the techniques across batch sizes and an aggregated summary. \textbf {Left:} peak KV cache size at \texttt {context\_length=1024} as the batch grows from 1 to 4; all techniques scale linearly in the batch dimension, preserving their relative ordering. \textbf {Right:} average tokens per second across all (context, batch) configurations; GQA and PagedAttention lead, the FP16 baseline and the quantized variants form the middle band, and CPU Offloading is at the low end because of the per-token transfer}{figure.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Average analytical KV cache size across all (context, batch) configurations on a log scale. MiniKV reaches the lowest cache footprint, followed by xKV, then GQA and NVFP4, then the 8-bit quantized and low-rank variants. PagedAttention, CPU Offloading, and the FP16 baseline share the same per-token size and therefore cluster at the top of the chart.}}{9}{figure.4}\protected@file@percent }
-\newlabel{fig:summary_kv}{{4}{9}{Average analytical KV cache size across all (context, batch) configurations on a log scale. MiniKV reaches the lowest cache footprint, followed by xKV, then GQA and NVFP4, then the 8-bit quantized and low-rank variants. PagedAttention, CPU Offloading, and the FP16 baseline share the same per-token size and therefore cluster at the top of the chart}{figure.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Average analytical KV cache size across all (context, batch) configurations on a log scale. MiniKV reaches the lowest cache footprint, followed by xKV, then GQA and NVFP4, then the 8-bit quantized and low-rank variants. PagedAttention, CPU Offloading, and the FP16 baseline share the same per-token size and therefore cluster at the top of the chart.}}{10}{figure.4}\protected@file@percent }
+\newlabel{fig:summary_kv}{{4}{10}{Average analytical KV cache size across all (context, batch) configurations on a log scale. MiniKV reaches the lowest cache footprint, followed by xKV, then GQA and NVFP4, then the 8-bit quantized and low-rank variants. PagedAttention, CPU Offloading, and the FP16 baseline share the same per-token size and therefore cluster at the top of the chart}{figure.4}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {VII}Limitations}{10}{section.7}\protected@file@percent }
 \newlabel{sec:limitations}{{VII}{10}{Limitations}{section.7}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {VIII}Conclusion}{10}{section.8}\protected@file@percent }
-\newlabel{sec:conclusion}{{VIII}{10}{Conclusion}{section.8}{}}
 \bibstyle{IEEEtran}
 \bibdata{reference}
 \bibcite{shan2025cognitivememoryllms}{1}
@@ -107,5 +105,7 @@
 \bibcite{sheng2023flexgen}{8}
 \bibcite{kwon2023vllm}{9}
 \bibcite{fawaz2024beyond}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {VIII}Conclusion}{11}{section.8}\protected@file@percent }
+\newlabel{sec:conclusion}{{VIII}{11}{Conclusion}{section.8}{}}
 \@writefile{toc}{\contentsline {section}{References}{11}{section*.1}\protected@file@percent }
 \gdef \@abspage@last{11}
