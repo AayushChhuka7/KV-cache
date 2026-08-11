@@ -1,12 +1,13 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.3.7)  9 AUG 2026 13:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.7.19)  10 AUG 2026 21:54
 entering extended mode
  restricted \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
-**./main.tex
-(main.tex
+**d:/La/main.tex
+(d:/La/main.tex
 LaTeX2e <2025-11-01>
-L3 programming layer <2026-01-19>
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/ieeetran\IEEEtran.cls
+L3 programming layer <2025-12-24>
+(C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/ieeetran\IEEEtran.cls
 Document Class: IEEEtran 2015/08/26 V1.8b by Michael Shell
 -- See the "IEEEtran_HOWTO" manual for usage information.
 -- http://www.michaelshell.org/tex/ieeetran/
@@ -17,17 +18,15 @@ Document Class: IEEEtran 2015/08/26 V1.8b by Michael Shell
 \@IEEEtrantmpcountB=\count276
 \@IEEEtrantmpcountC=\count277
 \@IEEEtrantmptoksA=\toks17
-LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 5
-03.
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1ptm.fd
+LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 503.
+(C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 -- Using 8.5in x 11in (letter) paper.
 -- Using PDF output.
 \@IEEEnormalsizeunitybaselineskip=\dimen151
 -- This is a 10 point document.
-LaTeX Encoding Info:    Redeclaring text command \textunderscore (encoding ?) o
-n input line 937.
+LaTeX Encoding Info:    Redeclaring text command \textunderscore (encoding ?) on input line 937.
 \CLASSINFOnormalsizebaselineskip=\dimen152
 \CLASSINFOnormalsizeunitybaselineskip=\dimen153
 \IEEEnormaljot=\dimen154
@@ -35,52 +34,42 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <5> not available
 (Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
-
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <7> not available
 (Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
-
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <8> not available
 (Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
-
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <9> not available
 (Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
-
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
 (Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
-
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <11> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <11> not available
 (Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
-
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
-
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <17> not available
 (Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
-
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <20> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <20> not available
 (Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
-
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <24> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <24> not available
 (Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
-
 \IEEEquantizedlength=\dimen155
 \IEEEquantizedlengthdiff=\dimen156
 \IEEEquantizedtextheightdiff=\dimen157
@@ -117,48 +106,33 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <24> not available
 \@IEEEtranrubishbin=\box54
 )
 ** ATTENTION: Overriding command lockouts (line 3).
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/cite\cite.sty
+(C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/cite\cite.sty
 LaTeX Info: Redefining \cite on input line 302.
 LaTeX Info: Redefining \nocite on input line 332.
 Package: cite 2015/02/27  v 5.5
-)
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/newtx\newtxtext.sty
-Package: newtxtext 2024/04/01 v1.744(Michael Sharpe) latex and unicode latex su
-pport for TeXGyreTermesX
-
-`newtxtext' v1.744, 2024/04/01 Text macros taking advantage of TeXGyre Termes a
-nd its extensions (msharpe)
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/xpatch\xpatch.sty
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
-Package: expl3 2026-01-19 L3 programming layer (loader) 
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdft
-ex.def
+) (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/newtx\newtxtext.sty
+Package: newtxtext 2024/04/01 v1.744(Michael Sharpe) latex and unicode latex support for TeXGyreTermesX
+ `newtxtext' v1.744, 2024/04/01 Text macros taking advantage of TeXGyre Termes and its extensions (msharpe) (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/xpatch\xpatch.sty (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
+Package: expl3 2025-12-24 L3 programming layer (loader) 
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count290
 ))
 Package: xpatch 2020/03/25 v0.3a Extending etoolbox patching commands
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xparse\xparse
-.sty
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xparse\xparse.sty
 Package: xparse 2025-10-09 L3 Experimental document command parser
-)
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
+) (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
 Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count291
-))
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
+)) (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
 Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: pdftex.def on input line 274.
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.def
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.def
 File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
-) (C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.ltx
-)
+) (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.ltx)
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
 Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1353.
 Package xcolor Info: Model `RGB' extended on input line 1365.
@@ -168,49 +142,37 @@ Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
-) (C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
+) (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
 Package: iftex 2024/12/12 v1.0g TeX engine tests
-)
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/xkeyval\xkeyval.sty
+) (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/xkeyval\xkeyval.sty
 Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkeyval.tex
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkvutils.tex
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkeyval.tex (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkvutils.tex
 \XKV@toks=\toks18
 \XKV@tempa@toks=\toks19
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\keyval.tex))
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\keyval.tex))
 \XKV@depth=\count292
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
-)) (C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/base\textcomp.sty
+)) (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/base\textcomp.sty
 Package: textcomp 2024/04/24 v2.1b Standard LaTeX package
-)
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/xstring\xstring.sty
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/generic/xstring\xstring.tex
+) (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/xstring\xstring.sty (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/generic/xstring\xstring.tex
 \xs_counta=\count293
 \xs_countb=\count294
 )
 Package: xstring 2023/08/22 v1.86 String manipulations (CT)
-)
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/base\ifthen.sty
+) (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/base\ifthen.sty
 Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
-)
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/carlisle\scalefnt.sty)
+) (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/carlisle\scalefnt.sty)
 LaTeX Font Info:    Setting ntxLF sub-encoding to TS1/0 on input line 24.
 LaTeX Font Info:    Setting ntxTLF sub-encoding to TS1/0 on input line 24.
 LaTeX Font Info:    Setting ntxOsF sub-encoding to TS1/0 on input line 24.
 LaTeX Font Info:    Setting ntxTOsF sub-encoding to TS1/0 on input line 24.
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/generic/binhex\binhex.tex)
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/generic/binhex\binhex.tex)
 \ntx@tmpcnta=\count295
 \ntx@cnt=\count296
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/fontaxes\fontaxes.sty
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/fontaxes\fontaxes.sty
 Package: fontaxes 2026-01-02 v2.0.2 Font selection axes (deprecated)
 Applying: [2024-11-01] Use figureversions if present on input line 74.
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/figureversions\figurever
-sions.sty
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/figureversions\figureversions.sty
 Package: figureversions 2025-04-29 v1.0.1 Figure versions
 )
 Already applied: [0000-00-00] Fall back to v1 on input line 76.
@@ -230,29 +192,23 @@ Already applied: [0000-00-00] Fall back to v1 on input line 76.
 \tx@dimBB=\dimen184
 \tx@dimC=\dimen185
 LaTeX Info: Redefining \oldstylenums on input line 902.
-)
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/newtx\newtxmath.sty
+) (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/newtx\newtxmath.sty
 Package: newtxmath 2024/09/22 v1.754
-
-`newtxmath' v1.754, 2024/09/22 Math macros based originally on txfonts (msharpe
-) (C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
+ `newtxmath' v1.754, 2024/09/22 Math macros based originally on txfonts (msharpe) (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
 Package: amsmath 2025/07/09 v2.17z AMS math features
 \@mathmargin=\skip52
 
 For additional information on amsmath, use the `?' option.
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
+(C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
 Package: amstext 2024/11/17 v2.01 AMS text
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks20
 \ex@=\dimen186
-))
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty
+)) (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen187
-)
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty
+) (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
 \inf@bad=\count297
@@ -302,13 +258,11 @@ LaTeX Info: Redefining \Relbar on input line 970.
 \mathdisplay@stack=\toks24
 LaTeX Info: Redefining \[ on input line 2950.
 LaTeX Info: Redefining \] on input line 2951.
-)
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/oberdiek\centernot.sty
+) (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/oberdiek\centernot.sty
 Package: centernot 2016/05/16 v1.4 Centers the not symbol horizontally (HO)
 )
 \tx@cntz=\count309
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/generic/binhex\binhex.tex)
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/generic/binhex\binhex.tex)
 \tx@Isdigit=\count310
 \tx@IsAlNum=\count311
 \tx@tA=\toks25
@@ -382,20 +336,17 @@ Now handling font encoding LMX ...
 ... no UTF-8 mapping file for font encoding LMX
 LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 664.
 LaTeX Font Info:    Encoding `OMX' has changed to `LMX' for symbol font
-(Font)              `largesymbols' in the math version `normal' on input line 6
-64.
+(Font)              `largesymbols' in the math version `normal' on input line 664.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
 (Font)                  OMX/cmex/m/n --> LMX/ntxexx/m/n on input line 664.
 LaTeX Font Info:    Encoding `OMX' has changed to `LMX' for symbol font
-(Font)              `largesymbols' in the math version `bold' on input line 664
-.
+(Font)              `largesymbols' in the math version `bold' on input line 664.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
 (Font)                  OMX/cmex/m/n --> LMX/ntxexx/m/n on input line 664.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
 (Font)                  LMX/ntxexx/m/n --> LMX/ntxexx/b/n on input line 665.
 \symlargesymbolsTXA=\mathgroup7
 LaTeX Font Info:    Overwriting symbol font `largesymbolsTXA' in version `bold'
-
 (Font)                  U/ntxexa/m/n --> U/ntxexa/b/n on input line 679.
 \tx@sbptoks=\toks27
 LaTeX Font Info:    Redeclaring math delimiter \lfloor on input line 902.
@@ -414,16 +365,12 @@ LaTeX Font Info:    Redeclaring math accent \ddot on input line 992.
 LaTeX Font Info:    Redeclaring math accent \vec on input line 2057.
 LaTeX Info: Redefining \Bbbk on input line 2847.
 LaTeX Info: Redefining \not on input line 2995.
-) (C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/fonts/newtxtt\newtxtt.sty
+) (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/fonts/newtxtt\newtxtt.sty
 Package: newtxtt 2014/12/23 v1.051
-
-`newtxtt' v1.051, 2014/12/23 Typewriter text macros based on txfonts (msharpe)
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
+ `newtxtt' v1.051, 2014/12/23 Typewriter text macros based on txfonts (msharpe) (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
 Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
-LaTeX Font Info:    Trying to load font information for T1+minntx on input line
- 116.
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/newtx\t1minntx.fd
+LaTeX Font Info:    Trying to load font information for T1+minntx on input line 116.
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/newtx\t1minntx.fd
 File: t1minntx.fd 2023/09/09 v1.1 font definition file for T1/minntx
 )
 LaTeX Font Info:    Font shape `T1/minntx/m/n' will be
@@ -431,8 +378,7 @@ LaTeX Font Info:    Font shape `T1/minntx/m/n' will be
 )
 LaTeX Font Info:    Setting newtxtt sub-encoding to TS1/0 on input line 9.
 LaTeX Font Info:    Setting newtxttz sub-encoding to TS1/0 on input line 10.
-)
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.sty
+) (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \heavyrulewidth=\dimen195
 \lightrulewidth=\dimen196
@@ -451,159 +397,121 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \@thisruleclass=\count314
 \@lastruleclass=\count315
 \@thisrulewidth=\dimen263
-)
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
+) (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
 Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
 Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
 Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
-)
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.cf
-g
+) (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 106.
 )
 \Gin@req@height=\dimen264
 \Gin@req@width=\dimen265
-) (C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
+) (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
 \Urlmuskip=\muskip18
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
-)
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/xurl\xurl.sty
+) (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/xurl\xurl.sty
 Package: xurl 2022/01/09 v 0.10 modify URL breaks
-)
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
-Package: hyperref 2026-01-29 v7.01p Hypertext links for LaTeX
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty
+) (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
+Package: hyperref 2025-07-12 v7.01o Hypertext links for LaTeX
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
-)
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdefinek
-eys.sty
+) (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdefinekeys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
-)
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescape.st
-y
+) (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescape.sty
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
- (C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty
 Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
-)
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcmds.
-sty
-Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
-)
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infwarerr.st
-y
+) (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infwarerr.sty
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 )
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
-)) (C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty
+)) (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
-) (C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
-Package: nameref 2026-01-29 v2.58 Cross-referencing by name of section
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty
+) (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
+Package: nameref 2025-06-21 v2.57 Cross-referencing by name of section
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
-)
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/generic/gettitlestring\gettitl
-estring.sty
+) (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/generic/gettitlestring\gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
 \c@section@level=\count316
-)
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\stringenc.st
-y
-Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
-)
+) (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\stringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
 )
 \@linkdim=\dimen266
 \Hy@linkcounter=\count317
 \Hy@pagecounter=\count318
- (C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
-File: pd1enc.def 2026-01-29 v7.01p Hyperref: PDFDocEncoding definition (HO)
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
+File: pd1enc.def 2025-07-12 v7.01o Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
-)
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty
+) (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
 \Hy@SavedSpaceFactor=\count319
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def
-File: puenc.def 2026-01-29 v7.01p Hyperref: PDF Unicode definition (HO)
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def
+File: puenc.def 2025-07-12 v7.01o Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
-Package hyperref Info: Hyper figures OFF on input line 4201.
-Package hyperref Info: Link nesting OFF on input line 4206.
-Package hyperref Info: Hyper index ON on input line 4209.
-Package hyperref Info: Plain pages OFF on input line 4216.
-Package hyperref Info: Backreferencing OFF on input line 4221.
+Package hyperref Info: Hyper figures OFF on input line 4195.
+Package hyperref Info: Link nesting OFF on input line 4200.
+Package hyperref Info: Hyper index ON on input line 4203.
+Package hyperref Info: Plain pages OFF on input line 4210.
+Package hyperref Info: Backreferencing OFF on input line 4215.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4468.
+Package hyperref Info: Bookmarks ON on input line 4462.
 \c@Hy@tempcnt=\count320
-LaTeX Info: Redefining \url on input line 4807.
+LaTeX Info: Redefining \url on input line 4801.
 \XeTeXLinkMargin=\dimen267
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/generic/bigintcalc\bigintcalc.
-sty
-Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
-)
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/generic/bigintcalc\bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 ))
 \Fld@menulength=\count321
 \Field@Width=\dimen268
 \Fld@charsize=\dimen269
-Package hyperref Info: Hyper figures OFF on input line 6084.
-Package hyperref Info: Link nesting OFF on input line 6089.
-Package hyperref Info: Hyper index ON on input line 6092.
-Package hyperref Info: backreferencing OFF on input line 6099.
-Package hyperref Info: Link coloring OFF on input line 6104.
-Package hyperref Info: Link coloring with OCG OFF on input line 6109.
-Package hyperref Info: PDF/A mode OFF on input line 6114.
+Package hyperref Info: Hyper figures OFF on input line 6078.
+Package hyperref Info: Link nesting OFF on input line 6083.
+Package hyperref Info: Hyper index ON on input line 6086.
+Package hyperref Info: backreferencing OFF on input line 6093.
+Package hyperref Info: Link coloring OFF on input line 6098.
+Package hyperref Info: Link coloring with OCG OFF on input line 6103.
+Package hyperref Info: PDF/A mode OFF on input line 6108.
 \Hy@abspage=\count322
 \c@Item=\count323
 \c@Hfootnote=\count324
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
-File: hpdftex.def 2026-01-29 v7.01p Hyperref driver for pdfTeX
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
+File: hpdftex.def 2025-07-12 v7.01o Hyperref driver for pdfTeX
 \Fld@listcount=\count325
 \c@bookmark@seq@number=\count326
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfile
-check.sty
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfilecheck.sty
 Package: rerunfilecheck 2025-06-21 v1.11 Rerun checks for auxiliary files (HO)
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/generic/uniquecounter\uniqueco
-unter.sty
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/generic/uniquecounter\uniquecounter.sty
 Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
-Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
-84.
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 284.
 )
 \Hy@SectionHShift=\skip55
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 15.
 Package hyperref Info: Option `breaklinks' set `true' on input line 15.
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/tools\tabularx.sty
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/tools\tabularx.sty
 Package: tabularx 2023/12/11 v2.12a `tabularx' package (DPC)
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty
 Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
 \col@sep=\dimen270
 \ar@mcellbox=\box57
@@ -621,23 +529,18 @@ Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
 \TX@cols=\count327
 \TX@ftn=\toks29
 )
-LaTeX Font Info:    Trying to load font information for T1+ntxtlf on input line
- 53.
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/newtx\t1ntxtlf.fd
+LaTeX Font Info:    Trying to load font information for T1+ntxtlf on input line 53.
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/newtx\t1ntxtlf.fd
 File: t1ntxtlf.fd 2021/05/24 v1.1 font definition file for T1/ntx/tlf
 )
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
 (Font)              scaled to size 10.0pt on input line 53.
-
-(main.aux)
+ (main.aux)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 53.
-LaTeX Font Info:    Trying to load font information for OML+ntxmi on input line
- 53.
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/newtx\omlntxmi.fd
+LaTeX Font Info:    Trying to load font information for OML+ntxmi on input line 53.
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/newtx\omlntxmi.fd
 File: omlntxmi.fd 2015/08/25 Fontinst v1.933 font definitions for OML/ntxmi.
 )
 LaTeX Font Info:    ... okay on input line 53.
@@ -652,26 +555,20 @@ LaTeX Font Info:    ... okay on input line 53.
 LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 53.
 LaTeX Font Info:    ... okay on input line 53.
 LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 53.
-LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 
-53.
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxexa.fd
+LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 53.
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxexa.fd
 File: untxexa.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxexa.
 )
 LaTeX Font Info:    ... okay on input line 53.
 LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 53.
-LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line
- 53.
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/newtx\lmsntxsy.fd
+LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line 53.
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/newtx\lmsntxsy.fd
 File: lmsntxsy.fd 2016/07/02 Fontinst v1.933 font definitions for LMS/ntxsy.
 )
 LaTeX Font Info:    ... okay on input line 53.
 LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 53.
-LaTeX Font Info:    Trying to load font information for LMX+ntxexx on input lin
-e 53.
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/newtx\lmxntxexx.fd
+LaTeX Font Info:    Trying to load font information for LMX+ntxexx on input line 53.
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/newtx\lmxntxexx.fd
 File: lmxntxexx.fd 2016/07/03 Fontinst v1.933 font definitions for LMX/ntxexx.
 )
 LaTeX Font Info:    ... okay on input line 53.
@@ -759,9 +656,7 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/b/it' will be
 (Font)              scaled to size 24.0pt on input line 53.
 
 -- Lines per column: 56 (exact).
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mki
-i
+(C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count328
 \scratchdimen=\dimen277
@@ -774,15 +669,10 @@ i
 \MPnumerator=\count332
 \makeMPintoPDFobject=\count333
 \everyMPtoPDFconversion=\toks31
-)
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-ba
-se.sty
+) (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
-85.
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cf
-g
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 \c@mv@tabular=\count334
@@ -794,10 +684,8 @@ Package hyperref Info: Link coloring ON on input line 53.
 \@outlinefile=\write3
 \openout3 = `main.out'.
 
-LaTeX Font Info:    Trying to load font information for OT1+minntx on input lin
-e 55.
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/newtx\ot1minntx.fd
+LaTeX Font Info:    Trying to load font information for OT1+minntx on input line 55.
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/newtx\ot1minntx.fd
 File: ot1minntx.fd 2023/09/09 v1.1 font definition file for OT1/minntx
 )
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
@@ -824,10 +712,8 @@ LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
 (Font)              scaled to size 8.0pt on input line 55.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
 (Font)              scaled to size 6.1pt on input line 55.
-LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 
-55.
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxmia.fd
+LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 55.
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxmia.fd
 File: untxmia.fd 2024/04/09 Fontinst v1.933 font definitions for U/ntxmia.
 )
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
@@ -836,10 +722,8 @@ LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
 (Font)              scaled to size 8.0pt on input line 55.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
 (Font)              scaled to size 6.1pt on input line 55.
-LaTeX Font Info:    Trying to load font information for U+ntxsym on input line 
-55.
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxsym.fd
+LaTeX Font Info:    Trying to load font information for U+ntxsym on input line 55.
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxsym.fd
 File: untxsym.fd 2023/08/16 Fontinst v1.933 font definitions for U/ntxsym.
 )
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
@@ -848,10 +732,8 @@ LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
 (Font)              scaled to size 8.0pt on input line 55.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
 (Font)              scaled to size 6.1pt on input line 55.
-LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 
-55.
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxsyc.fd
+LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 55.
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxsyc.fd
 File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
 )
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
@@ -866,24 +748,18 @@ LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
 (Font)              scaled to size 8.0pt on input line 55.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
 (Font)              scaled to size 6.1pt on input line 55.
-LaTeX Font Info:    Trying to load font information for T1+newtxtt on input lin
-e 57.
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/fonts/newtxtt\t1newtxtt.fd
+LaTeX Font Info:    Trying to load font information for T1+newtxtt on input line 57.
+ (C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/fonts/newtxtt\t1newtxtt.fd
 File: t1newtxtt.fd 2020/02/15 Font definitions for T1/newtxtt.
 )
 LaTeX Font Info:    Font shape `T1/newtxtt/b/n' will be
 (Font)              scaled to size 8.54997pt on input line 57.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/sc' will be
 (Font)              scaled to size 10.0pt on input line 64.
-
-[1{C:/Users/Dell/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/Del
-l/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}
+ [1{C:/Users/aayus/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}
 
 
-{C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtxtt/txttAec.en
-c}{C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ec-tlf
--pc.enc}]
+{C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtxtt/txttAec.enc}{C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ec-tlf-pc.enc}]
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
 (Font)              scaled to size 10.0pt on input line 79.
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
@@ -939,563 +815,548 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
 <GQA.png, id=123, 1104.125pt x 425.59pt>
 File: GQA.png Graphic file (type png)
 <use GQA.png>
-Package pdftex.def Info: GQA.png  used on input line 98.
+Package pdftex.def Info: GQA.png  used on input line 110.
 (pdftex.def)             Requested size: 283.80157pt x 109.39095pt.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/sc' will be
-(Font)              scaled to size 8.0pt on input line 116.
+(Font)              scaled to size 8.0pt on input line 128.
 
-Underfull \hbox (badness 10000) in paragraph at lines 133--133
+Underfull \hbox (badness 10000) in paragraph at lines 145--145
 []|\T1/ntxtlf/b/n/9 Main
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 133--133
+Underfull \hbox (badness 10000) in paragraph at lines 145--145
 []|\T1/ntxtlf/m/n/9 Highest
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 133--133
+Underfull \hbox (badness 10000) in paragraph at lines 145--145
 []|\T1/ntxtlf/m/n/9 Large
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 133--133
+Underfull \hbox (badness 10000) in paragraph at lines 145--145
 \T1/ntxtlf/m/n/9 mem-ory
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 133--133
+Underfull \hbox (badness 10000) in paragraph at lines 145--145
 []|\T1/ntxtlf/m/n/9 Lower
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 133--133
+Underfull \hbox (badness 10000) in paragraph at lines 145--145
 []|\T1/ntxtlf/m/n/9 Slight
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 133--133
+Underfull \hbox (badness 10000) in paragraph at lines 145--145
 \T1/ntxtlf/m/n/9 ac-cu-racy
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 133--133
+Underfull \hbox (badness 10000) in paragraph at lines 145--145
 []|\T1/ntxtlf/m/n/9 Smaller
  []
 
 
-Overfull \hbox (8.23209pt too wide) in paragraph at lines 133--133
+Overfull \hbox (8.23209pt too wide) in paragraph at lines 145--145
 []|\T1/ntxtlf/m/n/9 Quantization
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 133--133
+Underfull \hbox (badness 10000) in paragraph at lines 145--145
 []|\T1/ntxtlf/m/n/9 Better
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 133--133
+Underfull \hbox (badness 10000) in paragraph at lines 145--145
 \T1/ntxtlf/m/n/9 accuracy-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 133--133
+Underfull \hbox (badness 10000) in paragraph at lines 145--145
 \T1/ntxtlf/m/n/9 memory
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 133--133
+Underfull \hbox (badness 10000) in paragraph at lines 145--145
 []|\T1/ntxtlf/m/n/9 Higher
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 133--133
+Underfull \hbox (badness 10000) in paragraph at lines 145--145
 \T1/ntxtlf/m/n/9 com-plex-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 133--133
+Underfull \hbox (badness 10000) in paragraph at lines 145--145
 []|\T1/ntxtlf/m/n/9 Custom
  []
 
-[2{C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ot1-tl
-f.enc}]
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
+[2{C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}]
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
 []|\T1/ntxtlf/m/n/9 Project
  []
 
 
-Underfull \hbox (badness 4582) in paragraph at lines 166--166
+Underfull \hbox (badness 4582) in paragraph at lines 178--178
 \T1/ntxtlf/m/n/9 into lower-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
 \T1/ntxtlf/m/n/9 dimensional
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
 []|\T1/ntxtlf/m/n/9 Lower
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
 \T1/ntxtlf/m/n/9 mem-ory
  []
 
 
-Overfull \hbox (9.82895pt too wide) in paragraph at lines 166--166
+Overfull \hbox (9.82895pt too wide) in paragraph at lines 178--178
 []|\T1/ntxtlf/m/n/9 Reconstruction
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
 []|\T1/ntxtlf/m/n/9 Smaller
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
 []|\T1/ntxtlf/m/n/9 Possible
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
 \T1/ntxtlf/m/n/9 in-for-ma-tion
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
 []|\T1/ntxtlf/m/n/9 Apply
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
 \T1/ntxtlf/m/n/9 dif-fer-ent
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
 \T1/ntxtlf/m/n/9 com-pres-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
 []|\T1/ntxtlf/m/n/9 Better
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
 \T1/ntxtlf/m/n/9 memory-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
 \T1/ntxtlf/m/n/9 quality
  []
 
 
-Underfull \hbox (badness 1521) in paragraph at lines 166--166
+Underfull \hbox (badness 1521) in paragraph at lines 178--178
 []|\T1/ntxtlf/m/n/9 More com-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
 []|\T1/ntxtlf/m/n/9 Share a
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
 \T1/ntxtlf/m/n/9 low-rank
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
 \T1/ntxtlf/m/n/9 rep-re-sen-ta-
  []
 
 
-Underfull \hbox (badness 4608) in paragraph at lines 166--166
+Underfull \hbox (badness 4608) in paragraph at lines 178--178
 \T1/ntxtlf/m/n/9 tion across
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
 \T1/ntxtlf/m/n/9 mul-ti-ple
  []
 
 
-Underfull \hbox (badness 5431) in paragraph at lines 166--166
+Underfull \hbox (badness 5431) in paragraph at lines 178--178
 []|\T1/ntxtlf/m/n/9 Up to $\OT1/minntx/m/n/9 8\LMS/ntxsy/m/n/9 ^^B$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
 \T1/ntxtlf/m/n/9 com-pres-
  []
 
 
-Underfull \hbox (badness 2726) in paragraph at lines 166--166
+Underfull \hbox (badness 2726) in paragraph at lines 178--178
 []|\T1/ntxtlf/m/n/9 Extra SVD
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
 \T1/ntxtlf/m/n/9 com-pu-ta-
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 196--196
+[3 <./GQA.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 208--208
 []|\T1/ntxtlf/m/n/9 Move KV
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 196--196
+Underfull \hbox (badness 10000) in paragraph at lines 208--208
 \T1/ntxtlf/m/n/9 cache to
  []
 
 
-Underfull \hbox (badness 1442) in paragraph at lines 196--196
+Underfull \hbox (badness 1442) in paragraph at lines 208--208
 []|\T1/ntxtlf/m/n/9 Lower GPU
  []
 
 
-Underfull \hbox (badness 5022) in paragraph at lines 196--196
+Underfull \hbox (badness 5022) in paragraph at lines 208--208
 []|\T1/ntxtlf/m/n/9 Transfer la-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 196--196
+Underfull \hbox (badness 10000) in paragraph at lines 208--208
 []|\T1/ntxtlf/m/n/9 Page-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 196--196
+Underfull \hbox (badness 10000) in paragraph at lines 208--208
 \T1/ntxtlf/m/n/9 based KV
  []
 
 
-Underfull \hbox (badness 3000) in paragraph at lines 196--196
+Underfull \hbox (badness 3000) in paragraph at lines 208--208
 []|\T1/ntxtlf/m/n/9 Better GPU
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 196--196
+Underfull \hbox (badness 10000) in paragraph at lines 208--208
 []|\T1/ntxtlf/m/n/9 More
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 196--196
+Underfull \hbox (badness 10000) in paragraph at lines 208--208
 \T1/ntxtlf/m/n/9 com-plex
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 196--196
+Underfull \hbox (badness 10000) in paragraph at lines 208--208
 \T1/ntxtlf/m/n/9 mem-ory
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 196--196
+Underfull \hbox (badness 10000) in paragraph at lines 208--208
 []|\T1/ntxtlf/m/n/9 Reuse
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 196--196
+Underfull \hbox (badness 10000) in paragraph at lines 208--208
 []|\T1/ntxtlf/m/n/9 Higher
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 196--196
+Underfull \hbox (badness 10000) in paragraph at lines 208--208
 []|\T1/ntxtlf/m/n/9 Requires
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 196--196
+Underfull \hbox (badness 10000) in paragraph at lines 208--208
 \T1/ntxtlf/m/n/9 shared
  []
 
-[3 <./GQA.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 []|\T1/ntxtlf/b/n/9 Primary
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 \T1/ntxtlf/b/n/9 Bot-tle-neck
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 []|\T1/ntxtlf/b/n/9 Memory/Latency
  []
 
 
-Underfull \hbox (badness 5862) in paragraph at lines 229--229
+Underfull \hbox (badness 5862) in paragraph at lines 241--241
 []|\T1/ntxtlf/b/n/9 Accuracy Trade-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 \T1/ntxtlf/m/n/9 level; near-MQA
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 []|\T1/ntxtlf/m/n/9 General-purpose,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 \T1/ntxtlf/m/n/9 latency-sensitive
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 \T1/ntxtlf/m/n/9 single-user
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 []|\T1/ntxtlf/m/n/9 Balanced,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 \T1/ntxtlf/m/n/9 general-purpose
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 []|\T1/ntxtlf/m/n/9 Memory ca-pac-ity
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 \T1/ntxtlf/m/n/9 many con-cur-rent
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 []|\T1/ntxtlf/m/n/9 Memory-accuracy
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 []|\T1/ntxtlf/m/n/9 Variable, tensor-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 []|\T1/ntxtlf/m/n/9 Accuracy-sensitive
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 \T1/ntxtlf/m/n/9 tasks need-ing
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 []|$\OML/ntxmi/m/it/9 >$\T1/ntxtlf/m/n/9 80%
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 \T1/ntxtlf/m/n/9 com-pres-sion,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 \T1/ntxtlf/m/n/9 hard-ware co-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 \T1/ntxtlf/m/n/9 design im-proves
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 []|\T1/ntxtlf/m/n/9 Long-context
  []
 
 
-Underfull \hbox (badness 3884) in paragraph at lines 229--229
+Underfull \hbox (badness 3884) in paragraph at lines 241--241
 []|\T1/ntxtlf/m/n/9 Reconstruction er-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 []|\T1/ntxtlf/m/n/9 Memory-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 \T1/ntxtlf/m/n/9 constrained,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 \T1/ntxtlf/m/n/9 accuracy-tolerant
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 []|\T1/ntxtlf/m/n/9 Possible
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 []|\T1/ntxtlf/m/n/9 Memory-quality
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 []|\T1/ntxtlf/m/n/9 Adaptive, token-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 []|\T1/ntxtlf/m/n/9 Long doc-u-ments
  []
 
 
-Underfull \hbox (badness 1735) in paragraph at lines 229--229
-[]|\T1/ntxtlf/m/n/9 Up to 8$\LMS/ntxsy/m/n/9 ^^B$\T1/ntxtlf/m/n/9 , 25.6$\LMS/n
-txsy/m/n/9 ^^B$
+Underfull \hbox (badness 1735) in paragraph at lines 241--241
+[]|\T1/ntxtlf/m/n/9 Up to 8$\LMS/ntxsy/m/n/9 ^^B$\T1/ntxtlf/m/n/9 , 25.6$\LMS/ntxsy/m/n/9 ^^B$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 \T1/ntxtlf/m/n/9 com-bined with
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 \T1/ntxtlf/m/n/9 adds trans-fer
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 []|\T1/ntxtlf/m/n/9 Memory-
  []
 
 
-Underfull \hbox (badness 1546) in paragraph at lines 229--229
+Underfull \hbox (badness 1546) in paragraph at lines 241--241
 \T1/ntxtlf/m/n/9 constrained GPUs,
  []
 
 
-Underfull \hbox (badness 3250) in paragraph at lines 229--229
+Underfull \hbox (badness 3250) in paragraph at lines 241--241
 []|\T1/ntxtlf/m/n/9 Memory frag-men-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 []|\T1/ntxtlf/m/n/9 Better GPU
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 \T1/ntxtlf/m/n/9 uti-liza-tion, higher
  []
 
 
-Underfull \hbox (badness 7012) in paragraph at lines 229--229
+Underfull \hbox (badness 7012) in paragraph at lines 241--241
 []|\T1/ntxtlf/m/n/9 Multi-tenant serv-
  []
 
 
-Underfull \hbox (badness 2556) in paragraph at lines 229--229
+Underfull \hbox (badness 2556) in paragraph at lines 241--241
 []|\T1/ntxtlf/m/n/9 Higher through-put
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 []|\T1/ntxtlf/m/n/9 High-concurrency,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
 \T1/ntxtlf/m/n/9 shared-prompt
  []
 
-[4]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [5]
-Underfull \hbox (badness 2142) in paragraph at lines 313--314
-[]\T1/ntxtlf/b/n/10 Quantization (FP8/NVFP4/MiniKV). \T1/ntxtlf/m/n/10 Quan-ti-
-za-tion re-
+[4] [5]
+Underfull \hbox (badness 2142) in paragraph at lines 339--340
+[]\T1/ntxtlf/b/n/10 Quantization (FP8/NVFP4/MiniKV). \T1/ntxtlf/m/n/10 Quan-ti-za-tion re-
  []
 
-LaTeX Font Info:    Font shape `T1/newtxtt/m/n' will be
-(Font)              scaled to size 9.49997pt on input line 371.
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 381--382
+LaTeX Font Info:    Font shape `T1/newtxtt/m/n' will be
+(Font)              scaled to size 9.49997pt on input line 397.
+
+Underfull \hbox (badness 10000) in paragraph at lines 407--408
 []\T1/newtxtt/m/n/10 run_trial(prompts, max_new_tokens, batch_size)
  []
 
 LaTeX Font Info:    Font shape `T1/newtxtt/m/sc' will be
-(Font)              scaled to size 7.59998pt on input line 390.
-
-Underfull \hbox (badness 10000) in alignment at lines 523--523
+(Font)              scaled to size 7.59998pt on input line 416.
+LaTeX Font Info:    Font shape `T1/newtxtt/m/it' in size <10> not available
+(Font)              Font shape `T1/newtxtt/m/sl' tried instead on input line 522.
+LaTeX Font Info:    Font shape `T1/newtxtt/m/sl' will be
+(Font)              scaled to size 9.49997pt on input line 522.
+[7] [8]
+Underfull \hbox (badness 10000) in alignment at lines 549--549
 [][][][] 
  []
 
-<memory_vs_context.png, id=216, 542.025pt x 325.215pt>
+<memory_vs_context.png, id=235, 542.025pt x 325.215pt>
 File: memory_vs_context.png Graphic file (type png)
 <use memory_vs_context.png>
-Package pdftex.def Info: memory_vs_context.png  used on input line 528.
+Package pdftex.def Info: memory_vs_context.png  used on input line 554.
 (pdftex.def)             Requested size: 165.12378pt x 99.0738pt.
-<throughput_vs_context.png, id=217, 542.025pt x 325.215pt>
+<throughput_vs_context.png, id=236, 542.025pt x 325.215pt>
 File: throughput_vs_context.png Graphic file (type png)
 <use throughput_vs_context.png>
-Package pdftex.def Info: throughput_vs_context.png  used on input line 529.
+Package pdftex.def Info: throughput_vs_context.png  used on input line 555.
 (pdftex.def)             Requested size: 165.12378pt x 99.0738pt.
-<latency_vs_context.png, id=218, 542.025pt x 325.215pt>
+<latency_vs_context.png, id=237, 542.025pt x 325.215pt>
 File: latency_vs_context.png Graphic file (type png)
 <use latency_vs_context.png>
-Package pdftex.def Info: latency_vs_context.png  used on input line 530.
+Package pdftex.def Info: latency_vs_context.png  used on input line 556.
 (pdftex.def)             Requested size: 165.12378pt x 99.0738pt.
 LaTeX Font Info:    Font shape `T1/newtxtt/m/n' will be
-(Font)              scaled to size 7.59998pt on input line 531.
-<memory_vs_batch.png, id=219, 542.025pt x 325.215pt>
+(Font)              scaled to size 7.59998pt on input line 557.
+<memory_vs_batch.png, id=238, 542.025pt x 325.215pt>
 File: memory_vs_batch.png Graphic file (type png)
 <use memory_vs_batch.png>
-Package pdftex.def Info: memory_vs_batch.png  used on input line 537.
+Package pdftex.def Info: memory_vs_batch.png  used on input line 563.
 (pdftex.def)             Requested size: 232.19843pt x 139.31866pt.
-<summary_tokens_per_s.png, id=220, 578.16pt x 252.945pt>
+<summary_tokens_per_s.png, id=239, 578.16pt x 252.945pt>
 File: summary_tokens_per_s.png Graphic file (type png)
 <use summary_tokens_per_s.png>
-Package pdftex.def Info: summary_tokens_per_s.png  used on input line 538.
+Package pdftex.def Info: summary_tokens_per_s.png  used on input line 564.
 (pdftex.def)             Requested size: 232.19843pt x 101.58533pt.
-<summary_kv_mb.png, id=221, 578.16pt x 252.945pt>
+<summary_kv_mb.png, id=240, 578.16pt x 252.945pt>
 File: summary_kv_mb.png Graphic file (type png)
 <use summary_kv_mb.png>
-Package pdftex.def Info: summary_kv_mb.png  used on input line 545.
+Package pdftex.def Info: summary_kv_mb.png  used on input line 571.
 (pdftex.def)             Requested size: 309.60315pt x 135.44968pt.
-[7] [8 <./memory_vs_context.png> <./throughput_vs_context.png> <./latency_vs_co
-ntext.png>]
-LaTeX Font Info:    Trying to load font information for TS1+ntxtlf on input lin
-e 561.
-
-(C:\Users\Dell\AppData\Local\Programs\MiKTeX\tex/latex/newtx\ts1ntxtlf.fd
+LaTeX Font Info:    Trying to load font information for TS1+ntxtlf on input line 587.
+(C:\Users\aayus\AppData\Local\Programs\MiKTeX\tex/latex/newtx\ts1ntxtlf.fd
 File: ts1ntxtlf.fd 2015/01/18 v1.0 fd file for TS1/ntxtlf
 )
 LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.0pt on input line 561.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [9{C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/tex-gyre/q-ts1.
-enc} <./memory_vs_batch.png> <./summary_tokens_per_s.png>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [10 <./summary_kv_mb.png>] (main.bbl
+(Font)              scaled to size 10.0pt on input line 587.
+ [9{C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/tex-gyre/q-ts1.enc}] [10 <./memory_vs_context.png> <./throughput_vs_context.png> <./latency_vs_context.png> <./memory_vs_batch.png> <./summary_tokens_per_s.png> <./summary_kv_mb.png>] (main.bbl
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
 (Font)              scaled to size 6.0pt on input line 28.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
@@ -1512,7 +1373,7 @@ LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
 (Font)              scaled to size 6.0pt on input line 28.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
 (Font)              scaled to size 6.0pt on input line 28.
-)
+ [11])
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -1524,7 +1385,9 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[11] (main.aux)
+[12
+
+] (main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2020/03/25>
@@ -1533,30 +1396,17 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: E0CB6F60A4DBC9D4BE9B3AE0F154DB0D;3489.
  ) 
 Here is how much of TeX's memory you used:
- 15143 strings out of 467866
- 231321 string characters out of 5418798
- 653812 words of memory out of 5000000
- 43716 multiletter control sequences out of 15000+600000
- 820759 words of font info for 223 fonts, out of 8000000 for 9000
+ 15149 strings out of 467871
+ 231292 string characters out of 5418376
+ 651786 words of memory out of 5000000
+ 43712 multiletter control sequences out of 15000+600000
+ 821122 words of font info for 224 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,11n,79p,1258b,560s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXMI
-.pfb><C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewT
-XMI7.pfb><C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtxt
-t/newtxbtt.pfb><C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/type1/public/
-newtxtt/newtxtt.pfb><C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/type1/pu
-blic/newtxtt/newtxttsc.pfb><C:/Users/Dell/AppData/Local/Programs/MiKTeX/fonts/t
-ype1/public/tex-gyre/qtmr.pfb><C:/Users/Dell/AppData/Local/Programs/MiKTeX/font
-s/type1/public/newtx/txexs.pfb><C:/Users/Dell/AppData/Local/Programs/MiKTeX/fon
-ts/type1/public/newtx/txmiaX.pfb><C:/Users/Dell/AppData/Local/Programs/MiKTeX/f
-onts/type1/public/newtx/txsys.pfb><C:/Users/Dell/AppData/Local/Programs/MiKTeX/
-fonts/type1/public/newtx/ztmb.pfb><C:/Users/Dell/AppData/Local/Programs/MiKTeX/
-fonts/type1/public/newtx/ztmbi.pfb><C:/Users/Dell/AppData/Local/Programs/MiKTeX
-/fonts/type1/public/newtx/ztmr.pfb><C:/Users/Dell/AppData/Local/Programs/MiKTeX
-/fonts/type1/public/newtx/ztmri.pfb>
-Output written on main.pdf (11 pages, 905553 bytes).
+ 75i,11n,79p,1263b,616s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXMI.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXMI7.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtxtt/newtxbtt.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtxtt/newtxtt.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtxtt/newtxtt.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtxtt/newtxttsc.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/tex-gyre/qtmr.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txexs.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txmiaX.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txsys.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmb.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmbi.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmr.pfb><C:/Users/aayus/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmri.pfb>
+Output written on main.pdf (12 pages, 923116 bytes).
 PDF statistics:
- 344 PDF objects out of 1000 (max. 8388607)
- 59 named destinations out of 1000 (max. 500000)
+ 361 PDF objects out of 1000 (max. 8388607)
+ 60 named destinations out of 1000 (max. 500000)
  220 words of extra memory for PDF output out of 10000 (max. 10000000)
 

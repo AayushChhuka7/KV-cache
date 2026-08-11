@@ -26,6 +26,11 @@ $$
 KV_{\text{per token}} = 2 \times H \times L \times B \times D
 $$
 
+where $H$ is the number of attention heads, $L$ is the number of
+transformer layers, $B$ is the bytes per element, and $D$ is the head
+dimension. The factor of $2$ accounts for storing both the Key tensor
+and the Value tensor.
+
 and we ask: **which factor does each technique change, or does it leave
 the math alone and just store things better?**
 
@@ -39,6 +44,26 @@ This is a **bottleneck-oriented taxonomy**.
 | 2 | Quantization | Stores each number in fewer bits | $B$ |
 | 3 | Compression | Removes redundancy in the K/V vectors | $D$, $L$ |
 | 4 | Memory management | Leaves the math alone; stores the cache more efficiently | (none — storage layout) |
+
+## Category boundaries (the operation-level view)
+
+The four categories above group operations that some papers combine
+under a single "compression" label. To make the boundaries explicit,
+each elementary operation is mapped to the factor of Eq. 1 it modifies:
+
+| Operation | Factor modified | Lossy? | Example techniques |
+|-----------|-----------------|--------|--------------------|
+| **Quantization** | $B$ (bytes per element) | Yes — precision loss | FP8, INT8, NVFP4, MixQuant |
+| **Token eviction** (selection / pruning / merging) | $N$ (cached positions) | Yes — tokens are dropped | MiniKV's eviction half, H2O, StreamingLLM |
+| **Low-rank compression** | $D$ (head dimension) | Yes — reconstruction error | low-rank, xKV |
+| **Memory allocation** | none (storage layout) | No — lossless by construction | PagedAttention, CPU offloading, shared attention |
+
+A technique that combines two operations (MiniKV = 2-bit quantization
+**+** token eviction; xKV = low-rank compression **+** cross-layer
+sharing, optionally combined with quantization) is listed in both
+categories in Table V of the paper. This is why "Compression" in the
+four-way taxonomy covers both low-rank and eviction — they share the
+property of removing information rather than reformatting it.
 
 ## The 10 techniques, mapped to categories
 
