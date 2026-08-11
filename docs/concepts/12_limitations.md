@@ -49,6 +49,13 @@ We used **small models**: `sshleifer/tiny-gpt2` for the baseline,
   performance of frontier models like Llama-3-70B or Mistral at
   100k context. The **ordering** of techniques is preserved, but
   the absolute tokens/s is not.
+- **Why this also bounds the accuracy benchmark:** the GPU on the
+  development machine is a 2 GB NVIDIA MX230. A 7B model at FP16
+  needs ~14 GB just for the weights, so we cannot host the
+  checkpoints on which accuracy numbers (perplexity, MMLU, long-
+  context retrieval) are reported in the original KV-cache
+  papers. This is why end-task accuracy is **reported from the
+  literature**, not measured head-to-head by `kvbench`.
 
 ## 4. Evaluation limitations
 

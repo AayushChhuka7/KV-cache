@@ -1,6 +1,6 @@
 # Viva Preparation — Index
 
-> **Paper:** *KV Cache Optimization in LLMs: A Taxonomy and Decision Framework for Efficient Inference*
+> **Paper:** *KV Cache Optimization in LLMs: A Survey, Benchmark, and Decision Framework for Efficient Inference*
 > **Authors:** Aayush Chhuka, Aditya Brajacharya, Sudip Dhungana
 > **Institution:** Department of CSE, National College of Engineering (Lalitpur, Nepal)
 > **Viva:** Tomorrow (with AOA teacher)
