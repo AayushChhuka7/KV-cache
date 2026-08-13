@@ -1,0 +1,526 @@
+Rc files read (in order):
+  NONE
+Latexmk: This is Latexmk, John Collins, 9 March 2026. Version 4.88.
+Latexmk: applying rule 'bibtex main'...
+Rule 'bibtex main':  Reasons for rerun
+Changed files or newly in use/created:
+  ./reference.bib
+  main.aux
+Category 'changed_user':
+  ./reference.bib
+
+------------
+Run number 1 of rule 'bibtex main'
+------------
+------------
+Running 'bibtex  "main.aux"'
+------------
+This is BibTeX, Version 0.99e (MiKTeX 26.5)
+The top-level auxiliary file: main.aux
+The style file: IEEEtran.bst
+Database file #1: reference.bib
+-- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+
+Done.
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Changed files or newly in use/created:
+  GQA.png
+  latency_vs_context.png
+  main.aux
+  main.bbl
+  main.tex
+  memory_vs_batch.png
+  memory_vs_context.png
+  summary_kv_mb.png
+  summary_tokens_per_s.png
+  throughput_vs_context.png
+Category 'changed_user':
+  GQA.png
+  latency_vs_context.png
+  main.tex
+  memory_vs_batch.png
+  memory_vs_context.png
+  summary_kv_mb.png
+  summary_tokens_per_s.png
+  throughput_vs_context.png
+
+------------
+Run number 1 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -interaction=nonstopmode -halt-on-error -recorder  "main.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex.fmt)
+ restricted \write18 enabled.
+entering extended mode
+(main.tex
+LaTeX2e <2026-06-01>
+L3 programming layer <2026-07-20>
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/ieeetran\IEEEtran.cls
+Document Class: IEEEtran 2015/08/26 V1.8b by Michael Shell
+-- See the "IEEEtran_HOWTO" manual for usage information.
+-- http://www.michaelshell.org/tex/ieeetran/
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1ptm.fd)
+-- Using 8.5in x 11in (letter) paper.
+-- Using PDF output.
+-- This is a 10 point document.
+)
+** ATTENTION: Overriding command lockouts (line 3).
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/cite\cite.sty)
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.sty))
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/newtx\newtxtext.sty
+`newtxtext' v1.744, 2024/04/01 Text macros taking advantage of TeXGyre Termes a
+nd its extensions (msharpe)
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/xpatch\xpatch.sty
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdft
+ex.def))
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xparse\xparse
+.sty)
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty))
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg)
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.def)
+ (C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.ltx)
+) (C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty)
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/xkeyval\xkeyval.sty
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkeyval.tex
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkvutils.tex
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\keyval.tex))))
+ (C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/base\textcomp.sty)
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/xstring\xstring.sty
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/generic/xstring\xstring.tex))
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/base\ifthen.sty)
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/carlisle\scalefnt.sty)
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/generic/binhex\binhex.tex)
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/fontaxes\fontaxes.sty
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/figureversions\figurever
+sions.sty)))
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/newtx\newtxmath.sty
+`newtxmath' v1.754, 2024/09/22 Math macros based originally on txfonts (msharpe
+) (C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
+For additional information on amsmath, use the `?' option.
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty))
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty)
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty))
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/oberdiek\centernot.sty)
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/generic/binhex\binhex.tex)
+amsthm NOT loaded
+) (C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/fonts/newtxtt\newtxtt.sty
+`newtxtt' v1.051, 2014/12/23 Typewriter text macros based on txfonts (msharpe)
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/newtx\t1minntx.fd)))
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.sty)
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty)
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.cf
+g))) (C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty)
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/xurl\xurl.sty)
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty)
+
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdefinek
+eys.sty)
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescape.st
+y (C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty)
+
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcmds.
+sty
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infwarerr.st
+y))) (C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty
+) (C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty)
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/generic/gettitlestring\gettitl
+estring.sty
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty)
+))
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\stringenc.st
+y) (C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def)
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty)
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def)
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/generic/bigintcalc\bigintcalc.
+sty)))
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfile
+check.sty
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/generic/uniquecounter\uniqueco
+unter.sty)))
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/tools\tabularx.sty
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty))
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/newtx\t1ntxtlf.fd)
+(main.aux)
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/newtx\omlntxmi.fd)
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxexa.fd)
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/newtx\lmsntxsy.fd)
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/newtx\lmxntxexx.fd)
+-- Lines per column: 56 (exact).
+
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mki
+i
+[Loading MPS to PDF converter (version 2006.09.02).]
+)
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-ba
+se.sty
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cf
+g)) (main.out) (main.out)
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/newtx\ot1minntx.fd)
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd)
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd)
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxmia.fd)
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxsym.fd)
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxsyc.fd)
+(C:\Users\Acer\AppData\Local\Programs\MiKTeX\tex/fonts/newtxtt\t1newtxtt.fd)
+[1{C:/Users/Acer/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/Ace
+r/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}{C:/Users/
+Acer/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtxtt/txttAec.enc}{C:/User
+s/Acer/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ec-tlf-pc.enc}]
+Underfull \hbox (badness 10000) in paragraph at lines 134--134
+[]|\T1/ntxtlf/b/n/9 Main
+
+Underfull \hbox (badness 10000) in paragraph at lines 134--134
+[]|\T1/ntxtlf/m/n/9 Highest
+
+Underfull \hbox (badness 10000) in paragraph at lines 134--134
+[]|\T1/ntxtlf/m/n/9 Large
+
+Underfull \hbox (badness 10000) in paragraph at lines 134--134
+\T1/ntxtlf/m/n/9 mem-ory
+
+Underfull \hbox (badness 10000) in paragraph at lines 134--134
+[]|\T1/ntxtlf/m/n/9 Lower
+
+Underfull \hbox (badness 10000) in paragraph at lines 134--134
+[]|\T1/ntxtlf/m/n/9 Slight
+
+Underfull \hbox (badness 10000) in paragraph at lines 134--134
+\T1/ntxtlf/m/n/9 ac-cu-racy
+
+Underfull \hbox (badness 10000) in paragraph at lines 134--134
+[]|\T1/ntxtlf/m/n/9 Smaller
+
+Overfull \hbox (8.23209pt too wide) in paragraph at lines 134--134
+[]|\T1/ntxtlf/m/n/9 Quantization
+
+Underfull \hbox (badness 10000) in paragraph at lines 134--134
+[]|\T1/ntxtlf/m/n/9 Better
+
+Underfull \hbox (badness 10000) in paragraph at lines 134--134
+\T1/ntxtlf/m/n/9 accuracy-
+
+Underfull \hbox (badness 10000) in paragraph at lines 134--134
+\T1/ntxtlf/m/n/9 memory
+
+Underfull \hbox (badness 10000) in paragraph at lines 134--134
+[]|\T1/ntxtlf/m/n/9 Higher
+
+Underfull \hbox (badness 10000) in paragraph at lines 134--134
+\T1/ntxtlf/m/n/9 com-plex-
+
+Underfull \hbox (badness 10000) in paragraph at lines 134--134
+[]|\T1/ntxtlf/m/n/9 Custom
+[2{C:/Users/Acer/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ot1-tl
+f.enc}]
+Underfull \hbox (badness 10000) in paragraph at lines 167--167
+[]|\T1/ntxtlf/m/n/9 Project
+
+Underfull \hbox (badness 4582) in paragraph at lines 167--167
+\T1/ntxtlf/m/n/9 into lower-
+
+Underfull \hbox (badness 10000) in paragraph at lines 167--167
+\T1/ntxtlf/m/n/9 dimensional
+
+Underfull \hbox (badness 10000) in paragraph at lines 167--167
+[]|\T1/ntxtlf/m/n/9 Lower
+
+Underfull \hbox (badness 10000) in paragraph at lines 167--167
+\T1/ntxtlf/m/n/9 mem-ory
+
+Overfull \hbox (9.82895pt too wide) in paragraph at lines 167--167
+[]|\T1/ntxtlf/m/n/9 Reconstruction
+
+Underfull \hbox (badness 10000) in paragraph at lines 167--167
+[]|\T1/ntxtlf/m/n/9 Smaller
+
+Underfull \hbox (badness 10000) in paragraph at lines 167--167
+[]|\T1/ntxtlf/m/n/9 Possible
+
+Underfull \hbox (badness 10000) in paragraph at lines 167--167
+\T1/ntxtlf/m/n/9 in-for-ma-tion
+
+Underfull \hbox (badness 10000) in paragraph at lines 167--167
+[]|\T1/ntxtlf/m/n/9 Apply
+
+Underfull \hbox (badness 10000) in paragraph at lines 167--167
+\T1/ntxtlf/m/n/9 dif-fer-ent
+
+Underfull \hbox (badness 10000) in paragraph at lines 167--167
+\T1/ntxtlf/m/n/9 com-pres-
+
+Underfull \hbox (badness 10000) in paragraph at lines 167--167
+[]|\T1/ntxtlf/m/n/9 Better
+
+Underfull \hbox (badness 10000) in paragraph at lines 167--167
+\T1/ntxtlf/m/n/9 memory-
+
+Underfull \hbox (badness 10000) in paragraph at lines 167--167
+\T1/ntxtlf/m/n/9 quality
+
+Underfull \hbox (badness 1521) in paragraph at lines 167--167
+[]|\T1/ntxtlf/m/n/9 More com-
+
+Underfull \hbox (badness 10000) in paragraph at lines 167--167
+[]|\T1/ntxtlf/m/n/9 Share a
+
+Underfull \hbox (badness 10000) in paragraph at lines 167--167
+\T1/ntxtlf/m/n/9 low-rank
+
+Underfull \hbox (badness 10000) in paragraph at lines 167--167
+\T1/ntxtlf/m/n/9 rep-re-sen-ta-
+
+Underfull \hbox (badness 4608) in paragraph at lines 167--167
+\T1/ntxtlf/m/n/9 tion across
+
+Underfull \hbox (badness 10000) in paragraph at lines 167--167
+\T1/ntxtlf/m/n/9 mul-ti-ple
+
+Underfull \hbox (badness 5431) in paragraph at lines 167--167
+[]|\T1/ntxtlf/m/n/9 Up to $\OT1/minntx/m/n/9 8\LMS/ntxsy/m/n/9 ^^B$
+
+Underfull \hbox (badness 10000) in paragraph at lines 167--167
+\T1/ntxtlf/m/n/9 com-pres-
+
+Underfull \hbox (badness 2726) in paragraph at lines 167--167
+[]|\T1/ntxtlf/m/n/9 Extra SVD
+
+Underfull \hbox (badness 10000) in paragraph at lines 167--167
+\T1/ntxtlf/m/n/9 com-pu-ta-
+
+Underfull \hbox (badness 10000) in paragraph at lines 197--197
+[]|\T1/ntxtlf/m/n/9 Move KV
+
+Underfull \hbox (badness 10000) in paragraph at lines 197--197
+\T1/ntxtlf/m/n/9 cache to
+
+Underfull \hbox (badness 1442) in paragraph at lines 197--197
+[]|\T1/ntxtlf/m/n/9 Lower GPU
+
+Underfull \hbox (badness 5022) in paragraph at lines 197--197
+[]|\T1/ntxtlf/m/n/9 Transfer la-
+
+Underfull \hbox (badness 10000) in paragraph at lines 197--197
+[]|\T1/ntxtlf/m/n/9 Page-
+
+Underfull \hbox (badness 10000) in paragraph at lines 197--197
+\T1/ntxtlf/m/n/9 based KV
+
+Underfull \hbox (badness 3000) in paragraph at lines 197--197
+[]|\T1/ntxtlf/m/n/9 Better GPU
+
+Underfull \hbox (badness 10000) in paragraph at lines 197--197
+[]|\T1/ntxtlf/m/n/9 More
+
+Underfull \hbox (badness 10000) in paragraph at lines 197--197
+\T1/ntxtlf/m/n/9 com-plex
+
+Underfull \hbox (badness 10000) in paragraph at lines 197--197
+\T1/ntxtlf/m/n/9 mem-ory
+
+Underfull \hbox (badness 10000) in paragraph at lines 197--197
+[]|\T1/ntxtlf/m/n/9 Reuse
+
+Underfull \hbox (badness 10000) in paragraph at lines 197--197
+[]|\T1/ntxtlf/m/n/9 Higher
+
+Underfull \hbox (badness 10000) in paragraph at lines 197--197
+[]|\T1/ntxtlf/m/n/9 Requires
+
+Underfull \hbox (badness 10000) in paragraph at lines 197--197
+\T1/ntxtlf/m/n/9 shared
+[3 <./GQA.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
+[]|\T1/ntxtlf/b/n/9 Primary
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
+\T1/ntxtlf/b/n/9 Bot-tle-neck
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
+[]|\T1/ntxtlf/b/n/9 Memory/Latency
+
+Underfull \hbox (badness 5862) in paragraph at lines 230--230
+[]|\T1/ntxtlf/b/n/9 Accuracy Trade-
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
+\T1/ntxtlf/m/n/9 level; near-MQA
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
+[]|\T1/ntxtlf/m/n/9 General-purpose,
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
+\T1/ntxtlf/m/n/9 latency-sensitive
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
+\T1/ntxtlf/m/n/9 single-user
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
+[]|\T1/ntxtlf/m/n/9 Balanced,
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
+\T1/ntxtlf/m/n/9 general-purpose
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
+[]|\T1/ntxtlf/m/n/9 Memory ca-pac-ity
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
+\T1/ntxtlf/m/n/9 many con-cur-rent
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
+[]|\T1/ntxtlf/m/n/9 Memory-accuracy
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
+[]|\T1/ntxtlf/m/n/9 Variable, tensor-
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
+[]|\T1/ntxtlf/m/n/9 Accuracy-sensitive
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
+\T1/ntxtlf/m/n/9 tasks need-ing
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
+[]|$\OML/ntxmi/m/it/9 >$\T1/ntxtlf/m/n/9 80%
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
+\T1/ntxtlf/m/n/9 com-pres-sion,
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
+\T1/ntxtlf/m/n/9 hard-ware co-
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
+\T1/ntxtlf/m/n/9 design im-proves
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
+[]|\T1/ntxtlf/m/n/9 Long-context
+
+Underfull \hbox (badness 3884) in paragraph at lines 230--230
+[]|\T1/ntxtlf/m/n/9 Reconstruction er-
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
+[]|\T1/ntxtlf/m/n/9 Memory-
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
+\T1/ntxtlf/m/n/9 constrained,
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
+\T1/ntxtlf/m/n/9 accuracy-tolerant
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
+[]|\T1/ntxtlf/m/n/9 Possible
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
+[]|\T1/ntxtlf/m/n/9 Memory-quality
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
+[]|\T1/ntxtlf/m/n/9 Adaptive, token-
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
+[]|\T1/ntxtlf/m/n/9 Long doc-u-ments
+
+Underfull \hbox (badness 1735) in paragraph at lines 230--230
+[]|\T1/ntxtlf/m/n/9 Up to 8$\LMS/ntxsy/m/n/9 ^^B$\T1/ntxtlf/m/n/9 , 25.6$\LMS/n
+txsy/m/n/9 ^^B$
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
+\T1/ntxtlf/m/n/9 com-bined with
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
+\T1/ntxtlf/m/n/9 adds trans-fer
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
+[]|\T1/ntxtlf/m/n/9 Memory-
+
+Underfull \hbox (badness 1546) in paragraph at lines 230--230
+\T1/ntxtlf/m/n/9 constrained GPUs,
+
+Underfull \hbox (badness 3250) in paragraph at lines 230--230
+[]|\T1/ntxtlf/m/n/9 Memory frag-men-
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
+[]|\T1/ntxtlf/m/n/9 Better GPU
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
+\T1/ntxtlf/m/n/9 uti-liza-tion, higher
+
+Underfull \hbox (badness 7012) in paragraph at lines 230--230
+[]|\T1/ntxtlf/m/n/9 Multi-tenant serv-
+
+Underfull \hbox (badness 2556) in paragraph at lines 230--230
+[]|\T1/ntxtlf/m/n/9 Higher through-put
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
+[]|\T1/ntxtlf/m/n/9 High-concurrency,
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
+\T1/ntxtlf/m/n/9 shared-prompt
+[4]
+Underfull \vbox (badness 10000) has occurred while \output is active [5]
+Underfull \hbox (badness 2142) in paragraph at lines 314--315
+[]\T1/ntxtlf/b/n/10 Quantization (FP8/NVFP4/MiniKV). \T1/ntxtlf/m/n/10 Quan-ti-
+za-tion re-
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 382--383
+[]\T1/newtxtt/m/n/10 run_trial(prompts, max_new_tokens, batch_size)
+
+Underfull \hbox (badness 10000) in alignment at lines 524--524
+[][][][] 
+[7] [8 <./memory_vs_context.png> <./throughput_vs_context.png> <./latency_vs_co
+ntext.png>]
+Underfull \vbox (badness 10000) has occurred while \output is active
+Underfull \vbox (badness 10000) has occurred while \output is active [9 <./memo
+ry_vs_batch.png> <./summary_tokens_per_s.png>]
+Underfull \vbox (badness 10000) has occurred while \output is active [10 <./sum
+mary_kv_mb.png>] (main.bbl)
+
+** Conference Paper **
+Before submitting the final camera ready copy, remember to:
+
+ 1. Manually equalize the lengths of two columns on the last page
+ of your paper;
+
+ 2. Ensure that any PostScript and/or PDF output post-processing
+ uses only Type 1 fonts and that every step in the generation
+ process uses the appropriate paper size.
+
+[11] (main.aux) )
+(see the transcript file for additional information)<C:/Users/Acer/AppData/Loca
+l/Programs/MiKTeX/fonts/type1/public/newtx/NewTXMI.pfb><C:/Users/Acer/AppData/L
+ocal/Programs/MiKTeX/fonts/type1/public/newtx/NewTXMI7.pfb><C:/Users/Acer/AppDa
+ta/Local/Programs/MiKTeX/fonts/type1/public/newtxtt/newtxbtt.pfb><C:/Users/Acer
+/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtxtt/newtxtt.pfb><C:/Users
+/Acer/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtxtt/newtxttsc.pfb><C
+:/Users/Acer/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txexs.pfb><
+C:/Users/Acer/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txmiaX.pfb
+><C:/Users/Acer/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txsys.pf
+b><C:/Users/Acer/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmb.pf
+b><C:/Users/Acer/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmbi.p
+fb><C:/Users/Acer/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmr.p
+fb><C:/Users/Acer/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmri.
+pfb>
+Output written on main.pdf (11 pages, 888456 bytes).
+Transcript written on main.log.
+Latexmk: Getting log file 'main.log'
+Latexmk: Examining 'main.fls'
+Latexmk: Examining 'main.log'
+Latexmk: Found input bbl file 'main.bbl'
+Latexmk: Log file says output to 'main.pdf'
+Latexmk: Using bibtex to make bibliography file(s).
+  ===Source file 'main.bbl' for 'pdflatex'
+Latexmk: Found bibliography file(s):
+  ./reference.bib
+Latexmk: All targets (main.pdf) are up-to-date
+

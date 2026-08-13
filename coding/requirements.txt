@@ -18,6 +18,10 @@ bitsandbytes>=0.42 ; platform_system != "Windows"
 # sentencepiece is needed for many LLaMA-family tokenizers
 sentencepiece>=0.1.99
 
+# datasets provides the WikiText-2 corpus used by the perplexity evaluation
+# (kvbench.techniques.perplexity_eval / scripts/run_all.py --with-perplexity)
+datasets>=2.18
+
 # TQDM for progress bars
 tqdm>=4.66
 

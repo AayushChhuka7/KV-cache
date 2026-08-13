@@ -91,10 +91,12 @@ class LowRankCompression(KVTechnique):
             k_proj_weight = getattr(attn, "k_proj", None)
             v_proj_weight = getattr(attn, "v_proj", None)
             if k_proj_weight is None or v_proj_weight is None:
-                # Some HF models use fused qkv_proj.
-                fused = getattr(attn, "qkv_proj", None)
-                if fused is not None:
-                    continue  # skip — too invasive for the demo.
+                # Fused qkv (e.g. GPT-2 ``c_attn``, Phi ``qkv_proj``): the
+                # K/V projections are not separable, so we cannot attach a
+                # per-projection low-rank factor. Skip this layer rather than
+                # dereferencing a missing module; on such models low-rank
+                # compression is simply not applied.
+                continue
             # Allocate low-rank factors.
             down_k = torch.nn.Linear(head_dim, r, bias=False, device=device, dtype=k_proj_weight.weight.dtype)
             up_k = torch.nn.Linear(r, head_dim, bias=False, device=device, dtype=k_proj_weight.weight.dtype)

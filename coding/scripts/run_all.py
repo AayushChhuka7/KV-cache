@@ -47,6 +47,25 @@ def main():
     parser.add_argument("--model", default=None, help="Override the baseline model id.")
     parser.add_argument("--model-mha", default=None)
     parser.add_argument("--model-gqa", default=None)
+    parser.add_argument(
+        "--with-perplexity",
+        action="store_true",
+        help="After the memory/latency sweep, run the WikiText-2 perplexity "
+             "evaluation for the five real techniques (Baseline FP16, INT8, "
+             "FP8, GQA, Low-Rank) on tiny-gpt2 and TinyLlama.",
+    )
+    parser.add_argument(
+        "--perplexity-out",
+        default=None,
+        help="CSV path for perplexity results "
+             "(default: <output>/perplexity_results.csv).",
+    )
+    parser.add_argument(
+        "--perplexity-models",
+        nargs="+",
+        default=None,
+        help="Override the model ids used for the perplexity pass.",
+    )
     args = parser.parse_args()
 
     cfg = BenchmarkConfig()
@@ -82,6 +101,12 @@ def main():
     logger.info("Total wall time: %.1fs", t1 - t0)
     runner.save("all")
     write_results_markdown(runner.results, out_dir, config_dict=cfg.to_dict())
+
+    if args.with_perplexity:
+        runner.run_perplexity_eval(
+            models=args.perplexity_models,
+            output_csv=args.perplexity_out,
+        )
 
     if not args.no_plots and cfg.generate_plots:
         try:

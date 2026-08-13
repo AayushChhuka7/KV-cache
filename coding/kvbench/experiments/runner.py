@@ -169,6 +169,36 @@ class ExperimentRunner:
         return technique.average(cells)
 
     # ------------------------------------------------------------------
+    # Optional accuracy pass (perplexity)
+    # ------------------------------------------------------------------
+    def run_perplexity_eval(
+        self,
+        models: Optional[List[str]] = None,
+        output_csv: Optional[str | Path] = None,
+    ) -> List[Dict]:
+        """Run the WikiText-2 perplexity pass for the real techniques.
+
+        Invoked after the main memory/latency sweep when the caller opts in
+        (see ``scripts/run_all.py --with-perplexity``). Re-seeds with the
+        same seed used by the rest of the run so the accuracy numbers are
+        reproducible alongside the paper's other measurements.
+        """
+        # Imported lazily so the package still imports on machines without
+        # the datasets dependency when perplexity is not requested.
+        from ..techniques.perplexity_eval import run_perplexity_evaluation
+
+        seed_everything(self.config.seed)
+        out = Path(output_csv) if output_csv else self.output_dir / "perplexity_results.csv"
+        with log_section("Perplexity evaluation (WikiText-2 subset)", self.logger):
+            rows = run_perplexity_evaluation(
+                self.config,
+                output_csv=out,
+                models=models,
+            )
+        self.logger.info("Perplexity results written to %s", out)
+        return rows
+
+    # ------------------------------------------------------------------
     # Persistence
     # ------------------------------------------------------------------
     def save(self, name: str = "results") -> List[Path]:
