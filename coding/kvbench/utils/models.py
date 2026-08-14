@@ -129,6 +129,83 @@ def detect_model_kv_shape(
     )
 
 
+def extend_position_embeddings(
+    model: torch.nn.Module,
+    tokenizer: Optional["object"] = None,
+    min_seq_len: int = 4096,
+) -> int:
+    """Extend a model's learned absolute position embeddings to at least
+    ``min_seq_len`` positions.
+
+    Some small models (e.g. GPT-2, ``n_positions=1024``) cap the context
+    length at their learned positional embedding table. The paper's sweep
+    grid reaches 4096 tokens, so the table is extended by cyclically
+    repeating the existing rows (the standard "position extension by
+    repetition" heuristic). RoPE-based models (LLaMA-style) have no learned
+    table and are returned unchanged.
+
+    The tokenizer's ``model_max_length`` is raised as well so tokenization
+    does not silently truncate to the old limit.
+
+    Returns the new maximum position length, or -1 when the model has no
+    learned absolute position embeddings.
+    """
+    parent, attr, emb = None, None, None
+    for path in ("transformer.wpe", "wpe", "embeddings.position_embeddings"):
+        mod = model
+        parts = path.split(".")
+        ok = True
+        for p in parts[:-1]:
+            mod = getattr(mod, p, None)
+            if mod is None:
+                ok = False
+                break
+        if ok and isinstance(getattr(mod, parts[-1], None), torch.nn.Embedding):
+            parent, attr = mod, parts[-1]
+            emb = getattr(mod, attr)
+            break
+    if emb is None:
+        if tokenizer is not None and hasattr(tokenizer, "model_max_length"):
+            try:
+                old = int(getattr(tokenizer, "model_max_length", 0) or 0)
+                if old < int(min_seq_len):
+                    tokenizer.model_max_length = int(min_seq_len)
+            except Exception:
+                pass
+        return -1
+
+    n = emb.weight.shape[0]
+    new_n = max(n, int(min_seq_len))
+    if new_n > n:
+        with torch.no_grad():
+            base = emb.weight.float()
+            reps = (new_n + n - 1) // n
+            new_weight = base.repeat(reps, 1)[:new_n]
+        new_emb = torch.nn.Embedding(
+            new_n, emb.embedding_dim, dtype=emb.weight.dtype, device=emb.weight.device
+        )
+        with torch.no_grad():
+            new_emb.weight.copy_(new_weight)
+        setattr(parent, attr, new_emb)
+
+    cfg = getattr(model, "config", None)
+    if cfg is not None:
+        for key in ("n_positions", "max_position_embeddings"):
+            if hasattr(cfg, key):
+                try:
+                    setattr(cfg, key, new_n)
+                except Exception:
+                    pass
+    if tokenizer is not None and hasattr(tokenizer, "model_max_length"):
+        try:
+            old = int(getattr(tokenizer, "model_max_length", 0) or 0)
+            if old < new_n:
+                tokenizer.model_max_length = new_n
+        except Exception:
+            pass
+    return new_n
+
+
 def load_model_and_tokenizer(
     model_name: str,
     dtype: torch.dtype = torch.float16,

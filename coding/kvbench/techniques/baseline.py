@@ -13,7 +13,6 @@ from ..utils.models import (
     dtype_from_string,
     load_model_and_tokenizer,
 )
-from ..utils.prompts import build_prompt
 from .base import BenchmarkResult, KVTechnique, TechniqueSpec
 
 
@@ -63,22 +62,17 @@ class BaselineKV(KVTechnique):
     ) -> BenchmarkResult:
         assert self._model is not None and self._tokenizer is not None
 
-        ctx_tokens = prompts[0] if isinstance(prompts, list) and prompts else "Hello."
-        # Build a deterministic prompt of length ctx_tokens by using the
-        # trial's request context. The runner passes the context length
-        # indirectly via the chosen prompt set; here we approximate by
-        # encoding a short paragraph and expanding.
-        text = build_prompt(
-            self._tokenizer,
-            prompts,
-            target_tokens=max(64, len(ctx_tokens) if isinstance(ctx_tokens, str) else 256),
-            seed=self.config.seed,
-        )
-        prompts_batch = [text] * batch_size
+        # The runner passes ``batch_size`` prompts already built at the
+        # requested context length; use them verbatim so the measured
+        # context actually reflects the sweep point.
+        prompt_list = list(prompts[:batch_size]) if prompts else []
+        text = prompt_list[0] if prompt_list else "Hello."
 
-        def _generate(prompts: List[str], max_new_tokens: int):
+        def _generate(_prompts: List[str], max_new_tokens: int):
+            # ``_measure_trial`` passes ``config.prompts``; ignore it and
+            # use the context-length prompt list built for this cell.
             return self._hf_generate(
-                self._model, self._tokenizer, prompts, max_new_tokens
+                self._model, self._tokenizer, prompt_list, max_new_tokens
             )
 
         # Approximate context length as tokenized length of the prompt.

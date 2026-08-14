@@ -345,32 +345,19 @@ def _fp8_e5m2_roundtrip(x: torch.Tensor) -> torch.Tensor:
 
 
 def _install_kv_quant_hooks(model, quant_dtype: str) -> List:
-    """Hook every ``k_proj`` / ``v_proj`` to quantize->dequantize its output.
+    """Hook every K/V source to quantize->dequantize its output.
 
-    Returns the list of hook handles. The list is empty when the model has
-    no separate K/V projections (e.g. GPT-2's fused ``c_attn``); in that
-    case a quantized run legitimately equals the baseline and the caller
-    notes it rather than reporting a spurious difference.
+    Delegates to :func:`kvbench.techniques.quantized.install_kv_roundtrip_hooks`,
+    which covers both separable K/V projections (Llama-style ``k_proj`` /
+    ``v_proj``) and fused QKV (GPT-2-style ``c_attn``, where the K/V slices
+    of the fused output are round-tripped and re-concatenated).
+
+    Returns the list of hook handles. The list is empty only when the model
+    has neither separable K/V projections nor a fused ``c_attn``.
     """
-    from .quantized import quantize_int8_per_channel, dequantize_int8_per_channel
+    from .quantized import install_kv_roundtrip_hooks
 
-    def _make_hook():
-        def _hook(_mod, _inp, out):
-            orig_dtype = out.dtype
-            x = out.float()
-            if quant_dtype == "int8":
-                q, scale = quantize_int8_per_channel(x)
-                deq = dequantize_int8_per_channel(q, scale)
-            else:  # fp8 (E5M2)
-                deq = _fp8_e5m2_roundtrip(x)
-            return deq.to(orig_dtype).view_as(out)
-        return _hook
-
-    handles = []
-    for name, module in model.named_modules():
-        if name.split(".")[-1] in ("k_proj", "v_proj"):
-            handles.append(module.register_forward_hook(_make_hook()))
-    return handles
+    return install_kv_roundtrip_hooks(model, quant_dtype)
 
 
 def _evaluate_once(
@@ -420,17 +407,18 @@ def _evaluate_once(
             )
             quant_hooks = _install_kv_quant_hooks(model, quant_dtype)
             if not quant_hooks:
-                note = ("fused QKV projection (no separate k_proj/v_proj); "
-                        "KV quantization not separable, equals FP16 baseline")
+                note = ("no separable k_proj/v_proj and no fused c_attn found; "
+                        "KV quantization not applied, equals FP16 baseline")
         else:
             technique = _build_technique(name, cfg)
             technique.setup()
             model, tokenizer = technique._model, technique._tokenizer
             if hasattr(technique, "_hooks") and not technique._hooks:
-                # Low-Rank on a fused-QKV model installs no projectors, so its
+                # Low-Rank could not attach projectors to any attention layer
+                # (no separable projections and no fused c_attn), so its
                 # forward pass -- and thus perplexity -- equals the baseline.
-                note = ("no separable k_proj/v_proj; low-rank projectors not "
-                        "installed, equals FP16 baseline")
+                note = ("no separable k_proj/v_proj and no fused c_attn; "
+                        "low-rank projectors not installed, equals FP16 baseline")
 
         res = compute_perplexity(model, tokenizer, name, device, chunk_len=chunk_len)
         if note:
@@ -577,7 +565,7 @@ def run_perplexity_evaluation(
 
             if res.notes:
                 # Carry the per-technique explanation attached in
-                # ``_evaluate_once`` (e.g. fused-QKV / equals-baseline) into the
+                # ``_evaluate_once`` (e.g. equals-baseline fallbacks) into the
                 # CSV; without this it is silently dropped from Table IX.
                 note_parts.insert(0, res.notes)
             if res.num_chunks_skipped_oom:

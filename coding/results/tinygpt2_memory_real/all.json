@@ -1,0 +1,2955 @@
+{
+  "config": {
+    "seed": 42,
+    "trials": 1,
+    "warmup_steps": 2,
+    "max_new_tokens": 32,
+    "model": "sshleifer/tiny-gpt2",
+    "mha_model": "gpt2",
+    "gqa_model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+    "use_cuda": true,
+    "dtype": "fp16",
+    "context_lengths": [
+      256,
+      512,
+      2048
+    ],
+    "batch_sizes": [
+      1,
+      2,
+      4
+    ],
+    "prompts": [
+      "The history of computing began with analog machines and mechanical calculators.",
+      "Modern transformer architectures rely on self-attention to model long-range dependencies.",
+      "Key-value caching avoids the redundant recomputation of past token projections.",
+      "Memory bandwidth often becomes the primary bottleneck during autoregressive decoding.",
+      "Quantization reduces the precision of stored tensors to save memory at a small accuracy cost.",
+      "PagedAttention partitions the KV cache into fixed-size blocks to reduce fragmentation.",
+      "Grouped-query attention shares key and value heads across multiple query heads.",
+      "Cross-layer compression exploits redundancy between consecutive transformer layers."
+    ],
+    "output_dir": "results",
+    "save_raw": true,
+    "generate_plots": true,
+    "run_simulations": false
+  },
+  "technique_meta": {
+    "Baseline FP16": {
+      "category": "baseline",
+      "description": "HuggingFace default KV cache in FP16/FP32. No optimization.",
+      "is_simulation": false,
+      "extra": {}
+    },
+    "Quantized INT8": {
+      "category": "quantization",
+      "description": "KV cache quantized to INT8 with per-channel symmetric quantization.",
+      "is_simulation": false,
+      "extra": {}
+    },
+    "Quantized FP8 (E5M2)": {
+      "category": "quantization",
+      "description": "KV cache quantized to FP8 E5M2 (1 byte) using PyTorch fp8 dtype where supported, else 1-byte approximation.",
+      "is_simulation": false,
+      "extra": {}
+    },
+    "GQA": {
+      "category": "attention",
+      "description": "GQA: 32 query heads sharing 4 KV heads (group size 8); native HuggingFace model.",
+      "is_simulation": false,
+      "extra": {
+        "group_size": 8
+      }
+    },
+    "Low-Rank Compression": {
+      "category": "compression",
+      "description": "KV cache projected to a low-rank subspace of dimension `rank`, reconstructed at attention time.",
+      "is_simulation": false,
+      "extra": {}
+    }
+  },
+  "results": [
+    {
+      "technique": "Baseline FP16",
+      "category": "baseline",
+      "context_length": 1474,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 345.3203125,
+      "analytic_kv_mb": 0.022491455078125,
+      "wall_time_s": 2.928717799997685,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 10.926283167338722,
+      "time_to_first_token_s": 0.09089553750004598,
+      "avg_gpu_util_pct": 127.07692307692308,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 127.07692307692308,
+      "peak_rss_mb": 345.3203125,
+      "notes": "HuggingFace default KV cache in FP16/FP32. No optimization.",
+      "raw": {
+        "wall_time_s": [
+          2.928717799997685
+        ],
+        "tokens_per_s": [
+          10.926283167338722
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          345.3203125
+        ],
+        "time_to_first_token_s": [
+          0.09089553750004598
+        ]
+      }
+    },
+    {
+      "technique": "Baseline FP16",
+      "category": "baseline",
+      "context_length": 1474,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 343.6953125,
+      "analytic_kv_mb": 0.04498291015625,
+      "wall_time_s": 1.4556988999975147,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 21.98256796103551,
+      "time_to_first_token_s": 0.04488092500002949,
+      "avg_gpu_util_pct": 200.23809523809524,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 200.23809523809524,
+      "peak_rss_mb": 343.6953125,
+      "notes": "HuggingFace default KV cache in FP16/FP32. No optimization.",
+      "raw": {
+        "wall_time_s": [
+          1.4556988999975147
+        ],
+        "tokens_per_s": [
+          21.98256796103551
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          343.6953125
+        ],
+        "time_to_first_token_s": [
+          0.04488092500002949
+        ]
+      }
+    },
+    {
+      "technique": "Baseline FP16",
+      "category": "baseline",
+      "context_length": 1474,
+      "batch_size": 4,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 344.04296875,
+      "analytic_kv_mb": 0.0899658203125,
+      "wall_time_s": 1.7727673999979743,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 18.050873453582554,
+      "time_to_first_token_s": 0.05528444374999708,
+      "avg_gpu_util_pct": 195.9269230769231,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 195.9269230769231,
+      "peak_rss_mb": 344.046875,
+      "notes": "HuggingFace default KV cache in FP16/FP32. No optimization.",
+      "raw": {
+        "wall_time_s": [
+          1.7727673999979743
+        ],
+        "tokens_per_s": [
+          18.050873453582554
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          344.04296875
+        ],
+        "time_to_first_token_s": [
+          0.05528444374999708
+        ]
+      }
+    },
+    {
+      "technique": "Baseline FP16",
+      "category": "baseline",
+      "context_length": 2903,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 344.40234375,
+      "analytic_kv_mb": 0.0442962646484375,
+      "wall_time_s": 1.2864068999988376,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 24.875488463276213,
+      "time_to_first_token_s": 0.03998678749996998,
+      "avg_gpu_util_pct": 250.59473684210528,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 250.59473684210528,
+      "peak_rss_mb": 344.48046875,
+      "notes": "HuggingFace default KV cache in FP16/FP32. No optimization.",
+      "raw": {
+        "wall_time_s": [
+          1.2864068999988376
+        ],
+        "tokens_per_s": [
+          24.875488463276213
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          344.40234375
+        ],
+        "time_to_first_token_s": [
+          0.03998678749996998
+        ]
+      }
+    },
+    {
+      "technique": "Baseline FP16",
+      "category": "baseline",
+      "context_length": 2903,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 344.51953125,
+      "analytic_kv_mb": 0.088592529296875,
+      "wall_time_s": 1.4015040999984194,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 22.83261247686403,
+      "time_to_first_token_s": 0.04370025937498667,
+      "avg_gpu_util_pct": 235.81428571428575,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 235.81428571428575,
+      "peak_rss_mb": 345.734375,
+      "notes": "HuggingFace default KV cache in FP16/FP32. No optimization.",
+      "raw": {
+        "wall_time_s": [
+          1.4015040999984194
+        ],
+        "tokens_per_s": [
+          22.83261247686403
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          344.51953125
+        ],
+        "time_to_first_token_s": [
+          0.04370025937498667
+        ]
+      }
+    },
+    {
+      "technique": "Baseline FP16",
+      "category": "baseline",
+      "context_length": 2903,
+      "batch_size": 4,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 344.9609375,
+      "analytic_kv_mb": 0.17718505859375,
+      "wall_time_s": 2.053356899999926,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 15.584236719881066,
+      "time_to_first_token_s": 0.06404191562501182,
+      "avg_gpu_util_pct": 180.4923076923077,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 180.4923076923077,
+      "peak_rss_mb": 344.53515625,
+      "notes": "HuggingFace default KV cache in FP16/FP32. No optimization.",
+      "raw": {
+        "wall_time_s": [
+          2.053356899999926
+        ],
+        "tokens_per_s": [
+          15.584236719881066
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          344.9609375
+        ],
+        "time_to_first_token_s": [
+          0.06404191562501182
+        ]
+      }
+    },
+    {
+      "technique": "Baseline FP16",
+      "category": "baseline",
+      "context_length": 11628,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 347.0859375,
+      "analytic_kv_mb": 0.17742919921875,
+      "wall_time_s": 1.225601900001493,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 26.109620097652442,
+      "time_to_first_token_s": 0.03821145937502024,
+      "avg_gpu_util_pct": 256.86842105263156,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 256.86842105263156,
+      "peak_rss_mb": 347.2109375,
+      "notes": "HuggingFace default KV cache in FP16/FP32. No optimization.",
+      "raw": {
+        "wall_time_s": [
+          1.225601900001493
+        ],
+        "tokens_per_s": [
+          26.109620097652442
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          347.0859375
+        ],
+        "time_to_first_token_s": [
+          0.03821145937502024
+        ]
+      }
+    },
+    {
+      "technique": "Baseline FP16",
+      "category": "baseline",
+      "context_length": 11628,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 349.13671875,
+      "analytic_kv_mb": 0.3548583984375,
+      "wall_time_s": 1.6662670000005164,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 19.204605264336436,
+      "time_to_first_token_s": 0.05198906875000375,
+      "avg_gpu_util_pct": 199.7047619047619,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 199.7047619047619,
+      "peak_rss_mb": 347.57421875,
+      "notes": "HuggingFace default KV cache in FP16/FP32. No optimization.",
+      "raw": {
+        "wall_time_s": [
+          1.6662670000005164
+        ],
+        "tokens_per_s": [
+          19.204605264336436
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          349.13671875
+        ],
+        "time_to_first_token_s": [
+          0.05198906875000375
+        ]
+      }
+    },
+    {
+      "technique": "Baseline FP16",
+      "category": "baseline",
+      "context_length": 11628,
+      "batch_size": 4,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 347.88671875,
+      "analytic_kv_mb": 0.709716796875,
+      "wall_time_s": 1.6029646999995748,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 19.963009790551524,
+      "time_to_first_token_s": 0.04998715312501645,
+      "avg_gpu_util_pct": 187.10416666666666,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 187.10416666666666,
+      "peak_rss_mb": 349.1015625,
+      "notes": "HuggingFace default KV cache in FP16/FP32. No optimization.",
+      "raw": {
+        "wall_time_s": [
+          1.6029646999995748
+        ],
+        "tokens_per_s": [
+          19.963009790551524
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          347.88671875
+        ],
+        "time_to_first_token_s": [
+          0.04998715312501645
+        ]
+      }
+    },
+    {
+      "technique": "Quantized INT8",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 376.71484375,
+      "analytic_kv_mb": 0.001953125,
+      "wall_time_s": 1.620795700000599,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 19.743389003307556,
+      "time_to_first_token_s": 0.05064986562501872,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 193.00434782608698,
+      "peak_rss_mb": 376.71484375,
+      "notes": "KV cache quantized to INT8 with per-channel symmetric quantization. (round-trip int8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          1.620795700000599
+        ],
+        "tokens_per_s": [
+          19.743389003307556
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          376.71484375
+        ],
+        "time_to_first_token_s": [
+          0.05064986562501872
+        ]
+      }
+    },
+    {
+      "technique": "Quantized INT8",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 399.5234375,
+      "analytic_kv_mb": 0.00390625,
+      "wall_time_s": 2.84552949999852,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 11.245710156937978,
+      "time_to_first_token_s": 0.08892279687495375,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 209.63823529411764,
+      "peak_rss_mb": 399.5234375,
+      "notes": "KV cache quantized to INT8 with per-channel symmetric quantization. (round-trip int8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          2.84552949999852
+        ],
+        "tokens_per_s": [
+          11.245710156937978
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          399.5234375
+        ],
+        "time_to_first_token_s": [
+          0.08892279687495375
+        ]
+      }
+    },
+    {
+      "technique": "Quantized INT8",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 4,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 448.90625,
+      "analytic_kv_mb": 0.0078125,
+      "wall_time_s": 4.935529200000019,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 6.483600583297101,
+      "time_to_first_token_s": 0.1542352875000006,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 208.2159420289855,
+      "peak_rss_mb": 448.83203125,
+      "notes": "KV cache quantized to INT8 with per-channel symmetric quantization. (round-trip int8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          4.935529200000019
+        ],
+        "tokens_per_s": [
+          6.483600583297101
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          448.90625
+        ],
+        "time_to_first_token_s": [
+          0.1542352875000006
+        ]
+      }
+    },
+    {
+      "technique": "Quantized INT8",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 375.33984375,
+      "analytic_kv_mb": 0.001953125,
+      "wall_time_s": 1.3910070000019914,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 23.00491658198283,
+      "time_to_first_token_s": 0.04346896875006223,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 229.57222222222222,
+      "peak_rss_mb": 375.33984375,
+      "notes": "KV cache quantized to INT8 with per-channel symmetric quantization. (round-trip int8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          1.3910070000019914
+        ],
+        "tokens_per_s": [
+          23.00491658198283
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          375.33984375
+        ],
+        "time_to_first_token_s": [
+          0.04346896875006223
+        ]
+      }
+    },
+    {
+      "technique": "Quantized INT8",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 400.00390625,
+      "analytic_kv_mb": 0.00390625,
+      "wall_time_s": 2.5107842999968852,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 12.745021545673875,
+      "time_to_first_token_s": 0.07846200937490266,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 205.79444444444445,
+      "peak_rss_mb": 400.00390625,
+      "notes": "KV cache quantized to INT8 with per-channel symmetric quantization. (round-trip int8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          2.5107842999968852
+        ],
+        "tokens_per_s": [
+          12.745021545673875
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          400.00390625
+        ],
+        "time_to_first_token_s": [
+          0.07846200937490266
+        ]
+      }
+    },
+    {
+      "technique": "Quantized INT8",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 4,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 449.4375,
+      "analytic_kv_mb": 0.0078125,
+      "wall_time_s": 5.770151999997324,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 5.5457811163405815,
+      "time_to_first_token_s": 0.18031724999991638,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 187.3144927536232,
+      "peak_rss_mb": 449.4375,
+      "notes": "KV cache quantized to INT8 with per-channel symmetric quantization. (round-trip int8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          5.770151999997324
+        ],
+        "tokens_per_s": [
+          5.5457811163405815
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          449.4375
+        ],
+        "time_to_first_token_s": [
+          0.18031724999991638
+        ]
+      }
+    },
+    {
+      "technique": "Quantized INT8",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 449.0078125,
+      "analytic_kv_mb": 0.001953125,
+      "wall_time_s": 1.7499766000000818,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 18.28595879510532,
+      "time_to_first_token_s": 0.05468676875000256,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 163.69583333333335,
+      "peak_rss_mb": 449.0,
+      "notes": "KV cache quantized to INT8 with per-channel symmetric quantization. (round-trip int8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          1.7499766000000818
+        ],
+        "tokens_per_s": [
+          18.28595879510532
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          449.0078125
+        ],
+        "time_to_first_token_s": [
+          0.05468676875000256
+        ]
+      }
+    },
+    {
+      "technique": "Quantized INT8",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 400.046875,
+      "analytic_kv_mb": 0.00390625,
+      "wall_time_s": 3.002929000002041,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 10.656262602272065,
+      "time_to_first_token_s": 0.09384153125006378,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 203.555,
+      "peak_rss_mb": 400.05078125,
+      "notes": "KV cache quantized to INT8 with per-channel symmetric quantization. (round-trip int8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          3.002929000002041
+        ],
+        "tokens_per_s": [
+          10.656262602272065
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          400.046875
+        ],
+        "time_to_first_token_s": [
+          0.09384153125006378
+        ]
+      }
+    },
+    {
+      "technique": "Quantized INT8",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 4,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 449.0078125,
+      "analytic_kv_mb": 0.0078125,
+      "wall_time_s": 6.579244799999287,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 4.863780110447245,
+      "time_to_first_token_s": 0.20560139999997773,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 176.62933333333334,
+      "peak_rss_mb": 449.0078125,
+      "notes": "KV cache quantized to INT8 with per-channel symmetric quantization. (round-trip int8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          6.579244799999287
+        ],
+        "tokens_per_s": [
+          4.863780110447245
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          449.0078125
+        ],
+        "time_to_first_token_s": [
+          0.20560139999997773
+        ]
+      }
+    },
+    {
+      "technique": "Quantized FP8 (E5M2)",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 378.92578125,
+      "analytic_kv_mb": 0.001953125,
+      "wall_time_s": 1.3957427999994252,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 22.926860163644175,
+      "time_to_first_token_s": 0.04361696249998204,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 224.55789473684212,
+      "peak_rss_mb": 378.921875,
+      "notes": "KV cache quantized to FP8 E5M2 (1 byte) using PyTorch fp8 dtype where supported, else 1-byte approximation. (round-trip fp8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          1.3957427999994252
+        ],
+        "tokens_per_s": [
+          22.926860163644175
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          378.92578125
+        ],
+        "time_to_first_token_s": [
+          0.04361696249998204
+        ]
+      }
+    },
+    {
+      "technique": "Quantized FP8 (E5M2)",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 401.56640625,
+      "analytic_kv_mb": 0.00390625,
+      "wall_time_s": 3.6060809999980847,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 8.873899393834192,
+      "time_to_first_token_s": 0.11269003124994015,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 170.60204081632654,
+      "peak_rss_mb": 401.60546875,
+      "notes": "KV cache quantized to FP8 E5M2 (1 byte) using PyTorch fp8 dtype where supported, else 1-byte approximation. (round-trip fp8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          3.6060809999980847
+        ],
+        "tokens_per_s": [
+          8.873899393834192
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          401.56640625
+        ],
+        "time_to_first_token_s": [
+          0.11269003124994015
+        ]
+      }
+    },
+    {
+      "technique": "Quantized FP8 (E5M2)",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 4,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 450.61328125,
+      "analytic_kv_mb": 0.0078125,
+      "wall_time_s": 5.337011400002666,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 5.9958650266297004,
+      "time_to_first_token_s": 0.16678160625008331,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 202.109375,
+      "peak_rss_mb": 450.61328125,
+      "notes": "KV cache quantized to FP8 E5M2 (1 byte) using PyTorch fp8 dtype where supported, else 1-byte approximation. (round-trip fp8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          5.337011400002666
+        ],
+        "tokens_per_s": [
+          5.9958650266297004
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          450.61328125
+        ],
+        "time_to_first_token_s": [
+          0.16678160625008331
+        ]
+      }
+    },
+    {
+      "technique": "Quantized FP8 (E5M2)",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 377.36328125,
+      "analytic_kv_mb": 0.001953125,
+      "wall_time_s": 1.4391634999992675,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 22.235138676054728,
+      "time_to_first_token_s": 0.04497385937497711,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 225.09047619047618,
+      "peak_rss_mb": 377.36328125,
+      "notes": "KV cache quantized to FP8 E5M2 (1 byte) using PyTorch fp8 dtype where supported, else 1-byte approximation. (round-trip fp8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          1.4391634999992675
+        ],
+        "tokens_per_s": [
+          22.235138676054728
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          377.36328125
+        ],
+        "time_to_first_token_s": [
+          0.04497385937497711
+        ]
+      }
+    },
+    {
+      "technique": "Quantized FP8 (E5M2)",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 401.58984375,
+      "analytic_kv_mb": 0.00390625,
+      "wall_time_s": 3.527333099998941,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 9.072009672125835,
+      "time_to_first_token_s": 0.11022915937496691,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 161.48536585365855,
+      "peak_rss_mb": 401.58984375,
+      "notes": "KV cache quantized to FP8 E5M2 (1 byte) using PyTorch fp8 dtype where supported, else 1-byte approximation. (round-trip fp8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          3.527333099998941
+        ],
+        "tokens_per_s": [
+          9.072009672125835
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          401.58984375
+        ],
+        "time_to_first_token_s": [
+          0.11022915937496691
+        ]
+      }
+    },
+    {
+      "technique": "Quantized FP8 (E5M2)",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 4,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 450.63671875,
+      "analytic_kv_mb": 0.0078125,
+      "wall_time_s": 5.69007480000073,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 5.623827651614684,
+      "time_to_first_token_s": 0.1778148375000228,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 185.9320512820513,
+      "peak_rss_mb": 450.63671875,
+      "notes": "KV cache quantized to FP8 E5M2 (1 byte) using PyTorch fp8 dtype where supported, else 1-byte approximation. (round-trip fp8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          5.69007480000073
+        ],
+        "tokens_per_s": [
+          5.623827651614684
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          450.63671875
+        ],
+        "time_to_first_token_s": [
+          0.1778148375000228
+        ]
+      }
+    },
+    {
+      "technique": "Quantized FP8 (E5M2)",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 449.625,
+      "analytic_kv_mb": 0.001953125,
+      "wall_time_s": 2.0532923999999184,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 15.58472626694633,
+      "time_to_first_token_s": 0.06416538749999745,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 139.85416666666666,
+      "peak_rss_mb": 449.625,
+      "notes": "KV cache quantized to FP8 E5M2 (1 byte) using PyTorch fp8 dtype where supported, else 1-byte approximation. (round-trip fp8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          2.0532923999999184
+        ],
+        "tokens_per_s": [
+          15.58472626694633
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          449.625
+        ],
+        "time_to_first_token_s": [
+          0.06416538749999745
+        ]
+      }
+    },
+    {
+      "technique": "Quantized FP8 (E5M2)",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 400.73046875,
+      "analytic_kv_mb": 0.00390625,
+      "wall_time_s": 4.172214199999871,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 7.6697883823896165,
+      "time_to_first_token_s": 0.13038169374999597,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 138.91538461538462,
+      "peak_rss_mb": 400.73046875,
+      "notes": "KV cache quantized to FP8 E5M2 (1 byte) using PyTorch fp8 dtype where supported, else 1-byte approximation. (round-trip fp8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          4.172214199999871
+        ],
+        "tokens_per_s": [
+          7.6697883823896165
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          400.73046875
+        ],
+        "time_to_first_token_s": [
+          0.13038169374999597
+        ]
+      }
+    },
+    {
+      "technique": "Quantized FP8 (E5M2)",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 4,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 449.79296875,
+      "analytic_kv_mb": 0.0078125,
+      "wall_time_s": 4.780889900001057,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 6.693314564720038,
+      "time_to_first_token_s": 0.14940280937503303,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 215.9032786885246,
+      "peak_rss_mb": 449.79296875,
+      "notes": "KV cache quantized to FP8 E5M2 (1 byte) using PyTorch fp8 dtype where supported, else 1-byte approximation. (round-trip fp8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          4.780889900001057
+        ],
+        "tokens_per_s": [
+          6.693314564720038
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          449.79296875
+        ],
+        "time_to_first_token_s": [
+          0.14940280937503303
+        ]
+      }
+    },
+    {
+      "technique": "GQA",
+      "category": "attention",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 2483.50390625,
+      "analytic_kv_mb": 5.5,
+      "wall_time_s": 136.3229234999999,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 0.23473674990545537,
+      "time_to_first_token_s": 4.259920593749939,
+      "avg_gpu_util_pct": 174.8838625715773,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 174.8838625715773,
+      "peak_rss_mb": 2483.44921875,
+      "notes": "GQA: 32 query heads sharing 4 KV heads (group size 8); native HuggingFace model.",
+      "raw": {
+        "wall_time_s": [
+          136.3229234999999
+        ],
+        "tokens_per_s": [
+          0.23473674990545537
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          2483.50390625
+        ],
+        "time_to_first_token_s": [
+          4.259920593749939
+        ]
+      }
+    },
+    {
+      "technique": "GQA",
+      "category": "attention",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 2483.79296875,
+      "analytic_kv_mb": 11.0,
+      "wall_time_s": 131.41349390000323,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 0.24350619597976622,
+      "time_to_first_token_s": 4.1065657593749165,
+      "avg_gpu_util_pct": 181.5708504398827,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 181.5708504398827,
+      "peak_rss_mb": 2483.91796875,
+      "notes": "GQA: 32 query heads sharing 4 KV heads (group size 8); native HuggingFace model.",
+      "raw": {
+        "wall_time_s": [
+          131.41349390000323
+        ],
+        "tokens_per_s": [
+          0.24350619597976622
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          2483.79296875
+        ],
+        "time_to_first_token_s": [
+          4.1065657593749165
+        ]
+      }
+    },
+    {
+      "technique": "GQA",
+      "category": "attention",
+      "context_length": 256,
+      "batch_size": 4,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 2483.77734375,
+      "analytic_kv_mb": 22.0,
+      "wall_time_s": 131.19907230000172,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 0.24390416364247097,
+      "time_to_first_token_s": 4.099857806250043,
+      "avg_gpu_util_pct": 185.1952353282975,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 185.1952353282975,
+      "peak_rss_mb": 2483.71484375,
+      "notes": "GQA: 32 query heads sharing 4 KV heads (group size 8); native HuggingFace model.",
+      "raw": {
+        "wall_time_s": [
+          131.19907230000172
+        ],
+        "tokens_per_s": [
+          0.24390416364247097
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          2483.77734375
+        ],
+        "time_to_first_token_s": [
+          4.099857806250043
+        ]
+      }
+    },
+    {
+      "technique": "GQA",
+      "category": "attention",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 2484.0078125,
+      "analytic_kv_mb": 5.5,
+      "wall_time_s": 132.3651565,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 0.24175546530630965,
+      "time_to_first_token_s": 4.136262553124993,
+      "avg_gpu_util_pct": 179.61998931052912,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 179.61998931052912,
+      "peak_rss_mb": 2483.5703125,
+      "notes": "GQA: 32 query heads sharing 4 KV heads (group size 8); native HuggingFace model.",
+      "raw": {
+        "wall_time_s": [
+          132.3651565
+        ],
+        "tokens_per_s": [
+          0.24175546530630965
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          2484.0078125
+        ],
+        "time_to_first_token_s": [
+          4.136262553124993
+        ]
+      }
+    },
+    {
+      "technique": "GQA",
+      "category": "attention",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 2483.55859375,
+      "analytic_kv_mb": 11.0,
+      "wall_time_s": 125.46696059999886,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 0.25504722396216467,
+      "time_to_first_token_s": 3.920758853124994,
+      "avg_gpu_util_pct": 189.52359488035617,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 189.52359488035617,
+      "peak_rss_mb": 2483.78515625,
+      "notes": "GQA: 32 query heads sharing 4 KV heads (group size 8); native HuggingFace model.",
+      "raw": {
+        "wall_time_s": [
+          125.46696059999886
+        ],
+        "tokens_per_s": [
+          0.25504722396216467
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          2483.55859375
+        ],
+        "time_to_first_token_s": [
+          3.920758853124994
+        ]
+      }
+    },
+    {
+      "technique": "GQA",
+      "category": "attention",
+      "context_length": 256,
+      "batch_size": 4,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 2484.99609375,
+      "analytic_kv_mb": 22.0,
+      "wall_time_s": 65.3035411000019,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 0.49001936894964293,
+      "time_to_first_token_s": 2.040553556249961,
+      "avg_gpu_util_pct": 297.5719112988384,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 297.5719112988384,
+      "peak_rss_mb": 2484.99609375,
+      "notes": "GQA: 32 query heads sharing 4 KV heads (group size 8); native HuggingFace model.",
+      "raw": {
+        "wall_time_s": [
+          65.3035411000019
+        ],
+        "tokens_per_s": [
+          0.49001936894964293
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          2484.99609375
+        ],
+        "time_to_first_token_s": [
+          2.040553556249961
+        ]
+      }
+    },
+    {
+      "technique": "GQA",
+      "category": "attention",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 2485.00390625,
+      "analytic_kv_mb": 5.5,
+      "wall_time_s": 44.15922020000289,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 0.7246504774103304,
+      "time_to_first_token_s": 1.3799093093749661,
+      "avg_gpu_util_pct": 372.6139367816092,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 372.6139367816092,
+      "peak_rss_mb": 2485.00390625,
+      "notes": "GQA: 32 query heads sharing 4 KV heads (group size 8); native HuggingFace model.",
+      "raw": {
+        "wall_time_s": [
+          44.15922020000289
+        ],
+        "tokens_per_s": [
+          0.7246504774103304
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          2485.00390625
+        ],
+        "time_to_first_token_s": [
+          1.3799093093749661
+        ]
+      }
+    },
+    {
+      "technique": "GQA",
+      "category": "attention",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 2484.01171875,
+      "analytic_kv_mb": 11.0,
+      "wall_time_s": 51.212774399999034,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 0.6248441013967133,
+      "time_to_first_token_s": 1.600342381250016,
+      "avg_gpu_util_pct": 347.6429113924051,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 347.6429113924051,
+      "peak_rss_mb": 2483.890625,
+      "notes": "GQA: 32 query heads sharing 4 KV heads (group size 8); native HuggingFace model.",
+      "raw": {
+        "wall_time_s": [
+          51.212774399999034
+        ],
+        "tokens_per_s": [
+          0.6248441013967133
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          2484.01171875
+        ],
+        "time_to_first_token_s": [
+          1.600342381250016
+        ]
+      }
+    },
+    {
+      "technique": "GQA",
+      "category": "attention",
+      "context_length": 256,
+      "batch_size": 4,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 2484.8828125,
+      "analytic_kv_mb": 22.0,
+      "wall_time_s": 51.28583969999818,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 0.623953905935582,
+      "time_to_first_token_s": 1.6026217875000839,
+      "avg_gpu_util_pct": 345.06438356164387,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 345.06438356164387,
+      "peak_rss_mb": 2484.8359375,
+      "notes": "GQA: 32 query heads sharing 4 KV heads (group size 8); native HuggingFace model.",
+      "raw": {
+        "wall_time_s": [
+          51.28583969999818
+        ],
+        "tokens_per_s": [
+          0.623953905935582
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          2484.8828125
+        ],
+        "time_to_first_token_s": [
+          1.6026217875000839
+        ]
+      }
+    },
+    {
+      "technique": "Low-Rank Compression",
+      "category": "compression",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 2465.47265625,
+      "analytic_kv_mb": 0.00390625,
+      "wall_time_s": 0.735598300001584,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 43.50200374298186,
+      "time_to_first_token_s": 0.0229874468750495,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 384.1181818181818,
+      "peak_rss_mb": 2465.47265625,
+      "notes": "KV cache projected to a low-rank subspace of dimension `rank`, reconstructed at attention time. (rank=8, head_dim=1)",
+      "raw": {
+        "wall_time_s": [
+          0.735598300001584
+        ],
+        "tokens_per_s": [
+          43.50200374298186
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          2465.47265625
+        ],
+        "time_to_first_token_s": [
+          0.0229874468750495
+        ]
+      }
+    },
+    {
+      "technique": "Low-Rank Compression",
+      "category": "compression",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 1125.7265625,
+      "analytic_kv_mb": 0.0078125,
+      "wall_time_s": 1.0561311000019487,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 30.299268717625072,
+      "time_to_first_token_s": 0.033004096875060895,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 396.30625,
+      "peak_rss_mb": 1125.7265625,
+      "notes": "KV cache projected to a low-rank subspace of dimension `rank`, reconstructed at attention time. (rank=8, head_dim=1)",
+      "raw": {
+        "wall_time_s": [
+          1.0561311000019487
+        ],
+        "tokens_per_s": [
+          30.299268717625072
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          1125.7265625
+        ],
+        "time_to_first_token_s": [
+          0.033004096875060895
+        ]
+      }
+    },
+    {
+      "technique": "Low-Rank Compression",
+      "category": "compression",
+      "context_length": 256,
+      "batch_size": 4,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 561.78515625,
+      "analytic_kv_mb": 0.015625,
+      "wall_time_s": 1.9252283999994688,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 16.621404504529867,
+      "time_to_first_token_s": 0.0601633874999834,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 394.72333333333336,
+      "peak_rss_mb": 561.78515625,
+      "notes": "KV cache projected to a low-rank subspace of dimension `rank`, reconstructed at attention time. (rank=8, head_dim=1)",
+      "raw": {
+        "wall_time_s": [
+          1.9252283999994688
+        ],
+        "tokens_per_s": [
+          16.621404504529867
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          561.78515625
+        ],
+        "time_to_first_token_s": [
+          0.0601633874999834
+        ]
+      }
+    },
+    {
+      "technique": "Low-Rank Compression",
+      "category": "compression",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 560.86328125,
+      "analytic_kv_mb": 0.00390625,
+      "wall_time_s": 0.5851105000001553,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 54.690524268478356,
+      "time_to_first_token_s": 0.018284703125004853,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 381.0,
+      "peak_rss_mb": 560.83984375,
+      "notes": "KV cache projected to a low-rank subspace of dimension `rank`, reconstructed at attention time. (rank=8, head_dim=1)",
+      "raw": {
+        "wall_time_s": [
+          0.5851105000001553
+        ],
+        "tokens_per_s": [
+          54.690524268478356
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          560.86328125
+        ],
+        "time_to_first_token_s": [
+          0.018284703125004853
+        ]
+      }
+    },
+    {
+      "technique": "Low-Rank Compression",
+      "category": "compression",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 511.73046875,
+      "analytic_kv_mb": 0.0078125,
+      "wall_time_s": 0.9927880000032019,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 32.23246050505928,
+      "time_to_first_token_s": 0.03102462500010006,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 399.8666666666667,
+      "peak_rss_mb": 511.73046875,
+      "notes": "KV cache projected to a low-rank subspace of dimension `rank`, reconstructed at attention time. (rank=8, head_dim=1)",
+      "raw": {
+        "wall_time_s": [
+          0.9927880000032019
+        ],
+        "tokens_per_s": [
+          32.23246050505928
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          511.73046875
+        ],
+        "time_to_first_token_s": [
+          0.03102462500010006
+        ]
+      }
+    },
+    {
+      "technique": "Low-Rank Compression",
+      "category": "compression",
+      "context_length": 256,
+      "batch_size": 4,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 561.56640625,
+      "analytic_kv_mb": 0.015625,
+      "wall_time_s": 1.922305599997344,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 16.64667678232026,
+      "time_to_first_token_s": 0.060072049999917,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 387.2033333333333,
+      "peak_rss_mb": 561.56640625,
+      "notes": "KV cache projected to a low-rank subspace of dimension `rank`, reconstructed at attention time. (rank=8, head_dim=1)",
+      "raw": {
+        "wall_time_s": [
+          1.922305599997344
+        ],
+        "tokens_per_s": [
+          16.64667678232026
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          561.56640625
+        ],
+        "time_to_first_token_s": [
+          0.060072049999917
+        ]
+      }
+    },
+    {
+      "technique": "Low-Rank Compression",
+      "category": "compression",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 488.75390625,
+      "analytic_kv_mb": 0.00390625,
+      "wall_time_s": 0.5236007000021345,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 61.115273527842014,
+      "time_to_first_token_s": 0.016362521875066705,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 364.9625,
+      "peak_rss_mb": 488.75390625,
+      "notes": "KV cache projected to a low-rank subspace of dimension `rank`, reconstructed at attention time. (rank=8, head_dim=1)",
+      "raw": {
+        "wall_time_s": [
+          0.5236007000021345
+        ],
+        "tokens_per_s": [
+          61.115273527842014
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          488.75390625
+        ],
+        "time_to_first_token_s": [
+          0.016362521875066705
+        ]
+      }
+    },
+    {
+      "technique": "Low-Rank Compression",
+      "category": "compression",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 513.32421875,
+      "analytic_kv_mb": 0.0078125,
+      "wall_time_s": 1.0165913999990153,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 31.47774022092947,
+      "time_to_first_token_s": 0.03176848124996923,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 383.13125,
+      "peak_rss_mb": 513.32421875,
+      "notes": "KV cache projected to a low-rank subspace of dimension `rank`, reconstructed at attention time. (rank=8, head_dim=1)",
+      "raw": {
+        "wall_time_s": [
+          1.0165913999990153
+        ],
+        "tokens_per_s": [
+          31.47774022092947
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          513.32421875
+        ],
+        "time_to_first_token_s": [
+          0.03176848124996923
+        ]
+      }
+    },
+    {
+      "technique": "Low-Rank Compression",
+      "category": "compression",
+      "context_length": 256,
+      "batch_size": 4,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 562.4140625,
+      "analytic_kv_mb": 0.015625,
+      "wall_time_s": 1.9649662000010721,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32.0,
+      "tokens_per_s": 16.28526740051943,
+      "time_to_first_token_s": 0.061405193750033504,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 391.49666666666667,
+      "peak_rss_mb": 562.4140625,
+      "notes": "KV cache projected to a low-rank subspace of dimension `rank`, reconstructed at attention time. (rank=8, head_dim=1)",
+      "raw": {
+        "wall_time_s": [
+          1.9649662000010721
+        ],
+        "tokens_per_s": [
+          16.28526740051943
+        ],
+        "peak_gpu_mb": [
+          0.0
+        ],
+        "cpu_rss_mb": [
+          562.4140625
+        ],
+        "time_to_first_token_s": [
+          0.061405193750033504
+        ]
+      }
+    }
+  ],
+  "raw_trials": [
+    {
+      "technique": "Baseline FP16",
+      "category": "baseline",
+      "context_length": 1474,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 345.3203125,
+      "analytic_kv_mb": 0.022491455078125,
+      "wall_time_s": 2.928717799997685,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 10.926283167338722,
+      "time_to_first_token_s": 0.09089553750004598,
+      "avg_gpu_util_pct": 127.07692307692308,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 127.07692307692308,
+      "peak_rss_mb": 345.3203125,
+      "notes": "HuggingFace default KV cache in FP16/FP32. No optimization.",
+      "raw": {
+        "wall_time_s": [
+          2.988426799998706
+        ]
+      }
+    },
+    {
+      "technique": "Baseline FP16",
+      "category": "baseline",
+      "context_length": 1474,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 343.6953125,
+      "analytic_kv_mb": 0.04498291015625,
+      "wall_time_s": 1.4556988999975147,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 21.98256796103551,
+      "time_to_first_token_s": 0.04488092500002949,
+      "avg_gpu_util_pct": 200.23809523809524,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 200.23809523809524,
+      "peak_rss_mb": 343.6953125,
+      "notes": "HuggingFace default KV cache in FP16/FP32. No optimization.",
+      "raw": {
+        "wall_time_s": [
+          1.5313279000001785
+        ]
+      }
+    },
+    {
+      "technique": "Baseline FP16",
+      "category": "baseline",
+      "context_length": 1474,
+      "batch_size": 4,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 344.04296875,
+      "analytic_kv_mb": 0.0899658203125,
+      "wall_time_s": 1.7727673999979743,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 18.050873453582554,
+      "time_to_first_token_s": 0.05528444374999708,
+      "avg_gpu_util_pct": 195.9269230769231,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 195.9269230769231,
+      "peak_rss_mb": 344.046875,
+      "notes": "HuggingFace default KV cache in FP16/FP32. No optimization.",
+      "raw": {
+        "wall_time_s": [
+          1.8032247000010102
+        ]
+      }
+    },
+    {
+      "technique": "Baseline FP16",
+      "category": "baseline",
+      "context_length": 2903,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 344.40234375,
+      "analytic_kv_mb": 0.0442962646484375,
+      "wall_time_s": 1.2864068999988376,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 24.875488463276213,
+      "time_to_first_token_s": 0.03998678749996998,
+      "avg_gpu_util_pct": 250.59473684210528,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 250.59473684210528,
+      "peak_rss_mb": 344.48046875,
+      "notes": "HuggingFace default KV cache in FP16/FP32. No optimization.",
+      "raw": {
+        "wall_time_s": [
+          1.3889654999984486
+        ]
+      }
+    },
+    {
+      "technique": "Baseline FP16",
+      "category": "baseline",
+      "context_length": 2903,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 344.51953125,
+      "analytic_kv_mb": 0.088592529296875,
+      "wall_time_s": 1.4015040999984194,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 22.83261247686403,
+      "time_to_first_token_s": 0.04370025937498667,
+      "avg_gpu_util_pct": 235.81428571428575,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 235.81428571428575,
+      "peak_rss_mb": 345.734375,
+      "notes": "HuggingFace default KV cache in FP16/FP32. No optimization.",
+      "raw": {
+        "wall_time_s": [
+          1.4702465000009397
+        ]
+      }
+    },
+    {
+      "technique": "Baseline FP16",
+      "category": "baseline",
+      "context_length": 2903,
+      "batch_size": 4,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 344.9609375,
+      "analytic_kv_mb": 0.17718505859375,
+      "wall_time_s": 2.053356899999926,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 15.584236719881066,
+      "time_to_first_token_s": 0.06404191562501182,
+      "avg_gpu_util_pct": 180.4923076923077,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 180.4923076923077,
+      "peak_rss_mb": 344.53515625,
+      "notes": "HuggingFace default KV cache in FP16/FP32. No optimization.",
+      "raw": {
+        "wall_time_s": [
+          2.1288610999981756
+        ]
+      }
+    },
+    {
+      "technique": "Baseline FP16",
+      "category": "baseline",
+      "context_length": 11628,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 347.0859375,
+      "analytic_kv_mb": 0.17742919921875,
+      "wall_time_s": 1.225601900001493,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 26.109620097652442,
+      "time_to_first_token_s": 0.03821145937502024,
+      "avg_gpu_util_pct": 256.86842105263156,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 256.86842105263156,
+      "peak_rss_mb": 347.2109375,
+      "notes": "HuggingFace default KV cache in FP16/FP32. No optimization.",
+      "raw": {
+        "wall_time_s": [
+          1.5410080000001471
+        ]
+      }
+    },
+    {
+      "technique": "Baseline FP16",
+      "category": "baseline",
+      "context_length": 11628,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 349.13671875,
+      "analytic_kv_mb": 0.3548583984375,
+      "wall_time_s": 1.6662670000005164,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 19.204605264336436,
+      "time_to_first_token_s": 0.05198906875000375,
+      "avg_gpu_util_pct": 199.7047619047619,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 199.7047619047619,
+      "peak_rss_mb": 347.57421875,
+      "notes": "HuggingFace default KV cache in FP16/FP32. No optimization.",
+      "raw": {
+        "wall_time_s": [
+          1.8797138000009
+        ]
+      }
+    },
+    {
+      "technique": "Baseline FP16",
+      "category": "baseline",
+      "context_length": 11628,
+      "batch_size": 4,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 347.88671875,
+      "analytic_kv_mb": 0.709716796875,
+      "wall_time_s": 1.6029646999995748,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 19.963009790551524,
+      "time_to_first_token_s": 0.04998715312501645,
+      "avg_gpu_util_pct": 187.10416666666666,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 187.10416666666666,
+      "peak_rss_mb": 349.1015625,
+      "notes": "HuggingFace default KV cache in FP16/FP32. No optimization.",
+      "raw": {
+        "wall_time_s": [
+          1.8437178999993193
+        ]
+      }
+    },
+    {
+      "technique": "Quantized INT8",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 376.71484375,
+      "analytic_kv_mb": 0.001953125,
+      "wall_time_s": 1.620795700000599,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 19.743389003307556,
+      "time_to_first_token_s": 0.05064986562501872,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 193.00434782608698,
+      "peak_rss_mb": 376.71484375,
+      "notes": "KV cache quantized to INT8 with per-channel symmetric quantization. (round-trip int8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          1.6816900000012538
+        ]
+      }
+    },
+    {
+      "technique": "Quantized INT8",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 399.5234375,
+      "analytic_kv_mb": 0.00390625,
+      "wall_time_s": 2.84552949999852,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 11.245710156937978,
+      "time_to_first_token_s": 0.08892279687495375,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 209.63823529411764,
+      "peak_rss_mb": 399.5234375,
+      "notes": "KV cache quantized to INT8 with per-channel symmetric quantization. (round-trip int8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          2.8692967999995744
+        ]
+      }
+    },
+    {
+      "technique": "Quantized INT8",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 4,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 448.90625,
+      "analytic_kv_mb": 0.0078125,
+      "wall_time_s": 4.935529200000019,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 6.483600583297101,
+      "time_to_first_token_s": 0.1542352875000006,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 208.2159420289855,
+      "peak_rss_mb": 448.83203125,
+      "notes": "KV cache quantized to INT8 with per-channel symmetric quantization. (round-trip int8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          4.961393099998531
+        ]
+      }
+    },
+    {
+      "technique": "Quantized INT8",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 375.33984375,
+      "analytic_kv_mb": 0.001953125,
+      "wall_time_s": 1.3910070000019914,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 23.00491658198283,
+      "time_to_first_token_s": 0.04346896875006223,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 229.57222222222222,
+      "peak_rss_mb": 375.33984375,
+      "notes": "KV cache quantized to INT8 with per-channel symmetric quantization. (round-trip int8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          1.416985100000602
+        ]
+      }
+    },
+    {
+      "technique": "Quantized INT8",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 400.00390625,
+      "analytic_kv_mb": 0.00390625,
+      "wall_time_s": 2.5107842999968852,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 12.745021545673875,
+      "time_to_first_token_s": 0.07846200937490266,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 205.79444444444445,
+      "peak_rss_mb": 400.00390625,
+      "notes": "KV cache quantized to INT8 with per-channel symmetric quantization. (round-trip int8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          2.535711500000616
+        ]
+      }
+    },
+    {
+      "technique": "Quantized INT8",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 4,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 449.4375,
+      "analytic_kv_mb": 0.0078125,
+      "wall_time_s": 5.770151999997324,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 5.5457811163405815,
+      "time_to_first_token_s": 0.18031724999991638,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 187.3144927536232,
+      "peak_rss_mb": 449.4375,
+      "notes": "KV cache quantized to INT8 with per-channel symmetric quantization. (round-trip int8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          5.807127500000206
+        ]
+      }
+    },
+    {
+      "technique": "Quantized INT8",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 449.0078125,
+      "analytic_kv_mb": 0.001953125,
+      "wall_time_s": 1.7499766000000818,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 18.28595879510532,
+      "time_to_first_token_s": 0.05468676875000256,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 163.69583333333335,
+      "peak_rss_mb": 449.0,
+      "notes": "KV cache quantized to INT8 with per-channel symmetric quantization. (round-trip int8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          1.7975584999985585
+        ]
+      }
+    },
+    {
+      "technique": "Quantized INT8",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 400.046875,
+      "analytic_kv_mb": 0.00390625,
+      "wall_time_s": 3.002929000002041,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 10.656262602272065,
+      "time_to_first_token_s": 0.09384153125006378,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 203.555,
+      "peak_rss_mb": 400.05078125,
+      "notes": "KV cache quantized to INT8 with per-channel symmetric quantization. (round-trip int8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          3.0707089000025007
+        ]
+      }
+    },
+    {
+      "technique": "Quantized INT8",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 4,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 449.0078125,
+      "analytic_kv_mb": 0.0078125,
+      "wall_time_s": 6.579244799999287,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 4.863780110447245,
+      "time_to_first_token_s": 0.20560139999997773,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 176.62933333333334,
+      "peak_rss_mb": 449.0078125,
+      "notes": "KV cache quantized to INT8 with per-channel symmetric quantization. (round-trip int8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          6.626844400001573
+        ]
+      }
+    },
+    {
+      "technique": "Quantized FP8 (E5M2)",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 378.92578125,
+      "analytic_kv_mb": 0.001953125,
+      "wall_time_s": 1.3957427999994252,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 22.926860163644175,
+      "time_to_first_token_s": 0.04361696249998204,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 224.55789473684212,
+      "peak_rss_mb": 378.921875,
+      "notes": "KV cache quantized to FP8 E5M2 (1 byte) using PyTorch fp8 dtype where supported, else 1-byte approximation. (round-trip fp8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          1.4138415000015812
+        ]
+      }
+    },
+    {
+      "technique": "Quantized FP8 (E5M2)",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 401.56640625,
+      "analytic_kv_mb": 0.00390625,
+      "wall_time_s": 3.6060809999980847,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 8.873899393834192,
+      "time_to_first_token_s": 0.11269003124994015,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 170.60204081632654,
+      "peak_rss_mb": 401.60546875,
+      "notes": "KV cache quantized to FP8 E5M2 (1 byte) using PyTorch fp8 dtype where supported, else 1-byte approximation. (round-trip fp8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          3.6307788000012806
+        ]
+      }
+    },
+    {
+      "technique": "Quantized FP8 (E5M2)",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 4,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 450.61328125,
+      "analytic_kv_mb": 0.0078125,
+      "wall_time_s": 5.337011400002666,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 5.9958650266297004,
+      "time_to_first_token_s": 0.16678160625008331,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 202.109375,
+      "peak_rss_mb": 450.61328125,
+      "notes": "KV cache quantized to FP8 E5M2 (1 byte) using PyTorch fp8 dtype where supported, else 1-byte approximation. (round-trip fp8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          5.365340600001218
+        ]
+      }
+    },
+    {
+      "technique": "Quantized FP8 (E5M2)",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 377.36328125,
+      "analytic_kv_mb": 0.001953125,
+      "wall_time_s": 1.4391634999992675,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 22.235138676054728,
+      "time_to_first_token_s": 0.04497385937497711,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 225.09047619047618,
+      "peak_rss_mb": 377.36328125,
+      "notes": "KV cache quantized to FP8 E5M2 (1 byte) using PyTorch fp8 dtype where supported, else 1-byte approximation. (round-trip fp8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          1.4601685000016005
+        ]
+      }
+    },
+    {
+      "technique": "Quantized FP8 (E5M2)",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 401.58984375,
+      "analytic_kv_mb": 0.00390625,
+      "wall_time_s": 3.527333099998941,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 9.072009672125835,
+      "time_to_first_token_s": 0.11022915937496691,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 161.48536585365855,
+      "peak_rss_mb": 401.58984375,
+      "notes": "KV cache quantized to FP8 E5M2 (1 byte) using PyTorch fp8 dtype where supported, else 1-byte approximation. (round-trip fp8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          3.5522527000030095
+        ]
+      }
+    },
+    {
+      "technique": "Quantized FP8 (E5M2)",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 4,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 450.63671875,
+      "analytic_kv_mb": 0.0078125,
+      "wall_time_s": 5.69007480000073,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 5.623827651614684,
+      "time_to_first_token_s": 0.1778148375000228,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 185.9320512820513,
+      "peak_rss_mb": 450.63671875,
+      "notes": "KV cache quantized to FP8 E5M2 (1 byte) using PyTorch fp8 dtype where supported, else 1-byte approximation. (round-trip fp8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          5.727470100002392
+        ]
+      }
+    },
+    {
+      "technique": "Quantized FP8 (E5M2)",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 449.625,
+      "analytic_kv_mb": 0.001953125,
+      "wall_time_s": 2.0532923999999184,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 15.58472626694633,
+      "time_to_first_token_s": 0.06416538749999745,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 139.85416666666666,
+      "peak_rss_mb": 449.625,
+      "notes": "KV cache quantized to FP8 E5M2 (1 byte) using PyTorch fp8 dtype where supported, else 1-byte approximation. (round-trip fp8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          2.1336469999987457
+        ]
+      }
+    },
+    {
+      "technique": "Quantized FP8 (E5M2)",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 400.73046875,
+      "analytic_kv_mb": 0.00390625,
+      "wall_time_s": 4.172214199999871,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 7.6697883823896165,
+      "time_to_first_token_s": 0.13038169374999597,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 138.91538461538462,
+      "peak_rss_mb": 400.73046875,
+      "notes": "KV cache quantized to FP8 E5M2 (1 byte) using PyTorch fp8 dtype where supported, else 1-byte approximation. (round-trip fp8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          4.216632200001186
+        ]
+      }
+    },
+    {
+      "technique": "Quantized FP8 (E5M2)",
+      "category": "quantization",
+      "context_length": 256,
+      "batch_size": 4,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 449.79296875,
+      "analytic_kv_mb": 0.0078125,
+      "wall_time_s": 4.780889900001057,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 6.693314564720038,
+      "time_to_first_token_s": 0.14940280937503303,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 215.9032786885246,
+      "peak_rss_mb": 449.79296875,
+      "notes": "KV cache quantized to FP8 E5M2 (1 byte) using PyTorch fp8 dtype where supported, else 1-byte approximation. (round-trip fp8 hooks: k_proj/v_proj or fused c_attn)",
+      "raw": {
+        "wall_time_s": [
+          4.824379800000315
+        ]
+      }
+    },
+    {
+      "technique": "GQA",
+      "category": "attention",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 2483.50390625,
+      "analytic_kv_mb": 5.5,
+      "wall_time_s": 136.3229234999999,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 0.23473674990545537,
+      "time_to_first_token_s": 4.259920593749939,
+      "avg_gpu_util_pct": 174.8838625715773,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 174.8838625715773,
+      "peak_rss_mb": 2483.44921875,
+      "notes": "GQA: 32 query heads sharing 4 KV heads (group size 8); native HuggingFace model.",
+      "raw": {
+        "wall_time_s": [
+          136.34524020000026
+        ]
+      }
+    },
+    {
+      "technique": "GQA",
+      "category": "attention",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 2483.79296875,
+      "analytic_kv_mb": 11.0,
+      "wall_time_s": 131.41349390000323,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 0.24350619597976622,
+      "time_to_first_token_s": 4.1065657593749165,
+      "avg_gpu_util_pct": 181.5708504398827,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 181.5708504398827,
+      "peak_rss_mb": 2483.91796875,
+      "notes": "GQA: 32 query heads sharing 4 KV heads (group size 8); native HuggingFace model.",
+      "raw": {
+        "wall_time_s": [
+          131.43421260000105
+        ]
+      }
+    },
+    {
+      "technique": "GQA",
+      "category": "attention",
+      "context_length": 256,
+      "batch_size": 4,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 2483.77734375,
+      "analytic_kv_mb": 22.0,
+      "wall_time_s": 131.19907230000172,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 0.24390416364247097,
+      "time_to_first_token_s": 4.099857806250043,
+      "avg_gpu_util_pct": 185.1952353282975,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 185.1952353282975,
+      "peak_rss_mb": 2483.71484375,
+      "notes": "GQA: 32 query heads sharing 4 KV heads (group size 8); native HuggingFace model.",
+      "raw": {
+        "wall_time_s": [
+          131.2155496000014
+        ]
+      }
+    },
+    {
+      "technique": "GQA",
+      "category": "attention",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 2484.0078125,
+      "analytic_kv_mb": 5.5,
+      "wall_time_s": 132.3651565,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 0.24175546530630965,
+      "time_to_first_token_s": 4.136262553124993,
+      "avg_gpu_util_pct": 179.61998931052912,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 179.61998931052912,
+      "peak_rss_mb": 2483.5703125,
+      "notes": "GQA: 32 query heads sharing 4 KV heads (group size 8); native HuggingFace model.",
+      "raw": {
+        "wall_time_s": [
+          132.38958189999903
+        ]
+      }
+    },
+    {
+      "technique": "GQA",
+      "category": "attention",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 2483.55859375,
+      "analytic_kv_mb": 11.0,
+      "wall_time_s": 125.46696059999886,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 0.25504722396216467,
+      "time_to_first_token_s": 3.920758853124994,
+      "avg_gpu_util_pct": 189.52359488035617,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 189.52359488035617,
+      "peak_rss_mb": 2483.78515625,
+      "notes": "GQA: 32 query heads sharing 4 KV heads (group size 8); native HuggingFace model.",
+      "raw": {
+        "wall_time_s": [
+          125.48694510000132
+        ]
+      }
+    },
+    {
+      "technique": "GQA",
+      "category": "attention",
+      "context_length": 256,
+      "batch_size": 4,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 2484.99609375,
+      "analytic_kv_mb": 22.0,
+      "wall_time_s": 65.3035411000019,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 0.49001936894964293,
+      "time_to_first_token_s": 2.040553556249961,
+      "avg_gpu_util_pct": 297.5719112988384,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 297.5719112988384,
+      "peak_rss_mb": 2484.99609375,
+      "notes": "GQA: 32 query heads sharing 4 KV heads (group size 8); native HuggingFace model.",
+      "raw": {
+        "wall_time_s": [
+          65.31840910000028
+        ]
+      }
+    },
+    {
+      "technique": "GQA",
+      "category": "attention",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 2485.00390625,
+      "analytic_kv_mb": 5.5,
+      "wall_time_s": 44.15922020000289,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 0.7246504774103304,
+      "time_to_first_token_s": 1.3799093093749661,
+      "avg_gpu_util_pct": 372.6139367816092,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 372.6139367816092,
+      "peak_rss_mb": 2485.00390625,
+      "notes": "GQA: 32 query heads sharing 4 KV heads (group size 8); native HuggingFace model.",
+      "raw": {
+        "wall_time_s": [
+          44.17792989999725
+        ]
+      }
+    },
+    {
+      "technique": "GQA",
+      "category": "attention",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 2484.01171875,
+      "analytic_kv_mb": 11.0,
+      "wall_time_s": 51.212774399999034,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 0.6248441013967133,
+      "time_to_first_token_s": 1.600342381250016,
+      "avg_gpu_util_pct": 347.6429113924051,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 347.6429113924051,
+      "peak_rss_mb": 2483.890625,
+      "notes": "GQA: 32 query heads sharing 4 KV heads (group size 8); native HuggingFace model.",
+      "raw": {
+        "wall_time_s": [
+          51.23133940000116
+        ]
+      }
+    },
+    {
+      "technique": "GQA",
+      "category": "attention",
+      "context_length": 256,
+      "batch_size": 4,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 2484.8828125,
+      "analytic_kv_mb": 22.0,
+      "wall_time_s": 51.28583969999818,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 0.623953905935582,
+      "time_to_first_token_s": 1.6026217875000839,
+      "avg_gpu_util_pct": 345.06438356164387,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 345.06438356164387,
+      "peak_rss_mb": 2484.8359375,
+      "notes": "GQA: 32 query heads sharing 4 KV heads (group size 8); native HuggingFace model.",
+      "raw": {
+        "wall_time_s": [
+          51.30727610000031
+        ]
+      }
+    },
+    {
+      "technique": "Low-Rank Compression",
+      "category": "compression",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 2465.47265625,
+      "analytic_kv_mb": 0.00390625,
+      "wall_time_s": 0.735598300001584,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 43.50200374298186,
+      "time_to_first_token_s": 0.0229874468750495,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 384.1181818181818,
+      "peak_rss_mb": 2465.47265625,
+      "notes": "KV cache projected to a low-rank subspace of dimension `rank`, reconstructed at attention time. (rank=8, head_dim=1)",
+      "raw": {
+        "wall_time_s": [
+          0.744729300000472
+        ]
+      }
+    },
+    {
+      "technique": "Low-Rank Compression",
+      "category": "compression",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 1125.7265625,
+      "analytic_kv_mb": 0.0078125,
+      "wall_time_s": 1.0561311000019487,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 30.299268717625072,
+      "time_to_first_token_s": 0.033004096875060895,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 396.30625,
+      "peak_rss_mb": 1125.7265625,
+      "notes": "KV cache projected to a low-rank subspace of dimension `rank`, reconstructed at attention time. (rank=8, head_dim=1)",
+      "raw": {
+        "wall_time_s": [
+          1.0653375000001688
+        ]
+      }
+    },
+    {
+      "technique": "Low-Rank Compression",
+      "category": "compression",
+      "context_length": 256,
+      "batch_size": 4,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 561.78515625,
+      "analytic_kv_mb": 0.015625,
+      "wall_time_s": 1.9252283999994688,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 16.621404504529867,
+      "time_to_first_token_s": 0.0601633874999834,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 394.72333333333336,
+      "peak_rss_mb": 561.78515625,
+      "notes": "KV cache projected to a low-rank subspace of dimension `rank`, reconstructed at attention time. (rank=8, head_dim=1)",
+      "raw": {
+        "wall_time_s": [
+          1.9366278000015882
+        ]
+      }
+    },
+    {
+      "technique": "Low-Rank Compression",
+      "category": "compression",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 560.86328125,
+      "analytic_kv_mb": 0.00390625,
+      "wall_time_s": 0.5851105000001553,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 54.690524268478356,
+      "time_to_first_token_s": 0.018284703125004853,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 381.0,
+      "peak_rss_mb": 560.83984375,
+      "notes": "KV cache projected to a low-rank subspace of dimension `rank`, reconstructed at attention time. (rank=8, head_dim=1)",
+      "raw": {
+        "wall_time_s": [
+          0.5957992999974522
+        ]
+      }
+    },
+    {
+      "technique": "Low-Rank Compression",
+      "category": "compression",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 511.73046875,
+      "analytic_kv_mb": 0.0078125,
+      "wall_time_s": 0.9927880000032019,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 32.23246050505928,
+      "time_to_first_token_s": 0.03102462500010006,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 399.8666666666667,
+      "peak_rss_mb": 511.73046875,
+      "notes": "KV cache projected to a low-rank subspace of dimension `rank`, reconstructed at attention time. (rank=8, head_dim=1)",
+      "raw": {
+        "wall_time_s": [
+          1.002191199997469
+        ]
+      }
+    },
+    {
+      "technique": "Low-Rank Compression",
+      "category": "compression",
+      "context_length": 256,
+      "batch_size": 4,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 561.56640625,
+      "analytic_kv_mb": 0.015625,
+      "wall_time_s": 1.922305599997344,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 16.64667678232026,
+      "time_to_first_token_s": 0.060072049999917,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 387.2033333333333,
+      "peak_rss_mb": 561.56640625,
+      "notes": "KV cache projected to a low-rank subspace of dimension `rank`, reconstructed at attention time. (rank=8, head_dim=1)",
+      "raw": {
+        "wall_time_s": [
+          1.9328234999993583
+        ]
+      }
+    },
+    {
+      "technique": "Low-Rank Compression",
+      "category": "compression",
+      "context_length": 256,
+      "batch_size": 1,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 488.75390625,
+      "analytic_kv_mb": 0.00390625,
+      "wall_time_s": 0.5236007000021345,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 61.115273527842014,
+      "time_to_first_token_s": 0.016362521875066705,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 364.9625,
+      "peak_rss_mb": 488.75390625,
+      "notes": "KV cache projected to a low-rank subspace of dimension `rank`, reconstructed at attention time. (rank=8, head_dim=1)",
+      "raw": {
+        "wall_time_s": [
+          0.5463089000004402
+        ]
+      }
+    },
+    {
+      "technique": "Low-Rank Compression",
+      "category": "compression",
+      "context_length": 256,
+      "batch_size": 2,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 513.32421875,
+      "analytic_kv_mb": 0.0078125,
+      "wall_time_s": 1.0165913999990153,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 31.47774022092947,
+      "time_to_first_token_s": 0.03176848124996923,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 383.13125,
+      "peak_rss_mb": 513.32421875,
+      "notes": "KV cache projected to a low-rank subspace of dimension `rank`, reconstructed at attention time. (rank=8, head_dim=1)",
+      "raw": {
+        "wall_time_s": [
+          1.034178099998826
+        ]
+      }
+    },
+    {
+      "technique": "Low-Rank Compression",
+      "category": "compression",
+      "context_length": 256,
+      "batch_size": 4,
+      "peak_gpu_mb": 0.0,
+      "gpu_reserved_mb": 0.0,
+      "cpu_rss_mb": 562.4140625,
+      "analytic_kv_mb": 0.015625,
+      "wall_time_s": 1.9649662000010721,
+      "prefill_time_s": 0.0,
+      "decode_time_s": 0.0,
+      "tokens_generated": 32,
+      "tokens_per_s": 16.28526740051943,
+      "time_to_first_token_s": 0.061405193750033504,
+      "avg_gpu_util_pct": 0.0,
+      "peak_gpu_util_pct": 0.0,
+      "avg_cpu_pct": 391.49666666666667,
+      "peak_rss_mb": 562.4140625,
+      "notes": "KV cache projected to a low-rank subspace of dimension `rank`, reconstructed at attention time. (rank=8, head_dim=1)",
+      "raw": {
+        "wall_time_s": [
+          1.9826364000000467
+        ]
+      }
+    }
+  ]
+}

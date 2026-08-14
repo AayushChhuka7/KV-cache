@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.8.11)  13 AUG 2026 19:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.8.11)  14 AUG 2026 20:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1471,74 +1471,84 @@ Underfull \hbox (badness 10000) in paragraph at lines 382--383
 LaTeX Font Info:    Font shape `T1/newtxtt/m/sc' will be
 (Font)              scaled to size 7.59998pt on input line 391.
 
-Underfull \hbox (badness 10000) in alignment at lines 524--524
+Underfull \hbox (badness 4266) in paragraph at lines 418--418
+\T1/ntxtlf/m/n/9 hooks \T1/newtxtt/m/n/9 k_proj\T1/ntxtlf/m/n/9 /\T1/newtxtt/m/
+n/9 v_proj \T1/ntxtlf/m/n/9 or the fused
+ []
+
+LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
+(Font)              scaled to size 6.0pt on input line 463.
+LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
+(Font)              scaled to size 6.0pt on input line 463.
+LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
+(Font)              scaled to size 6.0pt on input line 463.
+LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
+(Font)              scaled to size 6.0pt on input line 463.
+LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
+(Font)              scaled to size 6.0pt on input line 463.
+LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
+(Font)              scaled to size 6.0pt on input line 463.
+LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
+(Font)              scaled to size 6.0pt on input line 463.
+LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
+(Font)              scaled to size 6.0pt on input line 463.
+[7]
+Underfull \hbox (badness 10000) in alignment at lines 522--522
 [][][][] 
  []
 
-<memory_vs_context.png, id=232, 542.025pt x 325.215pt>
+<memory_vs_context.png, id=246, 542.025pt x 325.215pt>
 File: memory_vs_context.png Graphic file (type png)
 <use memory_vs_context.png>
-Package pdftex.def Info: memory_vs_context.png  used on input line 529.
+Package pdftex.def Info: memory_vs_context.png  used on input line 527.
 (pdftex.def)             Requested size: 165.12378pt x 99.0738pt.
-<throughput_vs_context.png, id=233, 542.025pt x 325.215pt>
+<throughput_vs_context.png, id=247, 542.025pt x 325.215pt>
 File: throughput_vs_context.png Graphic file (type png)
 <use throughput_vs_context.png>
-Package pdftex.def Info: throughput_vs_context.png  used on input line 530.
+Package pdftex.def Info: throughput_vs_context.png  used on input line 528.
 (pdftex.def)             Requested size: 165.12378pt x 99.0738pt.
-<latency_vs_context.png, id=234, 542.025pt x 325.215pt>
+<latency_vs_context.png, id=248, 542.025pt x 325.215pt>
 File: latency_vs_context.png Graphic file (type png)
 <use latency_vs_context.png>
-Package pdftex.def Info: latency_vs_context.png  used on input line 531.
+Package pdftex.def Info: latency_vs_context.png  used on input line 529.
 (pdftex.def)             Requested size: 165.12378pt x 99.0738pt.
 LaTeX Font Info:    Font shape `T1/newtxtt/m/n' will be
-(Font)              scaled to size 7.59998pt on input line 532.
-<memory_vs_batch.png, id=235, 542.025pt x 325.215pt>
+(Font)              scaled to size 7.59998pt on input line 530.
+<memory_vs_batch.png, id=251, 542.025pt x 325.215pt>
 File: memory_vs_batch.png Graphic file (type png)
 <use memory_vs_batch.png>
-Package pdftex.def Info: memory_vs_batch.png  used on input line 538.
+Package pdftex.def Info: memory_vs_batch.png  used on input line 536.
 (pdftex.def)             Requested size: 232.19843pt x 139.31866pt.
-<summary_tokens_per_s.png, id=236, 578.16pt x 252.945pt>
+<summary_tokens_per_s.png, id=252, 578.16pt x 252.945pt>
 File: summary_tokens_per_s.png Graphic file (type png)
 <use summary_tokens_per_s.png>
-Package pdftex.def Info: summary_tokens_per_s.png  used on input line 539.
+Package pdftex.def Info: summary_tokens_per_s.png  used on input line 537.
 (pdftex.def)             Requested size: 232.19843pt x 101.58533pt.
-<summary_kv_mb.png, id=237, 578.16pt x 252.945pt>
+<summary_kv_mb.png, id=253, 578.16pt x 252.945pt>
 File: summary_kv_mb.png Graphic file (type png)
 <use summary_kv_mb.png>
-Package pdftex.def Info: summary_kv_mb.png  used on input line 546.
+Package pdftex.def Info: summary_kv_mb.png  used on input line 544.
 (pdftex.def)             Requested size: 309.60315pt x 135.44968pt.
-[7] [8 <./memory_vs_context.png> <./throughput_vs_context.png> <./latency_vs_co
+[8] [9 <./memory_vs_context.png> <./throughput_vs_context.png> <./latency_vs_co
 ntext.png>]
-Underfull \vbox (badness 1389) has occurred while \output is active []
+Underfull \vbox (badness 5302) has occurred while \output is active []
 
 
-Underfull \vbox (badness 1389) has occurred while \output is active []
-
- [9 <./memory_vs_batch.png> <./summary_tokens_per_s.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [10 <./summary_kv_mb.png>]
-Underfull \vbox (badness 2237) has occurred while \output is active []
+ [10 <./memory_vs_batch.png> <./summary_tokens_per_s.png> <./summary_kv_mb.png>
+] [11]
+Underfull \hbox (badness 7468) in paragraph at lines 614--615
+\T1/ntxtlf/b/n/10 Measured data prove-nance. \T1/ntxtlf/m/n/10 All fig-ures and
+ ta-bles
+ []
 
- [11]
-(main.bbl
-LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 6.0pt on input line 28.
-LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 6.0pt on input line 28.
-LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 6.0pt on input line 28.
-LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 6.0pt on input line 28.
-LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 6.0pt on input line 28.
-LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 6.0pt on input line 28.
-LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 6.0pt on input line 28.
-LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 6.0pt on input line 28.
-)
+
+Underfull \hbox (badness 3977) in paragraph at lines 614--615
+\T1/ntxtlf/m/n/10 in this pa-per are gen-er-ated from the real sweep in
+ []
+
+[12] (main.bbl)
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -1550,26 +1560,24 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[12] (main.aux)
+[13
+
+] (main.aux)
  ***********
 LaTeX2e <2026-06-01>
 L3 programming layer <2020/03/25>
  ***********
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: BFAC056DB359EF5110FCF431B77C8FB9;3736.
  ) 
 Here is how much of TeX's memory you used:
- 15256 strings out of 467501
- 234668 string characters out of 5409036
- 666756 words of memory out of 5000000
+ 15261 strings out of 467501
+ 234714 string characters out of 5409036
+ 662769 words of memory out of 5000000
  44173 multiletter control sequences out of 15000+600000
- 824109 words of font info for 240 fonts, out of 8000000 for 9000
+ 825849 words of font info for 244 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 74i,10n,79p,1599b,515s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 74i,10n,79p,1754b,528s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Acer/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXMI
 .pfb><C:/Users/Acer/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewT
 XMI7.pfb><C:/Users/Acer/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtxt
@@ -1583,9 +1591,9 @@ ts/type1/public/newtx/ztmb.pfb><C:/Users/Acer/AppData/Local/Programs/MiKTeX/fon
 ts/type1/public/newtx/ztmbi.pfb><C:/Users/Acer/AppData/Local/Programs/MiKTeX/fo
 nts/type1/public/newtx/ztmr.pfb><C:/Users/Acer/AppData/Local/Programs/MiKTeX/fo
 nts/type1/public/newtx/ztmri.pfb>
-Output written on main.pdf (12 pages, 900070 bytes).
+Output written on main.pdf (13 pages, 772653 bytes).
 PDF statistics:
- 362 PDF objects out of 1000 (max. 8388607)
- 62 named destinations out of 1000 (max. 500000)
+ 376 PDF objects out of 1000 (max. 8388607)
+ 63 named destinations out of 1000 (max. 500000)
  228 words of extra memory for PDF output out of 10000 (max. 10000000)
 

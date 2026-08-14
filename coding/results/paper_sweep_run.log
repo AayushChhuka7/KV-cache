@@ -1,0 +1,7 @@
+17:57:46 | INFO    | =========================
+17:57:46 | INFO    |   Running 10 techniques
+17:57:46 | INFO    | =========================
+17:57:46 | INFO    | ============================
+17:57:46 | INFO    |   Technique: Baseline FP16
+17:57:46 | INFO    | ============================
+17:57:46 | INFO    | Loading baseline model sshleifer/tiny-gpt2 in torch.float16 on cuda

@@ -17,7 +17,6 @@ from ..utils.models import (
     get_torch_device,
     load_model_and_tokenizer,
 )
-from ..utils.prompts import build_prompt
 from .base import BenchmarkResult, KVTechnique, TechniqueSpec
 
 
@@ -62,17 +61,17 @@ class GQAModel(KVTechnique):
         max_new_tokens: int,
         batch_size: int,
     ) -> BenchmarkResult:
-        text = build_prompt(
-            self._tokenizer,
-            prompts,
-            target_tokens=256,
-            seed=self.config.seed,
-        )
-        prompts_batch = [text] * batch_size
+        # The runner passes ``batch_size`` prompts already built at the
+        # requested context length; use them verbatim so the measured
+        # context actually reflects the sweep point.
+        prompt_list = list(prompts[:batch_size]) if prompts else []
+        text = prompt_list[0] if prompt_list else "Hello."
 
-        def _generate(prompts: List[str], max_new_tokens: int):
+        def _generate(_prompts: List[str], max_new_tokens: int):
+            # ``_measure_trial`` passes ``config.prompts``; ignore it and
+            # use the context-length prompt list built for this cell.
             return self._hf_generate(
-                self._model, self._tokenizer, prompts, max_new_tokens
+                self._model, self._tokenizer, prompt_list, max_new_tokens
             )
 
         approx_ctx = len(self._tokenizer.encode(text, add_special_tokens=False))

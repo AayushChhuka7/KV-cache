@@ -1,0 +1,6 @@
+model,technique,category,num_chunks_evaluated,num_chunks_skipped_oom,perplexity,notes
+sshleifer/tiny-gpt2,Baseline FP16,baseline,103,0,50310.8204,harness check (untrained tiny model; absolute PPL not meaningful)
+sshleifer/tiny-gpt2,Quantized INT8,quantization,103,0,50310.8138,harness check (untrained tiny model; absolute PPL not meaningful)
+sshleifer/tiny-gpt2,Quantized FP8 (E5M2),quantization,103,0,50310.8287,harness check (untrained tiny model; absolute PPL not meaningful)
+sshleifer/tiny-gpt2,GQA,attention,103,0,50310.8204,harness check (untrained tiny model; absolute PPL not meaningful)
+sshleifer/tiny-gpt2,Low-Rank Compression,compression,103,0,50311.2642,harness check (untrained tiny model; absolute PPL not meaningful)

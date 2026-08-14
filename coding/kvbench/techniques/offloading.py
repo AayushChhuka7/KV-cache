@@ -29,7 +29,6 @@ from ..utils.models import (
     get_torch_device,
     load_model_and_tokenizer,
 )
-from ..utils.prompts import build_prompt
 from .base import BenchmarkResult, KVTechnique, TechniqueSpec
 
 
@@ -80,13 +79,11 @@ class CPUOffloading(KVTechnique):
     ) -> BenchmarkResult:
         import torch
 
-        text = build_prompt(
-            self._tokenizer,
-            prompts,
-            target_tokens=256,
-            seed=self.config.seed,
-        )
-        prompt_list = [text] * batch_size
+        # The runner passes ``batch_size`` prompts already built at the
+        # requested context length; use them verbatim so the measured
+        # context actually reflects the sweep point.
+        prompt_list = list(prompts[:batch_size]) if prompts else []
+        text = prompt_list[0] if prompt_list else "Hello."
 
         device = next(self._model.parameters()).device
 

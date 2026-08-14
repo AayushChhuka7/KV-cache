@@ -1,0 +1,11 @@
+Technique,Category,Avg Peak GPU MB,Avg CPU RSS MB,Avg KV MB,Avg Latency (s),Avg Tokens/s,Avg TTFT (s),Notes
+Baseline FP16,baseline,242.9,1328.8,0.06,0.201,176.44,0.006,HuggingFace default KV cache in FP16/FP32. No optimization.
+Quantized INT8,quantization,389.3,1372.4,0.03,0.242,135.0,0.008,KV cache quantized to INT8 with per-channel symmetric quantization. (round-trip int8 hooks: k_proj/v_proj or fused c_attn)
+Quantized FP8 (E5M2),quantization,389.3,1404.1,0.03,0.279,116.96,0.009,"KV cache quantized to FP8 E5M2 (1 byte) using PyTorch fp8 dtype where supported, else 1-byte approximation. (round-trip fp8 hooks: k_proj/v_proj or fused c_attn)"
+GQA,attention,3609.6,4042.1,49.23,78.121,2.8,2.441,GQA: 32 query heads sharing 4 KV heads (group size 8); native HuggingFace model.
+Low-Rank Compression,compression,389.3,396.5,0.06,0.207,160.07,0.006,"KV cache projected to a low-rank subspace of dimension `rank`, reconstructed at attention time. (rank=64, head_dim=1)"
+PagedAttention (vLLM),memory_management,389.3,403.5,0.05,0.173,190.38,0.005,PagedAttention via vLLM with on-demand block allocation and prefix sharing. [CPU simulation]
+CPU Offloading,memory_management,389.3,404.9,0.01,0.166,203.82,0.005,"KV cache split: most recent tokens on GPU, older tokens pinned in CPU memory. (gpu_window=256; cpu_offload_mb≈0.0)"
+NVFP4 (simulated),quantization,0.0,0.0,0.02,0.0,0.0,0.0,NVFP4 (4-bit fp) KV cache simulation; halving FP8 memory. [analytical simulation]
+MiniKV (simulated),quantization_eviction,0.0,0.0,0.0,0.0,0.0,0.0,MiniKV 2-bit + adaptive token eviction; reports >80% memory reduction in the original paper. [analytical simulation]
+xKV (simulated),compression,0.0,0.0,0.0,0.0,0.0,0.0,"Cross-layer SVD KV cache compression, ~8× memory reduction in the original paper. [analytical simulation]"

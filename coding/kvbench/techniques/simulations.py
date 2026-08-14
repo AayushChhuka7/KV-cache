@@ -49,7 +49,6 @@ from ..utils.models import (
     dtype_from_string,
     load_model_and_tokenizer,
 )
-from ..utils.prompts import build_prompt
 from .base import BenchmarkResult, KVTechnique, TechniqueSpec
 
 
@@ -108,6 +107,7 @@ class _SimulatorBase(KVTechnique):
         # Instead, we synthesize a KVShape that matches the requested
         # baseline model. We do this by loading the *config* (no
         # weights), which is essentially free.
+        self._tokenizer = self._lazy_tokenizer()
         try:
             from transformers import AutoConfig
             cfg = AutoConfig.from_pretrained(self._model_name, trust_remote_code=False)
@@ -141,7 +141,13 @@ class _SimulatorBase(KVTechnique):
         batch_size: int,
     ) -> BenchmarkResult:
         """Reuse the baseline result if available; otherwise estimate."""
-        approx_ctx = 256
+        if not prompts:
+            approx_ctx = 256
+        else:
+            tokenizer = self._lazy_tokenizer()
+            approx_ctx = len(
+                tokenizer(prompts[0], add_special_tokens=False)["input_ids"]
+            ) if tokenizer is not None else 256
         return BenchmarkResult(
             technique=self.spec.name,
             category=self.spec.category,
@@ -156,6 +162,22 @@ class _SimulatorBase(KVTechnique):
             time_to_first_token_s=0.0,
             notes=self.spec.description + " [analytical simulation]",
         )
+
+    def _lazy_tokenizer(self):
+        """Load the tokenizer once (cheap; used only to count prompt tokens)."""
+        if getattr(self, "_tok", None) is not None:
+            return self._tok
+        try:
+            from transformers import AutoTokenizer
+            self._tok = AutoTokenizer.from_pretrained(
+                self._model_name, trust_remote_code=False
+            )
+        except Exception as e:  # noqa: BLE001
+            self.logger.warning(
+                "Could not load tokenizer for prompt-length estimate (%s)", e
+            )
+            self._tok = None
+        return self._tok
 
 
 class NVFP4Simulator(_SimulatorBase):

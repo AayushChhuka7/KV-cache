@@ -27,7 +27,6 @@ from ..utils.models import (
     get_torch_device,
     load_model_and_tokenizer,
 )
-from ..utils.prompts import build_prompt
 from .base import BenchmarkResult, KVTechnique, TechniqueSpec
 
 
@@ -89,11 +88,38 @@ class LowRankCompression(KVTechnique):
             k_proj_weight = getattr(attn, "k_proj", None)
             v_proj_weight = getattr(attn, "v_proj", None)
             if k_proj_weight is None or v_proj_weight is None:
-                # Fused qkv (e.g. GPT-2 ``c_attn``, Phi ``qkv_proj``): the
-                # K/V projections are not separable, so we cannot attach a
-                # per-projection low-rank factor. Skip this layer rather than
-                # dereferencing a missing module; on such models low-rank
-                # compression is simply not applied.
+                # Fused qkv (e.g. GPT-2 ``c_attn``): the K/V projections are
+                # not separable, but the fused output can be split into
+                # Q/K/V slices and each K/V slice low-rank projected, then
+                # re-concatenated -- so compression genuinely applies on
+                # fused-QKV models too.
+                c_attn = getattr(attn, "c_attn", None)
+                c_attn_width = int(
+                    getattr(c_attn, "nf", None) or getattr(c_attn, "out_features", None) or 0
+                ) if c_attn is not None else 0
+                if c_attn_width == 0:
+                    continue
+                kv_dim = c_attn_width // 3
+                split = getattr(attn, "split_size", None) or kv_dim
+                r = min(self.rank, kv_dim)
+                down_k = torch.nn.Linear(kv_dim, r, bias=False, device=device, dtype=c_attn.weight.dtype)
+                up_k = torch.nn.Linear(r, kv_dim, bias=False, device=device, dtype=c_attn.weight.dtype)
+                down_v = torch.nn.Linear(kv_dim, r, bias=False, device=device, dtype=c_attn.weight.dtype)
+                up_v = torch.nn.Linear(r, kv_dim, bias=False, device=device, dtype=c_attn.weight.dtype)
+                torch.nn.init.kaiming_uniform_(down_k.weight, a=5 ** 0.5)
+                torch.nn.init.kaiming_uniform_(up_k.weight, a=5 ** 0.5)
+                torch.nn.init.kaiming_uniform_(down_v.weight, a=5 ** 0.5)
+                torch.nn.init.kaiming_uniform_(up_v.weight, a=5 ** 0.5)
+
+                def _fused_hook(mod, inp, out, dk=down_k, uk=up_k, dv=down_v, uv=up_v):
+                    q, k, v = out[..., :split], out[..., split:2 * split], out[..., 2 * split:]
+                    k = uk(dk(k))
+                    v = uv(dv(v))
+                    return torch.cat([q, k, v], dim=-1)
+
+                handle = c_attn.register_forward_hook(_fused_hook)
+                self._projectors.append((down_k, up_k, down_v, up_v))
+                self._hooks.append(handle)
                 continue
             # Allocate low-rank factors. The projector base dimension is the
             # projection's own output width: on MHA models that is the full
@@ -155,13 +181,11 @@ class LowRankCompression(KVTechnique):
         max_new_tokens: int,
         batch_size: int,
     ) -> BenchmarkResult:
-        text = build_prompt(
-            self._tokenizer,
-            prompts,
-            target_tokens=256,
-            seed=self.config.seed,
-        )
-        prompt_list = [text] * batch_size
+        # The runner passes ``batch_size`` prompts already built at the
+        # requested context length; use them verbatim so the measured
+        # context actually reflects the sweep point.
+        prompt_list = list(prompts[:batch_size]) if prompts else []
+        text = prompt_list[0] if prompt_list else "Hello."
 
         device = next(self._model.parameters()).device
         enc = self._tokenizer(

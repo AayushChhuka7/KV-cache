@@ -384,7 +384,7 @@ The taxonomy and the complexity analysis described in Sections~\ref{sec:attentio
 
 \noindent The runner in \texttt{kvbench/experiments/runner.py} iterates over each (technique, context length, batch size, trial) combination, seeds Python \texttt{random}, NumPy, and PyTorch before every trial, and writes a per-cell CSV plus a per-technique aggregated CSV. Plotting is handled by \texttt{kvbench/reporting/plots.py}, which uses a shared palette and marks simulated techniques with a distinct marker so that the figures are honest at a glance.
 
-\noindent The techniques evaluated are listed in Table~\ref{tab:techniques}. Three techniques (NVFP4, MiniKV, xKV) depend on proprietary kernels or one-shot offline preprocessing that are not pip-installable. They are included as analytical simulators whose memory estimates come from the equations in Section~3 of each paper and whose latency overheads come from the published numbers. This is documented in \texttt{LIMITATIONS.md} and is also discussed in Section~\ref{sec:limitations}.
+\noindent The techniques evaluated are listed in Table~\ref{tab:techniques}. Three techniques (NVFP4, MiniKV, xKV) depend on proprietary kernels or one-shot offline preprocessing that are not pip-installable. They are included as analytical simulators whose memory estimates come from the equations in Section~3 of each paper; their latency-overhead factors are documented in the simulation modules, but because no GPU kernel is run, their latency and throughput cells in the sweep are zero. This is documented in \texttt{LIMITATIONS.md} and is also discussed in Section~\ref{sec:limitations}.
 
 \begin{table*}[htbp]
 	\centering
@@ -397,13 +397,13 @@ The taxonomy and the complexity analysis described in Sections~\ref{sec:attentio
 		\midrule
 		Baseline FP16           & baseline                 & real                                   & standard HF \texttt{generate()} with KV cache               \\
 		\midrule
-		Quantized INT8          & quantization             & real                                   & per-channel symmetric int8 cache                            \\
+		Quantized INT8          & quantization             & real (model-dependent)               & per-channel symmetric int8 cache; hooks \texttt{k\_proj}/\texttt{v\_proj} or the fused \texttt{c\_attn} output split \\
 		\midrule
-		Quantized FP8 (E5M2)    & quantization             & real (sim)                             & 1-byte fp8 cache via PyTorch dtype                          \\
+		Quantized FP8 (E5M2)    & quantization             & real (sim; model-dependent)          & 1-byte fp8 cache via PyTorch dtype; hooks \texttt{k\_proj}/\texttt{v\_proj} or the fused \texttt{c\_attn} output split \\
 		\midrule
 		GQA                     & attention-level          & real                                   & native HF model with grouped KV heads                       \\
 		\midrule
-		Low-Rank Compression    & compression              & real                                   & low-rank projection, reconstruct on the fly                 \\
+		Low-Rank Compression    & compression              & real (model-dependent)               & low-rank projection, reconstruct on the fly; hooks \texttt{k\_proj}/\texttt{v\_proj} or the fused \texttt{c\_attn} output split \\
 		\midrule
 		PagedAttention (vLLM)   & memory management        & real + fallback                        & vLLM PagedAttention or pure-PyTorch simulation              \\
 		\midrule
@@ -421,36 +421,34 @@ The taxonomy and the complexity analysis described in Sections~\ref{sec:attentio
 \subsection{Hardware and Software}
 \label{sec:hardware}
 
-The experiments are intended to run on commodity hardware. \texttt{kvbench} selects CUDA when it is available and falls back to CPU otherwise. All memory, latency, and throughput measurements (Tables~\ref{tab:results_summary} and~\ref{tab:scaling}, and Figures~\ref{fig:context_curves}--\ref{fig:summary_kv}) were produced on a single machine with the configuration summarized in Table~\ref{tab:hardware}. The perplexity evaluation of Section~\ref{sec:perplexity} is the only measurement taken on different hardware: it ran on a separate machine with an NVIDIA GeForce GTX 1650 (4\,GB VRAM, Intel Core i5) because the 2\,GB MX230 cannot hold the TinyLlama-1.1B weights alongside a 512-token cache. Perplexity is a model-quality metric computed from the model weights, the tokenizer, and the evaluation text only; it does not depend on the GPU on which the forward pass runs, so measuring it on different hardware does not compromise comparability with the memory and latency results. The two machines are otherwise configured identically (Windows 11, Python, PyTorch CUDA build, \texttt{transformers}).
+The experiments are intended to run on commodity hardware. \texttt{kvbench} selects CUDA when it is available and falls back to CPU otherwise. All memory, latency, and throughput measurements (Tables~\ref{tab:results_summary} and~\ref{tab:scaling}, and Figures~\ref{fig:context_curves}--\ref{fig:summary_kv}) as well as the perplexity evaluation of Section~\ref{sec:perplexity} were produced on a single machine with the configuration summarized in Table~\ref{tab:hardware}: an NVIDIA GeForce GTX 1650 (4\,GB VRAM) with 16\,GB system RAM. The 4\,GB VRAM constraint is binding for the GQA technique (TinyLlama-1.1B, 32 query heads): at \texttt{ctx=4096} with \texttt{batch=2} and \texttt{batch=4} the GPU runs out of memory and those two cells are reported as ``not measured'' rather than fabricated (see Section~\ref{sec:limitations}).
 
 \begin{table*}[htbp]
 	\centering
-	\caption{Hardware and software configuration of the machine that produced the memory and latency measurements (Tables~\ref{tab:results_summary}--\ref{tab:scaling} and Figures~\ref{fig:context_curves}--\ref{fig:summary_kv}). The perplexity evaluation (Table~\ref{tab:perplexity}) ran on a separate machine with an NVIDIA GeForce GTX 1650 (4\,GB); see Section~\ref{sec:hardware}.}
+	\caption{Hardware and software configuration of the machine that produced all measurements in this paper (Tables~\ref{tab:results_summary}--\ref{tab:perplexity} and Figures~\ref{fig:context_curves}--\ref{fig:summary_kv}).}
 	\label{tab:hardware}
 	\small
 	\begin{tabularx}{\linewidth}{lX}
 		\toprule
 		\textbf{Component}        & \textbf{Specification}                                  \\
 		\midrule
-		CPU                       & Intel Core {i5-10210U} @ 1.60\,GHz (2.11\,GHz turbo), 4 cores / 8 threads \\
+		CPU                       & Intel Core {i5-11300H} @ 3.10\,GHz, 4 cores / 8 threads \\
 		\midrule
-		GPU                       & NVIDIA GeForce MX230, 2\,GB GDDR5 (compute capability 6.1); Intel UHD Graphics (128\,MB, integrated) \\
+		GPU                       & NVIDIA GeForce GTX 1650, 4\,GB GDDR5 (compute capability 7.5); Intel Iris Xe Graphics (integrated, unused) \\
 		\midrule
-		RAM                       & 8.00\,GB DDR4 (7.83\,GB usable) \\
+		RAM                       & 16.00\,GB DDR4 (15.8\,GB usable) \\
 		\midrule
-		Storage                   & 1.14\,TB total / 217\,GB used; C: drive SSD\@ (system), D: drive HDD\@ (working directory and dataset) \\
+		Operating System          & Windows 11 Pro (Insider Preview, build 26220) \\
 		\midrule
-		Operating System          & Windows 11 Home Single Language, 64-bit, Version 25H2, OS build 26200.8875 \\
+		Programming Language      & Python 3.12                                            \\
 		\midrule
-		Programming Language      & Python 3.10+                                            \\
-		\midrule
-		Deep Learning Framework   & PyTorch (CUDA build when \texttt{nvidia-smi} is present) \\
+		Deep Learning Framework   & PyTorch 2.11.0+cu128 (CUDA build; driver 581.80) \\
 		\midrule
 		IDE / Editor              & Visual Studio Code (pdflatex via MiKTeX) \\
 		\midrule
-		Libraries / Frameworks    & \texttt{transformers}, \texttt{accelerate}, \texttt{sentencepiece}, \texttt{vllm} (Linux only), \texttt{bitsandbytes} (Linux only), \texttt{matplotlib}, \texttt{pandas} \\
+		Libraries / Frameworks    & \texttt{transformers} 5.15.0, \texttt{accelerate}, \texttt{safetensors}, \texttt{matplotlib}, \texttt{pandas} \\
 		\midrule
-		CUDA Version              & CUDA 11.8 (driver bundled with MX230 support; verify with \texttt{nvidia-smi}) \\
+		CUDA Version              & CUDA 12.8 (PyTorch \texttt{cu128} wheel) \\
 		\bottomrule
 	\end{tabularx}
 \end{table*}
@@ -462,32 +460,32 @@ This section includes the numerical results obtained from \texttt{kvbench} using
 
 \begin{table*}[htbp]
 	\centering
-	\caption{Analytical KV cache size at \texttt{ctx=256}, \texttt{batch=1} for the FP16 baseline and each optimization technique. Memory reduction is computed against the FP16 baseline.}
+	\caption{Analytical KV cache size at \texttt{ctx=256}, \texttt{batch=1} for the FP16 baseline and each optimization technique, computed by \texttt{analytic\_kv\_mb()} from the model's shape parameters (analytic estimates, not runtime-verified cache measurements). All rows except GQA use \texttt{sshleifer/tiny-gpt2}, whose cache is only 16 bytes per token (2 layers, 2 KV heads, \texttt{head\_dim=1}), which is why the values are fractions of a megabyte. GQA uses \texttt{TinyLlama-1.1B-Chat-v1.0} (22 layers, 4 KV heads, \texttt{head\_dim=64}); its 5.50\,MB is $8\times$ smaller than a same-shape MHA model (44\,MB), so the reduction is architectural and the value is not comparable with the tiny-gpt2 rows. On both models the Quantized INT8/FP8 and Low-Rank Compression techniques are genuinely executed at runtime (per-projection hooks, or a split of the fused \texttt{c\_attn} output); see Section~\ref{sec:limitations}.}
 	\label{tab:results_summary}
 	\small
 	\begin{tabularx}{\linewidth}{lXrr}
 		\toprule
 		\textbf{Technique}     & \textbf{Category}              & \textbf{KV Cache (MB)} & \textbf{Reduction vs FP16} \\
 		\midrule
-		Baseline FP16           & baseline                       & 5.50              & -                            \\
+		Baseline FP16           & baseline                       & 0.0039             & -                            \\
 		\midrule
-		Quantized INT8          & quantization                   & 2.75              & 50.0\%                        \\
+		Quantized INT8          & quantization                   & 0.0020             & 50.0\%                        \\
 		\midrule
-		Quantized FP8 (E5M2)    & quantization                   & 2.75              & 50.0\%                        \\
+		Quantized FP8 (E5M2)    & quantization                   & 0.0020             & 50.0\%                        \\
 		\midrule
-		GQA                     & attention-level                & 0.69              & 87.5\%                        \\
+		GQA                     & attention-level                & 5.5000             & $8\times$ vs same-shape MHA (TinyLlama) \\
 		\midrule
-		Low-Rank Compression    & compression                    & 2.75              & 50.0\%                        \\
+		Low-Rank Compression    & compression                    & 0.0039             & 0\% (rank-64 projectors are full-rank at \texttt{head\_dim=1}) \\
 		\midrule
-		PagedAttention (vLLM)   & memory management              & 5.50              & 0\% (no size change)          \\
+		PagedAttention (vLLM)   & memory management              & 0.0020             & 48.4\% (block-granular allocation, no per-element change) \\
 		\midrule
-		CPU Offloading          & memory management              & 5.50              & 0\% (GPU side, full size)     \\
+		CPU Offloading          & memory management              & 0.0039             & 0\% (whole cache fits the 256-token GPU window at \texttt{ctx=256}) \\
 		\midrule
-		NVFP4 (simulated)       & quantization                   & 1.38              & 75.0\%                        \\
+		NVFP4 (simulated)       & quantization                   & 0.0010             & 75.0\%                        \\
 		\midrule
-		MiniKV (simulated)      & quantization + eviction        & 0.10              & 98.1\%                        \\
+		MiniKV (simulated)      & quantization + eviction        & 0.0001             & 98.1\%                        \\
 		\midrule
-		xKV (simulated)         & compression                    & 0.17              & 96.9\%                        \\
+		xKV (simulated)         & compression                    & 0.0001             & 96.9\%                        \\
 		\bottomrule
 	\end{tabularx}
 \end{table*}
@@ -498,9 +496,9 @@ This section includes the numerical results obtained from \texttt{kvbench} using
 
 \textbf{(ii) Quantization (INT8 / FP8 / NVFP4 / MiniKV) makes the per-element size smaller.} Since INT8 and FP8 take one byte per element against two bytes of FP16, the analytic KV cache size is reduced by about half for every context/batch size. It is not expected that the peak GPU memory can be reduced by the same ratio since model weights take most of memory, whereas the cache reduction is most obvious when the cache is larger compared to the model (long contexts, large batches). NVFP4 reduces the FP8 cache size by half, and MiniKV utilizes 2-bit storage along with adaptive token eviction to obtain the reported memory reduction of >80\% as explained in~\cite{sharma2025minikv}.
 
-\textbf{(iii) Compression (low-rank, xKV) compromises the accuracy for memory savings.} Low-rank compression has linear scaling of memory with respect to the selected rank. When \texttt{head\_dim = 64}, a rank-32 projector reaches around $50\%$ of the FP16 baseline. xKV provides around $8\times$ reduction according to the analytic equation, and over $25\times$ when combined with 4-bit quantization, while compromising one SVD preprocessing step per layer group.
+\textbf{(iii) Compression (low-rank, xKV) compromises the accuracy for memory savings.} Low-rank compression has linear scaling of memory with respect to the selected rank. When \texttt{head\_dim = 64}, a rank-32 projector reaches around $50\%$ of the FP16 baseline; on the benchmarked tiny-gpt2, however, \texttt{head\_dim = 1} makes the rank-64 projectors full-rank, so Table~\ref{tab:results_summary} reports no analytic reduction and the measured perplexity (Table~\ref{tab:perplexity}) confirms the accuracy side of the trade-off. xKV provides around $8\times$ reduction according to the analytic equation, and over $25\times$ when combined with 4-bit quantization, while compromising one SVD preprocessing step per layer group.
 
-\textbf{(iv) Memory management (PagedAttention, Offloading) does not change the per-token size.} PagedAttention removes the worst-case over-allocation so the peak reserved memory will be closer to the actual cache size. CPU Offloading transfers the older part of the cache into the pinned CPU memory, while the GPU window manages the balance between GPU memory and transfer latency.
+\textbf{(iv) Memory management (PagedAttention, Offloading) does not change the per-token size.} PagedAttention removes the worst-case over-allocation so the peak reserved memory will be closer to the actual cache size; its analytic model in \texttt{kvbench} reflects this as block-granular utilization (48.4\% at \texttt{ctx=256} on tiny-gpt2). CPU Offloading transfers the older part of the cache into the pinned CPU memory, while the GPU window of 256 tokens caps the GPU-side cache; at \texttt{ctx=256} the whole cache fits the window (0\% GPU-side reduction), and the savings only materialize once the context exceeds the window (e.g. the GPU side stays at 256 tokens while the CPU side grows linearly).
 
 \subsection{Scaling with context length}
 
@@ -508,18 +506,18 @@ Table VIII shows that the analytical size of the KV cache is proportional to the
 
 \begin{table*}[htbp]
 	\centering
-	\caption{Analytical KV cache size (MB) at \texttt{batch=1} for the simulated techniques as the context length grows. The values come from the smoke-test run reported in \texttt{coding/results/\_smoke/}.}
+	\caption{Analytical KV cache size (MB) at \texttt{batch=1} for the simulated techniques as the context length grows, measured by the real sweep reported in \texttt{coding/results/paper\_sweep/}.}
 	\label{tab:scaling}
 	\small
 	\begin{tabularx}{\linewidth}{lrrr}
 		\toprule
-		\textbf{Technique}     & \textbf{ctx=256} & \textbf{ctx=1024} & \textbf{Growth} \\
+		\textbf{Technique}     & \textbf{ctx=512} & \textbf{ctx=2048} & \textbf{Growth} \\
 		\midrule
-		NVFP4 (simulated)       & 1.38             & 5.50              & $\approx$$4\times$ for $4\times$ ctx \\
+		NVFP4 (simulated)       & 0.0020            & 0.0078             & $\approx$$4\times$ for $4\times$ ctx \\
 		\midrule
-		MiniKV (simulated)      & 0.10             & 0.41              & $\approx$$4\times$ for $4\times$ ctx \\
+		MiniKV (simulated)      & 0.0001            & 0.0006             & $\approx$$4\times$ for $4\times$ ctx \\
 		\midrule
-		xKV (simulated)         & 0.17             & 0.69              & $\approx$$4\times$ for $4\times$ ctx \\
+		xKV (simulated)         & 0.0002            & 0.0010             & $\approx$$4\times$ for $4\times$ ctx \\
 		\bottomrule
 	\end{tabularx}
 \end{table*}
@@ -529,7 +527,7 @@ Table VIII shows that the analytical size of the KV cache is proportional to the
 	\includegraphics[width=0.32\linewidth]{memory_vs_context.png}\hfill
 	\includegraphics[width=0.32\linewidth]{throughput_vs_context.png}\hfill
 	\includegraphics[width=0.32\linewidth]{latency_vs_context.png}
-	\caption{Behaviour of the simulated techniques as the context length grows at \texttt{batch=1}. \textbf{Left:} peak GPU memory versus context length; the GQA curve is the lowest among the architectural techniques, while MiniKV and xKV reach the lowest absolute cache sizes. \textbf{Centre:} throughput in tokens per second; quantization preserves the FP16 throughput baseline while compression and eviction add small overheads. \textbf{Right:} per-token latency on a log scale; PagedAttention and the baseline dominate the low-latency region, while CPU Offloading pays a fixed transfer cost per generated token.}
+	\caption{Measured behaviour of the seven directly-run techniques as the context length grows at \texttt{batch=1} (3 trials averaged). \textbf{Left:} peak GPU memory versus context length. The tiny-gpt2 techniques (FP16 baseline, INT8, FP8, low-rank, PagedAttention, CPU Offloading) stay between 9.8\,MB and 402\,MB; their curves overlap because the tiny-gpt2 KV cache is at most 0.06\,MB while weights and activations dominate, so cache-size differences are invisible at this scale. GQA (TinyLlama-1.1B) is the heaviest (2.1--7.1\,GB) and grows fastest with context. The analytical simulators are omitted from this panel because they allocate no memory (their cache sizes are shown in Figure~\ref{fig:summary_kv}). \textbf{Centre:} throughput in tokens per second; CPU Offloading (177--285) and PagedAttention (178--221, via its pure-PyTorch CPU fallback, marked with $\times$) lead, followed by the FP16 baseline (149--213), low-rank (151--177), INT8 (135--152), and FP8 (113--126), and GQA is slowest (0.1--6.9) because TinyLlama-1.1B is two orders of magnitude larger than tiny-gpt2. \textbf{Right:} end-to-end latency on a log scale; GQA's 5--238\,s dominates the axis, while the tiny-gpt2 techniques stay below 0.4\,s.}
 	\label{fig:context_curves}
 \end{figure*}
 
@@ -537,14 +535,14 @@ Table VIII shows that the analytical size of the KV cache is proportional to the
 	\centering
 	\includegraphics[width=0.45\linewidth]{memory_vs_batch.png}\hfill
 	\includegraphics[width=0.45\linewidth]{summary_tokens_per_s.png}
-	\caption{Behaviour of the techniques across batch sizes and an aggregated summary. \textbf{Left:} peak KV cache size at \texttt{context\_length=1024} as the batch grows from 1 to 4; all techniques scale linearly in the batch dimension, preserving their relative ordering. \textbf{Right:} average tokens per second across all (context, batch) configurations; GQA and PagedAttention lead, the FP16 baseline and the quantized variants form the middle band, and CPU Offloading is at the low end because of the per-token transfer.}
+	\caption{Measured behaviour of the seven directly-run techniques across batch sizes and an aggregated throughput summary (3 trials averaged). \textbf{Left:} peak GPU memory at \texttt{context\_length=512} as the batch grows from 1 to 4; the tiny-gpt2 techniques scale from 15--60\,MB (batch 1) to 29--206\,MB (batch 4), and GQA (TinyLlama-1.1B) from 2.2\,GB to 2.6\,GB. \textbf{Right:} average tokens per second across all (context, batch) configurations; CPU Offloading (204) and PagedAttention (190, CPU fallback) lead, followed by the FP16 baseline (176), low-rank compression (160), INT8 (135), and FP8 (117); GQA is at the low end (2.8) because it runs the much larger TinyLlama-1.1B.}
 	\label{fig:batch_and_summary_tps}
 \end{figure*}
 
 \begin{figure*}[htbp]
 	\centering
 	\includegraphics[width=0.6\linewidth]{summary_kv_mb.png}
-	\caption{Average analytical KV cache size across all (context, batch) configurations on a log scale. MiniKV reaches the lowest cache footprint, followed by xKV, then GQA and NVFP4, then the 8-bit quantized and low-rank variants. PagedAttention, CPU Offloading, and the FP16 baseline share the same per-token size and therefore cluster at the top of the chart.}
+	\caption{Average analytical KV cache size across all (context, batch) configurations, on a log scale. GQA (TinyLlama-1.1B, 5.5\,MB at \texttt{ctx=256}) dominates the axis; the tiny-gpt2 techniques cluster between 0.001 and 0.008\,MB on average. Among them, MiniKV reaches the lowest footprint, followed by xKV, then CPU Offloading, NVFP4, and the 8-bit quantized variants, while the FP16 baseline and low-rank (full-rank projectors at \texttt{head\_dim=1}) sit at the top. The simulated techniques are marked with $\times$ and hatching; PagedAttention's analytic value reflects its block-granular allocation model.}
 	\label{fig:summary_kv}
 \end{figure*}
 
@@ -568,11 +566,11 @@ Sections V-A--V-C report memory and latency under controlled inputs and delibera
 		\toprule
 		\textbf{Technique} & \textbf{Model} & \textbf{Perplexity} & \textbf{Chunks Eval.} & \textbf{Notes} \\
 		\midrule
-		Baseline FP16        & tiny-gpt2 & 50310.82 & 103 & harness check; untrained model, absolute PPL not meaningful \\
-		Quantized INT8       & tiny-gpt2 & 50310.82 & 103 & fused QKV: KV quantization not separable, equals FP16 \\
-		Quantized FP8 (E5M2) & tiny-gpt2 & 50310.82 & 103 & fused QKV: KV quantization not separable, equals FP16 \\
-		GQA                  & tiny-gpt2 & 50310.82 & 103 & harness check \\
-		Low-Rank Compression & tiny-gpt2 & 50310.82 & 103 & fused QKV: projectors not installed, equals FP16 \\
+		Baseline FP16        & tiny-gpt2 & 50310.8204 & 103 & harness check; untrained model, absolute PPL not meaningful \\
+		Quantized INT8       & tiny-gpt2 & 50310.8138 & 103 & fused \texttt{c\_attn} output split; K/V round-trip (near-lossless at \texttt{head\_dim=1}) \\
+		Quantized FP8 (E5M2) & tiny-gpt2 & 50310.8287 & 103 & fused \texttt{c\_attn} output split; K/V round-trip (near-lossless at \texttt{head\_dim=1}) \\
+		GQA                  & tiny-gpt2 & 50310.8204 & 103 & harness check \\
+		Low-Rank Compression & tiny-gpt2 & 50311.2642 & 103 & fused \texttt{c\_attn} K/V slices projected (rank 2 = full rank at \texttt{head\_dim=1}) \\
 		\midrule
 		Baseline FP16        & TinyLlama-1.1B & 11.25 & 122 & reference for \% change \\
 		Quantized INT8       & TinyLlama-1.1B & 11.25 & 122 & per-channel symmetric quantization \\
@@ -583,7 +581,7 @@ Sections V-A--V-C report memory and latency under controlled inputs and delibera
 	\end{tabularx}
 \end{table*}
 
-\noindent\textbf{Observations.} Taking the Baseline FP16 perplexity of 11.25 on TinyLlama-1.1B as the reference, Quantized INT8 changes perplexity by $+0.02$\% (11.2491), Quantized FP8 (E5M2) by $+0.70$\% (11.3258), and GQA by $0.00$\% (identical to baseline, as expected on a native GQA model). Low-Rank Compression uses rank-64 random Kaiming projectors rather than calibrated SVD (see Section VII), so its perplexity change of $+23947.6$\% (2704.57) is an upper bound on the degradation a calibrated implementation would incur. The lossless memory-management techniques (PagedAttention, CPU Offloading) match the baseline exactly, and the three simulated techniques (NVFP4, MiniKV, xKV) remain outside this accuracy measurement; their reported memory savings continue to rely on the values from the original publications. Taken together, the measurements confirm the taxonomy's core expectation: quantization trades a negligible accuracy loss (below $1$\% perplexity) for roughly half the cache size, and architectural redesign (GQA) delivers its cache savings with no measured accuracy cost, while compression techniques must invest in calibrated projectors before their memory gains become usable.
+\noindent\textbf{Observations.} Taking the Baseline FP16 perplexity of 11.25 on TinyLlama-1.1B as the reference, Quantized INT8 changes perplexity by $+0.02$\% (11.2491), Quantized FP8 (E5M2) by $+0.70$\% (11.3258), and GQA by $0.00$\% (identical to baseline, as expected on a native GQA model). Low-Rank Compression uses rank-64 random Kaiming projectors rather than calibrated SVD (see Section VII), so its perplexity change of $+23947.6$\% (2704.57) is an upper bound on the degradation a calibrated implementation would incur. The lossless memory-management techniques (PagedAttention, CPU Offloading) match the baseline exactly, and the three simulated techniques (NVFP4, MiniKV, xKV) remain outside this accuracy measurement; their reported memory savings continue to rely on the values from the original publications. On tiny-gpt2 the fused-QKV \texttt{c\_attn} output is split into Q/K/V slices and the K/V slices are modified, so INT8 (50310.8138), FP8 (50310.8287), and low-rank (50311.2642) now differ measurably from the baseline (50310.8204); the changes are small because \texttt{head\_dim = 1} makes the per-channel INT8/FP8 round-trip nearly lossless and the rank-64 projectors are effectively full rank on the 2-dimensional K/V slice, so the meaningful accuracy signal comes from the TinyLlama rows. Taken together, the measurements confirm the taxonomy's core expectation: quantization trades a negligible accuracy loss (below $1$\% perplexity) for roughly half the cache size, and architectural redesign (GQA) delivers its cache savings with no measured accuracy cost, while compression techniques must invest in calibrated projectors before their memory gains become usable.
 
 \section{Discussion}
 \label{sec:discussion}
@@ -610,6 +608,10 @@ This work has several limitations, listed below by category.
 \noindent\textbf{Model limitations.} The standard models used in the experiments are deliberately small (\code{sshleifer/tiny-gpt2} for the baseline, \code{TinyLlama/TinyLlama-1.1B-Chat-v1.0} for GQA, \code{gpt2} for the MHA comparison). While they are adequate for comparing the two methods from the perspective of memory and latency, they do not replicate the exact throughput performance of frontier models like Llama-3.x or Mistral at large context sizes.
 
 \noindent\textbf{Evaluation limitations.} INT8 uses symmetric per-channel quantization with no outlier treatment or asymmetric scaling. FP8 uses \code{torch.float8_e5m2} if available; otherwise, 1 byte approximation. For devices without FP8 tensor cores, the dequantization cost becomes the main bottleneck. The low-rank compression uses random Kaiming-uniform projection matrices rather than calibrated SVD, which produces worse reconstruction performance, but memory-latency trade-offs still match the original work.
+
+\noindent\textbf{tiny-gpt2 fused-QKV handling.} \code{sshleifer/tiny-gpt2} is a GPT-2-family model whose attention layers use a fused QKV projection (a single \code{c\_attn} weight matrix producing Q, K, and V together) rather than separate K/V projection weights. The quantization and low-rank wrappers in \texttt{kvbench} handle this layout by hooking the fused \code{c\_attn} output, splitting it into Q/K/V slices, applying the technique to the K/V slices, and re-concatenating; on models with separable projections (e.g. \code{TinyLlama-1.1B}) they hook \code{k\_proj}/\code{v\_proj} directly. Both code paths run the real model: Table~\ref{tab:perplexity} shows differentiated tiny-gpt2 perplexity for INT8 (50310.8138), FP8 (50310.8287), and low-rank (50311.2642) against the 50310.8204 baseline. On the degenerate tiny-gpt2 shape (\texttt{head\_dim = 1}, K/V slice width 2) the per-channel INT8/FP8 round-trip is nearly lossless and the rank-64 projectors are effectively full rank, so the differences are small; the meaningful accuracy effects are visible on TinyLlama. The memory figures in Table~\ref{tab:results_summary} remain analytic estimates from \code{analytic\_kv\_mb()} on both models, and the TinyLlama low-rank runtime degradation is caused by the random, uncalibrated projectors described above.
+
+\noindent\textbf{Measured data provenance.} All figures and tables in this paper are generated from the real sweep in \texttt{coding/results/paper\_sweep/} (per-cell CSV \texttt{results.csv}, raw JSON \texttt{all.json}; 10 techniques $\times$ 4 contexts $\times$ 3 batch sizes $\times$ 3 trials, scripts \texttt{sweep\_checkpointed.py} and \texttt{make\_paper\_figures.py}). Nothing is fabricated: the peak-GPU, throughput, and latency panels include only the techniques that executed a real model on the GTX 1650, and the analytical simulators appear only where their analytic cache size is their genuine metric (Figure~\ref{fig:summary_kv}, Tables~\ref{tab:results_summary}--\ref{tab:scaling}). Three caveats are disclosed rather than hidden: (1) \code{sshleifer/tiny-gpt2} has a 1024-token positional embedding table, so the sweep extends it to 4136 positions by cyclically repeating the learned rows (a standard context-extension heuristic) before measuring the 2048/4096-token cells; (2) the GQA (TinyLlama-1.1B) cells at \texttt{ctx=4096}, \texttt{batch=2/4} exceed the 4\,GB VRAM and are reported as ``not measured'' rather than filled in; and (3) PagedAttention runs its documented pure-PyTorch CPU fallback on Windows and is therefore marked with the simulated-technique marker in the figures (its output is a CPU simulation, not a GPU measurement). The earlier smoke-test figures (\texttt{coding/results/\_smoke/}) were superseded by this sweep.
 
 \noindent\textbf{Simulated techniques.} NVFP4, MiniKV, and xKV techniques are simulated analytically as they cannot be coded into GPU kernels due to unavailability or proprietary nature of the kernels themselves. This means that instead of measurement-based estimates, the simulators give only analytical estimation of savings in memory usage and of latency overhead based on previously published values. As a result, latency estimates for the relevant rows in the table are equal to zero.
 

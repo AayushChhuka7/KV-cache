@@ -26,7 +26,6 @@ from ..utils.models import (
     get_torch_device,
     load_model_and_tokenizer,
 )
-from ..utils.prompts import build_prompt
 from .base import BenchmarkResult, KVTechnique, TechniqueSpec
 
 
@@ -145,13 +144,11 @@ class PagedAttentionVLLM(KVTechnique):
     def _run_vllm(
         self, prompts: List[str], max_new_tokens: int, batch_size: int
     ) -> BenchmarkResult:
-        text = build_prompt(
-            self._tokenizer,
-            prompts,
-            target_tokens=256,
-            seed=self.config.seed,
-        )
-        prompt_list = [text] * batch_size
+        # The runner passes ``batch_size`` prompts already built at the
+        # requested context length; use them verbatim so the measured
+        # context actually reflects the sweep point.
+        prompt_list = list(prompts[:batch_size]) if prompts else []
+        text = prompt_list[0] if prompt_list else "Hello."
 
         import torch
         if torch.cuda.is_available():
@@ -198,13 +195,11 @@ class PagedAttentionVLLM(KVTechnique):
         fragmentation-elimination property of vLLM at a qualitative level.
         """
         import torch
-        text = build_prompt(
-            self._tokenizer,
-            prompts,
-            target_tokens=256,
-            seed=self.config.seed,
-        )
-        prompt_list = [text] * batch_size
+        # The runner passes ``batch_size`` prompts already built at the
+        # requested context length; use them verbatim so the measured
+        # context actually reflects the sweep point.
+        prompt_list = list(prompts[:batch_size]) if prompts else []
+        text = prompt_list[0] if prompt_list else "Hello."
 
         device = next(self._model.parameters()).device
         enc = self._tokenizer(

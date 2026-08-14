@@ -172,8 +172,14 @@ def plot_summary_bar(
     path: str | Path,
     metric: str = "tokens_per_s",
     title: Optional[str] = None,
+    log_scale: bool = False,
 ) -> None:
     """A simple horizontal bar chart of one metric per technique (averaged)."""
+    _METRIC_LABELS = {
+        "tokens_per_s": "Tokens / second",
+        "analytic_kv_mb": "KV cache size (MB)",
+        "peak_gpu_mb": "Peak GPU memory (MB)",
+    }
     by = _by_technique(results)
     techs = list(by.keys())
     vals = [float(np.mean([getattr(r, metric) for r in rs])) for rs in by.values()]
@@ -189,12 +195,13 @@ def plot_summary_bar(
         if sim:
             bar.set_alpha(SIMULATED_ALPHA)
             bar.set_hatch("//")
+    if log_scale:
+        ax.set_xscale("log")
     ax.invert_yaxis()
     _style_axes(
         ax,
         title or f"Average {metric} across all configurations",
-        "value",
+        _METRIC_LABELS.get(metric, metric),
         "",
     )
-    ax.set_xlabel(metric)
     _save(fig, Path(path))

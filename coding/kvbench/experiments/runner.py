@@ -83,6 +83,23 @@ class ExperimentRunner:
                 self.technique_meta[technique.spec.name] = {"error": str(e)}
                 return
 
+            # Extend learned position embeddings (e.g. GPT-2's 1024-token
+            # ``wpe``) to cover the sweep's longest context plus the decode
+            # steps, so large-context cells measure the requested length
+            # instead of truncating at the model's native limit.
+            model = getattr(technique, "_model", None)
+            tokenizer = getattr(technique, "_tokenizer", None)
+            if model is not None:
+                from ..utils.models import extend_position_embeddings
+
+                need = max(context_lengths) + self.config.max_new_tokens + 8
+                new_n = extend_position_embeddings(model, tokenizer, min_seq_len=need)
+                if new_n > 0:
+                    self.logger.info(
+                        "Extended position embeddings to %d tokens for %s",
+                        new_n, technique.spec.name,
+                    )
+
             self.technique_meta[technique.spec.name] = {
                 "category": technique.spec.category,
                 "description": technique.spec.description,
@@ -95,6 +112,22 @@ class ExperimentRunner:
                     cell_results = self._run_cell_trials(
                         technique, ctx, bs, self.config.trials
                     )
+                    if not cell_results:
+                        # Every trial in this cell failed (e.g. CUDA OOM at
+                        # large (ctx, batch) on small GPUs). Skip the cell
+                        # rather than crashing the whole sweep; it is
+                        # recorded as "not measured" in the log and is
+                        # simply absent from the per-cell CSV.
+                        self.logger.warning(
+                            "  ctx=%-5d  bs=%-2d  NOT MEASURED (all %d trial(s) failed)",
+                            ctx, bs, self.config.trials,
+                        )
+                        self.technique_meta.setdefault(
+                            technique.spec.name, {}
+                        ).setdefault("not_measured", []).append(
+                            f"ctx={ctx},bs={bs}"
+                        )
+                        continue
                     avg = technique.average(cell_results)
                     self.results.append(avg)
                     self.raw.extend(r.to_dict() for r in cell_results)

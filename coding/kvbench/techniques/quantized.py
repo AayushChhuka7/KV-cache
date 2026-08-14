@@ -21,17 +21,19 @@ hardware kernels.
 from __future__ import annotations
 
 import math
+import time
 from typing import List, Optional, Tuple
 
 import torch
 import torch.nn.functional as F
 
 from ..config import BenchmarkConfig
+from ..profiling.memory import MemoryTracker, snapshot_memory
+from ..profiling.resources import ResourceProbe
 from ..utils.models import (
     dtype_from_string,
     load_model_and_tokenizer,
 )
-from ..utils.prompts import build_prompt
 from .base import BenchmarkResult, KVTechnique, TechniqueSpec
 
 
@@ -93,6 +95,96 @@ def quantize_int8_per_channel(x: torch.Tensor) -> Tuple[torch.Tensor, torch.Tens
 def dequantize_int8_per_channel(q: torch.Tensor, scale: torch.Tensor) -> torch.Tensor:
     q_int = q.to(torch.int8) - 128
     return q_int.to(scale.dtype) * scale.unsqueeze(-1)
+
+
+def _fp8_e5m2_roundtrip(x: torch.Tensor) -> torch.Tensor:
+    """Round ``x`` to FP8 E5M2 precision and back, staying in floating point.
+
+    Uses the same 5-exponent / 2-mantissa rounding as
+    :func:`_e5m2_from_fp32`, but returns the rounded *value* (not a
+    reinterpreted byte), which is what an attention kernel reads after
+    dequantizing an E5M2 cache. Pure tensor ops, so it behaves identically
+    on CPU and CUDA.
+    """
+    sign = torch.sign(x)
+    a = x.abs()
+    finite_max = 57344.0  # largest normal E5M2 magnitude
+    a = torch.where(torch.isfinite(a), a, torch.full_like(a, finite_max)).clamp(max=finite_max)
+    exp = torch.floor(torch.log2(a.clamp(min=1e-30))).clamp(min=-14, max=15)
+    mant = a / (2.0 ** exp)
+    mant_q = 1.0 + torch.round((mant - 1.0) * 4.0).clamp(min=0, max=3) / 4.0
+    return sign * mant_q * (2.0 ** exp)
+
+
+def _c_attn_width(module) -> int:
+    """Output width of a fused QKV module (HF ``Conv1D`` uses ``nf``)."""
+    return int(getattr(module, "nf", None) or getattr(module, "out_features", None) or 0)
+
+
+def install_kv_roundtrip_hooks(model, quant_dtype: str) -> List:
+    """Hook K/V outputs so every KV cache write is quantize->dequantized.
+
+    The hooks round-trip K/V through the same INT8 (per-channel symmetric)
+    or FP8 E5M2 representation the technique's cache would store, covering
+    two layouts:
+
+    * separable projections (Llama-style ``k_proj``/``v_proj``), and
+    * fused QKV (GPT-2-style ``c_attn`` producing Q, K, V concatenated),
+      where the K and V slices of the fused output are round-tripped and
+      re-concatenated.
+
+    Returns the list of hook handles.
+    """
+
+    def _make_hook():
+        def _hook(_mod, _inp, out):
+            orig_dtype = out.dtype
+            x = out.float()
+            if quant_dtype == "int8":
+                q, scale = quantize_int8_per_channel(x)
+                deq = dequantize_int8_per_channel(q, scale)
+            else:  # fp8 (E5M2)
+                deq = _fp8_e5m2_roundtrip(x)
+            return deq.to(orig_dtype).view_as(out)
+        return _hook
+
+    def _make_fused_hook(attn):
+        c_attn = attn.c_attn
+        split = getattr(attn, "split_size", None) or _c_attn_width(c_attn) // 3
+
+        def _fused_hook(_mod, _inp, out):
+            orig_dtype = out.dtype
+            q, k, v = out[..., :split], out[..., split:2 * split], out[..., 2 * split:]
+            q = q.float()
+            k = k.float()
+            v = v.float()
+            if quant_dtype == "int8":
+                kq, ks = quantize_int8_per_channel(k)
+                vq, vs = quantize_int8_per_channel(v)
+                k = dequantize_int8_per_channel(kq, ks)
+                v = dequantize_int8_per_channel(vq, vs)
+            else:  # fp8 (E5M2)
+                k = _fp8_e5m2_roundtrip(k)
+                v = _fp8_e5m2_roundtrip(v)
+            return torch.cat(
+                [q, k, v], dim=-1
+            ).to(orig_dtype).view_as(out)
+        return _fused_hook
+
+    handles = []
+    for name, module in model.named_modules():
+        leaf = name.split(".")[-1]
+        if leaf in ("k_proj", "v_proj"):
+            handles.append(module.register_forward_hook(_make_hook()))
+        elif leaf == "c_attn" and _c_attn_width(module) > 0:
+            # Fused QKV (GPT-2-style): locate the owning attention module for
+            # its ``split_size`` attribute.
+            parent_name = name.rsplit(".", 1)[0]
+            attn = model
+            for part in parent_name.split("."):
+                attn = getattr(attn, part)
+            handles.append(module.register_forward_hook(_make_fused_hook(attn)))
+    return handles
 
 
 # ---------------------------------------------------------------------------
@@ -238,64 +330,97 @@ class _QuantizedBase(KVTechnique):
         return layers
 
     # Forward / generation ----------------------------------------------
-    def _generate(self, prompts: List[str], max_new_tokens: int):
-        """Greedy generation with our quantized KV cache.
+    def run_trial(
+        self,
+        prompts: List[str],
+        max_new_tokens: int,
+        batch_size: int,
+    ) -> BenchmarkResult:
+        """Prefill + decode with K/V quantize->dequantize hooks installed.
 
-        Implements a simple prefill + decode loop, batched with
-        left-padding so that all sequences share the same KV layout.
+        The hooks round-trip every K/V tensor through the INT8 or FP8
+        representation (see :func:`install_kv_roundtrip_hooks`), so the
+        attention path genuinely consumes quantized K/V -- on both
+        separable-projection (Llama) and fused-QKV (GPT-2) models.
         """
-        import torch
-        import time
+        # The runner passes ``batch_size`` prompts already built at the
+        # requested context length; use them verbatim so the measured
+        # context actually reflects the sweep point.
+        prompt_list = list(prompts[:batch_size]) if prompts else []
+        text = prompt_list[0] if prompt_list else "Hello."
 
         device = next(self._model.parameters()).device
         enc = self._tokenizer(
-            prompts,
+            prompt_list,
             return_tensors="pt",
             padding=True,
             truncation=True,
             add_special_tokens=True,
         ).to(device)
 
-        input_ids = enc["input_ids"]
-        attention_mask = enc.get("attention_mask")
-        batch, prompt_len = input_ids.shape
+        import torch
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+            torch.cuda.reset_peak_memory_stats()
 
-        # Reset caches.
-        self._caches = [_QuantizedKVCache(dtype=self.quant_dtype) for _ in self._layers]
+        handles = install_kv_roundtrip_hooks(self._model, self.quant_dtype)
+        try:
+            before = snapshot_memory()
+            with ResourceProbe(interval_s=0.05) as probe:
+                t0 = time.perf_counter()
+                with MemoryTracker(interval_s=0.05) as tracker:
+                    with torch.inference_mode():
+                        out = self._model(
+                            input_ids=enc["input_ids"],
+                            attention_mask=enc.get("attention_mask"),
+                            use_cache=False,
+                        )
+                    generated = enc["input_ids"]
+                    cur_attn = enc.get("attention_mask")
+                    eos = self._tokenizer.eos_token_id
+                    n_new = 0
+                    for step in range(max_new_tokens):
+                        next_tok = out.logits[:, -1, :].argmax(dim=-1, keepdim=True)
+                        n_new += 1
+                        generated = torch.cat([generated, next_tok], dim=-1)
+                        if cur_attn is not None:
+                            cur_attn = torch.cat(
+                                [cur_attn, torch.ones_like(next_tok)], dim=-1
+                            )
+                        if (next_tok == eos).all():
+                            break
+                        with torch.inference_mode():
+                            out = self._model(
+                                input_ids=next_tok,
+                                attention_mask=cur_attn,
+                                use_cache=False,
+                            )
+                t1 = time.perf_counter()
+            after = snapshot_memory()
+        finally:
+            for h in handles:
+                h.remove()
 
-        eos = self._tokenizer.eos_token_id
-
-        # Prefill by running the model and capturing per-layer K/V via hooks.
-        self._capture_enabled = True
-        with torch.inference_mode():
-            outputs = self._model(input_ids=input_ids, attention_mask=attention_mask, use_cache=False)
-        self._capture_enabled = False
-
-        # Greedy decode.
-        generated = input_ids
-        cur_attn = attention_mask
-        t0 = time.perf_counter()
-        first_tok_at = None
-        for step in range(max_new_tokens):
-            logits = outputs.logits[:, -1, :]
-            next_tok = logits.argmax(dim=-1, keepdim=True)
-            if first_tok_at is None:
-                first_tok_at = time.perf_counter()
-            generated = torch.cat([generated, next_tok], dim=-1)
-            cur_attn = torch.cat([cur_attn, torch.ones_like(next_tok)], dim=-1)
-            if (next_tok == eos).all():
-                break
-            with torch.inference_mode():
-                outputs = self._model(
-                    input_ids=next_tok,
-                    attention_mask=cur_attn,
-                    use_cache=False,
-                    past_key_values=None,
-                )
-        t1 = time.perf_counter()
-
-        n_new = generated.shape[-1] - prompt_len
-        return int(n_new), float((t1 - t0) / max(1, n_new))
+        wall = t1 - t0
+        approx_ctx = len(self._tokenizer.encode(text, add_special_tokens=False))
+        return BenchmarkResult(
+            technique=self.spec.name,
+            category=self.spec.category,
+            context_length=approx_ctx,
+            batch_size=batch_size,
+            peak_gpu_mb=max(before.peak_gpu_mb, after.peak_gpu_mb, tracker.peak_gpu_mb),
+            gpu_reserved_mb=max(before.gpu_reserved_mb, after.gpu_reserved_mb),
+            cpu_rss_mb=max(before.cpu_rss_mb, after.cpu_rss_mb, tracker.peak_cpu_rss_mb),
+            analytic_kv_mb=self.analytic_kv_mb(batch_size, approx_ctx),
+            wall_time_s=wall,
+            tokens_generated=int(n_new),
+            tokens_per_s=(n_new / wall) if wall > 0 else 0.0,
+            time_to_first_token_s=(wall / max(1, n_new)),
+            avg_cpu_pct=probe.avg_cpu_pct,
+            peak_rss_mb=probe.peak_rss_mb,
+            notes=self.spec.description
+            + f" (round-trip {self.quant_dtype} hooks: k_proj/v_proj or fused c_attn)",
+        )
 
 
 class Int8SimulatedKV(_QuantizedBase):
