@@ -1,4 +1,6 @@
 
+
+
 \documentclass[conference]{IEEEtran}
 \IEEEoverridecommandlockouts%
 \usepackage{cite}
@@ -384,7 +386,7 @@ The taxonomy and the complexity analysis described in Sections~\ref{sec:attentio
 
 \noindent The runner in \texttt{kvbench/experiments/runner.py} iterates over each (technique, context length, batch size, trial) combination, seeds Python \texttt{random}, NumPy, and PyTorch before every trial, and writes a per-cell CSV plus a per-technique aggregated CSV. Plotting is handled by \texttt{kvbench/reporting/plots.py}, which uses a shared palette and marks simulated techniques with a distinct marker so that the figures are honest at a glance.
 
-\noindent The techniques evaluated are listed in Table~\ref{tab:techniques}. Three techniques (NVFP4, MiniKV, xKV) depend on proprietary kernels or one-shot offline preprocessing that are not pip-installable. They are included as analytical simulators whose memory estimates come from the equations in Section~3 of each paper; their latency-overhead factors are documented in the simulation modules, but because no GPU kernel is run, their latency and throughput cells in the sweep are zero. This is documented in \texttt{LIMITATIONS.md} and is also discussed in Section~\ref{sec:limitations}.
+\noindent The techniques evaluated are listed in Table~\ref{tab:techniques}. Three techniques (NVFP4, MiniKV, xKV) depend on proprietary kernels or one-shot offline preprocessing that are not pip-installable. They are included as analytical simulators whose memory estimates come from the equations in Section~3 of each paper; their latency-overhead factors are documented in the simulation modules, but because no GPU kernel is run, their latency and throughput cells in the sweep are zero. This is also discussed in Section~\ref{sec:limitations}.
 
 \begin{table*}[htbp]
 	\centering
@@ -533,16 +535,16 @@ Table VIII shows that the analytical size of the KV cache is proportional to the
 
 \begin{figure*}[htbp]
 	\centering
-	\includegraphics[width=0.45\linewidth]{memory_vs_batch.png}\hfill
-	\includegraphics[width=0.45\linewidth]{summary_tokens_per_s.png}
+	\includegraphics[width=0.40\linewidth]{memory_vs_batch.png}\hfill
+	\includegraphics[width=0.40\linewidth]{summary_tokens_per_s.png}
 	\caption{Measured behaviour of the seven directly-run techniques across batch sizes and an aggregated throughput summary (3 trials averaged). \textbf{Left:} peak GPU memory at \texttt{context\_length=512} as the batch grows from 1 to 4; the tiny-gpt2 techniques scale from 15--60\,MB (batch 1) to 29--206\,MB (batch 4), and GQA (TinyLlama-1.1B) from 2.2\,GB to 2.6\,GB. \textbf{Right:} average tokens per second across all (context, batch) configurations; CPU Offloading (204) and PagedAttention (190, CPU fallback) lead, followed by the FP16 baseline (176), low-rank compression (160), INT8 (135), and FP8 (117); GQA is at the low end (2.8) because it runs the much larger TinyLlama-1.1B.}
 	\label{fig:batch_and_summary_tps}
 \end{figure*}
 
 \begin{figure*}[htbp]
 	\centering
-	\includegraphics[width=0.6\linewidth]{summary_kv_mb.png}
-	\caption{Average analytical KV cache size across all (context, batch) configurations, on a log scale. GQA (TinyLlama-1.1B, 5.5\,MB at \texttt{ctx=256}) dominates the axis; the tiny-gpt2 techniques cluster between 0.001 and 0.008\,MB on average. Among them, MiniKV reaches the lowest footprint, followed by xKV, then CPU Offloading, NVFP4, and the 8-bit quantized variants, while the FP16 baseline and low-rank (full-rank projectors at \texttt{head\_dim=1}) sit at the top. The simulated techniques are marked with $\times$ and hatching; PagedAttention's analytic value reflects its block-granular allocation model.}
+	\includegraphics[width=0.50\linewidth]{summary_kv_mb.png}
+	\caption{Average analytical KV cache size across all (context, batch) configurations, on a log scale. GQA (TinyLlama-1.1B, 5.5\,MB at \texttt{ctx=256}) dominates the axis; the tiny-gpt2 techniques cluster between 0.008 and 0.059\,MB on average. Among them, MiniKV reaches the lowest footprint, followed by xKV, then CPU Offloading, NVFP4, and the 8-bit quantized variants, while the FP16 baseline and low-rank (full-rank projectors at \texttt{head\_dim=1}) sit at the top. The simulated techniques are marked with $\times$ and hatching; PagedAttention's analytic value reflects its block-granular allocation model.}
 	\label{fig:summary_kv}
 \end{figure*}
 
