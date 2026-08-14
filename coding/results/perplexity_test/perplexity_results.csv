@@ -1,0 +1,6 @@
+model,technique,category,num_chunks_evaluated,num_chunks_skipped_oom,perplexity,notes
+sshleifer/tiny-gpt2,Baseline FP16,baseline,103,0,50310.8185,harness check (untrained tiny model; absolute PPL not meaningful)
+sshleifer/tiny-gpt2,Quantized INT8,quantization,103,0,50310.8185,"fused QKV projection (no separate k_proj/v_proj); KV quantization not separable, equals FP16 baseline; harness check (untrained tiny model; absolute PPL not meaningful)"
+sshleifer/tiny-gpt2,Quantized FP8 (E5M2),quantization,103,0,50310.8185,"fused QKV projection (no separate k_proj/v_proj); KV quantization not separable, equals FP16 baseline; harness check (untrained tiny model; absolute PPL not meaningful)"
+sshleifer/tiny-gpt2,GQA,attention,103,0,50310.8185,harness check (untrained tiny model; absolute PPL not meaningful)
+sshleifer/tiny-gpt2,Low-Rank Compression,compression,103,0,50310.8185,"no separable k_proj/v_proj; low-rank projectors not installed, equals FP16 baseline; harness check (untrained tiny model; absolute PPL not meaningful)"

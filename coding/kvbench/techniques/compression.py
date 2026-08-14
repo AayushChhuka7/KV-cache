@@ -79,8 +79,6 @@ class LowRankCompression(KVTechnique):
         decode path.
         """
         device = next(self._model.parameters()).device
-        head_dim = self._kv_shape.head_dim
-        r = min(self.rank, head_dim)
 
         layers = self._find_layers()
         self._projectors = []
@@ -97,11 +95,18 @@ class LowRankCompression(KVTechnique):
                 # dereferencing a missing module; on such models low-rank
                 # compression is simply not applied.
                 continue
-            # Allocate low-rank factors.
-            down_k = torch.nn.Linear(head_dim, r, bias=False, device=device, dtype=k_proj_weight.weight.dtype)
-            up_k = torch.nn.Linear(r, head_dim, bias=False, device=device, dtype=k_proj_weight.weight.dtype)
-            down_v = torch.nn.Linear(head_dim, r, bias=False, device=device, dtype=k_proj_weight.weight.dtype)
-            up_v = torch.nn.Linear(r, head_dim, bias=False, device=device, dtype=k_proj_weight.weight.dtype)
+            # Allocate low-rank factors. The projector base dimension is the
+            # projection's own output width: on MHA models that is the full
+            # hidden size, while on GQA models (e.g. TinyLlama, whose
+            # ``k_proj`` emits ``n_kv_heads * head_dim`` outputs) it is the
+            # narrower shared KV width. Sizing from ``head_dim`` alone would
+            # crash on the wider GQA output.
+            kv_dim = k_proj_weight.out_features
+            r = min(self.rank, kv_dim)
+            down_k = torch.nn.Linear(kv_dim, r, bias=False, device=device, dtype=k_proj_weight.weight.dtype)
+            up_k = torch.nn.Linear(r, kv_dim, bias=False, device=device, dtype=k_proj_weight.weight.dtype)
+            down_v = torch.nn.Linear(kv_dim, r, bias=False, device=device, dtype=k_proj_weight.weight.dtype)
+            up_v = torch.nn.Linear(r, kv_dim, bias=False, device=device, dtype=k_proj_weight.weight.dtype)
             # Initialize up/down as identity-ish: down is random, up is random, then we accept the noisy reconstruction.
             torch.nn.init.kaiming_uniform_(down_k.weight, a=5 ** 0.5)
             torch.nn.init.kaiming_uniform_(up_k.weight, a=5 ** 0.5)

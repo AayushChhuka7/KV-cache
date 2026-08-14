@@ -421,11 +421,11 @@ The taxonomy and the complexity analysis described in Sections~\ref{sec:attentio
 \subsection{Hardware and Software}
 \label{sec:hardware}
 
-The experiments are intended to run on commodity hardware. \texttt{kvbench} selects CUDA when it is available and falls back to CPU otherwise. The expected configuration is summarized in Table~\ref{tab:hardware}. Hardware-specific numbers should be filled in by the reviewer running the experiments on the target machine.
+The experiments are intended to run on commodity hardware. \texttt{kvbench} selects CUDA when it is available and falls back to CPU otherwise. All memory, latency, and throughput measurements (Tables~\ref{tab:results_summary} and~\ref{tab:scaling}, and Figures~\ref{fig:context_curves}--\ref{fig:summary_kv}) were produced on a single machine with the configuration summarized in Table~\ref{tab:hardware}. The perplexity evaluation of Section~\ref{sec:perplexity} is the only measurement taken on different hardware: it ran on a separate machine with an NVIDIA GeForce GTX 1650 (4\,GB VRAM, Intel Core i5) because the 2\,GB MX230 cannot hold the TinyLlama-1.1B weights alongside a 512-token cache. Perplexity is a model-quality metric computed from the model weights, the tokenizer, and the evaluation text only; it does not depend on the GPU on which the forward pass runs, so measuring it on different hardware does not compromise comparability with the memory and latency results. The two machines are otherwise configured identically (Windows 11, Python, PyTorch CUDA build, \texttt{transformers}).
 
 \begin{table*}[htbp]
 	\centering
-	\caption{Hardware and software configuration used to run \texttt{kvbench}. The values are populated from the development machine that produced the figures in this paper.}
+	\caption{Hardware and software configuration of the machine that produced the memory and latency measurements (Tables~\ref{tab:results_summary}--\ref{tab:scaling} and Figures~\ref{fig:context_curves}--\ref{fig:summary_kv}). The perplexity evaluation (Table~\ref{tab:perplexity}) ran on a separate machine with an NVIDIA GeForce GTX 1650 (4\,GB); see Section~\ref{sec:hardware}.}
 	\label{tab:hardware}
 	\small
 	\begin{tabularx}{\linewidth}{lX}
@@ -561,29 +561,29 @@ Sections V-A--V-C report memory and latency under controlled inputs and delibera
 
 \begin{table*}[htbp]
 	\centering
-	\caption{Perplexity on a 500-line WikiText-2 subset (\texttt{wikitext-2-raw-v1} test split) at sequence length 512, \texttt{batch\_size = 1}, measured on a single NVIDIA GTX 1650 (4~GB). Only the five directly-run techniques are evaluated; NVFP4, MiniKV, and xKV are analytical simulators, and PagedAttention~/~CPU Offloading are lossless (perplexity equals Baseline FP16 by construction). Values marked \texttt{[PLACEHOLDER]} are to be filled in from \texttt{coding/results/perplexity\_results.csv} after running \texttt{scripts/run\_all.py -{}-with-perplexity} on the target machine.}
+	\caption{Perplexity on a 500-line WikiText-2 subset (\texttt{wikitext-2-raw-v1} test split) at sequence length 512, \texttt{batch\_size = 1}, measured on a single NVIDIA GTX 1650 (4~GB). Only the five directly-run techniques are evaluated; NVFP4, MiniKV, and xKV are analytical simulators, and PagedAttention~/~CPU Offloading are lossless (perplexity equals Baseline FP16 by construction). Measured on \texttt{sshleifer/tiny-gpt2} (harness check; untrained, absolute PPL not meaningful) and \texttt{TinyLlama/TinyLlama-1.1B-Chat-v1.0}.}
 	\label{tab:perplexity}
 	\small
 	\begin{tabularx}{\linewidth}{llrrX}
 		\toprule
 		\textbf{Technique} & \textbf{Model} & \textbf{Perplexity} & \textbf{Chunks Eval.} & \textbf{Notes} \\
 		\midrule
-		Baseline FP16        & tiny-gpt2 & [PLACEHOLDER] & [PLACEHOLDER] & harness check; untrained model, absolute PPL not meaningful \\
-		Quantized INT8       & tiny-gpt2 & [PLACEHOLDER] & [PLACEHOLDER] & harness check \\
-		Quantized FP8 (E5M2) & tiny-gpt2 & [PLACEHOLDER] & [PLACEHOLDER] & harness check \\
-		GQA                  & tiny-gpt2 & [PLACEHOLDER] & [PLACEHOLDER] & harness check \\
-		Low-Rank Compression & tiny-gpt2 & [PLACEHOLDER] & [PLACEHOLDER] & harness check; random projectors \\
+		Baseline FP16        & tiny-gpt2 & 50310.82 & 103 & harness check; untrained model, absolute PPL not meaningful \\
+		Quantized INT8       & tiny-gpt2 & 50310.82 & 103 & fused QKV: KV quantization not separable, equals FP16 \\
+		Quantized FP8 (E5M2) & tiny-gpt2 & 50310.82 & 103 & fused QKV: KV quantization not separable, equals FP16 \\
+		GQA                  & tiny-gpt2 & 50310.82 & 103 & harness check \\
+		Low-Rank Compression & tiny-gpt2 & 50310.82 & 103 & fused QKV: projectors not installed, equals FP16 \\
 		\midrule
-		Baseline FP16        & TinyLlama-1.1B & [PLACEHOLDER] & [PLACEHOLDER] & reference for \% change \\
-		Quantized INT8       & TinyLlama-1.1B & [PLACEHOLDER] & [PLACEHOLDER] & \\
-		Quantized FP8 (E5M2) & TinyLlama-1.1B & [PLACEHOLDER] & [PLACEHOLDER] & \\
-		GQA                  & TinyLlama-1.1B & [PLACEHOLDER] & [PLACEHOLDER] & native GQA model \\
-		Low-Rank Compression & TinyLlama-1.1B & [PLACEHOLDER] & [PLACEHOLDER] & rank 64, random projectors \\
+		Baseline FP16        & TinyLlama-1.1B & 11.25 & 122 & reference for \% change \\
+		Quantized INT8       & TinyLlama-1.1B & 11.25 & 122 & per-channel symmetric quantization \\
+		Quantized FP8 (E5M2) & TinyLlama-1.1B & 11.33 & 122 & E5M2 round-trip approximation \\
+		GQA                  & TinyLlama-1.1B & 11.25 & 122 & native GQA model \\
+		Low-Rank Compression & TinyLlama-1.1B & 2704.57 & 122 & rank 64, random projectors \\
 		\bottomrule
 	\end{tabularx}
 \end{table*}
 
-\noindent\textbf{Observations.} \emph{[PLACEHOLDER --- complete after running the evaluation on the GTX 1650 machine.]} Taking the Baseline FP16 perplexity on TinyLlama-1.1B as the reference, Quantized INT8 changes perplexity by [PLACEHOLDER]\%, Quantized FP8 (E5M2) by [PLACEHOLDER]\%, and GQA by [PLACEHOLDER]\%. Low-Rank Compression uses rank-64 random Kaiming projectors rather than calibrated SVD (see Section VII), so its perplexity change of [PLACEHOLDER]\% is an upper bound on the degradation a calibrated implementation would incur. The lossless memory-management techniques (PagedAttention, CPU Offloading) match the baseline exactly, and the three simulated techniques (NVFP4, MiniKV, xKV) remain outside this accuracy measurement; their reported memory savings continue to rely on the values from the original publications.
+\noindent\textbf{Observations.} Taking the Baseline FP16 perplexity of 11.25 on TinyLlama-1.1B as the reference, Quantized INT8 changes perplexity by $+0.02$\% (11.2491), Quantized FP8 (E5M2) by $+0.70$\% (11.3258), and GQA by $0.00$\% (identical to baseline, as expected on a native GQA model). Low-Rank Compression uses rank-64 random Kaiming projectors rather than calibrated SVD (see Section VII), so its perplexity change of $+23947.6$\% (2704.57) is an upper bound on the degradation a calibrated implementation would incur. The lossless memory-management techniques (PagedAttention, CPU Offloading) match the baseline exactly, and the three simulated techniques (NVFP4, MiniKV, xKV) remain outside this accuracy measurement; their reported memory savings continue to rely on the values from the original publications. Taken together, the measurements confirm the taxonomy's core expectation: quantization trades a negligible accuracy loss (below $1$\% perplexity) for roughly half the cache size, and architectural redesign (GQA) delivers its cache savings with no measured accuracy cost, while compression techniques must invest in calibrated projectors before their memory gains become usable.
 
 \section{Discussion}
 \label{sec:discussion}

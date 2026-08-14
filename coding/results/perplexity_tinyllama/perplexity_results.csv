@@ -1,0 +1,6 @@
+model,technique,category,num_chunks_evaluated,num_chunks_skipped_oom,perplexity,notes
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,Baseline FP16,baseline,122,0,11.2467,
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,Quantized INT8,quantization,122,0,11.2491,
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,Quantized FP8 (E5M2),quantization,122,0,11.3258,
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,GQA,attention,122,0,11.2467,
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,Low-Rank Compression,compression,122,0,2704.5701,

@@ -558,7 +558,12 @@ def run_perplexity_evaluation(
                 res.num_chunks_evaluated == 0 and math.isnan(res.perplexity)
             ):
                 skipped = res.num_chunks_skipped_oom if res else 0
-                note_parts.insert(0, "OOM -- not measured")
+                # Only genuine CUDA OOMs are labelled as such; other failures
+                # (e.g. an incompatible model architecture) are labelled as
+                # plain "not measured" so the CSV stays honest.
+                note_parts.insert(
+                    0, "OOM -- not measured" if skipped else "not measured"
+                )
                 rows.append({
                     "model": model_name,
                     "technique": name,

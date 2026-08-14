@@ -93,10 +93,12 @@
 \newlabel{fig:summary_kv}{{4}{10}{Average analytical KV cache size across all (context, batch) configurations on a log scale. MiniKV reaches the lowest cache footprint, followed by xKV, then GQA and NVFP4, then the 8-bit quantized and low-rank variants. PagedAttention, CPU Offloading, and the FP16 baseline share the same per-token size and therefore cluster at the top of the chart}{figure.4}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {VI}Discussion}{10}{section.6}\protected@file@percent }
 \newlabel{sec:discussion}{{VI}{10}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {VII}Limitations}{10}{section.7}\protected@file@percent }
+\newlabel{sec:limitations}{{VII}{10}{Limitations}{section.7}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {IX}{\ignorespaces Perplexity on a 500-line WikiText-2 subset (\texttt  {wikitext-2-raw-v1} test split) at sequence length 512, \texttt  {batch\_size = 1}, measured on a single NVIDIA GTX 1650 (4~GB). Only the five directly-run techniques are evaluated; NVFP4, MiniKV, and xKV are analytical simulators, and PagedAttention~/~CPU Offloading are lossless (perplexity equals Baseline FP16 by construction). Measured on \texttt  {sshleifer/tiny-gpt2} (harness check; untrained, absolute PPL not meaningful) and \texttt  {TinyLlama/TinyLlama-1.1B-Chat-v1.0}.}}{11}{table.9}\protected@file@percent }
 \newlabel{tab:perplexity}{{IX}{11}{Perplexity on a 500-line WikiText-2 subset (\texttt {wikitext-2-raw-v1} test split) at sequence length 512, \texttt {batch\_size = 1}, measured on a single NVIDIA GTX 1650 (4~GB). Only the five directly-run techniques are evaluated; NVFP4, MiniKV, and xKV are analytical simulators, and PagedAttention~/~CPU Offloading are lossless (perplexity equals Baseline FP16 by construction). Measured on \texttt {sshleifer/tiny-gpt2} (harness check; untrained, absolute PPL not meaningful) and \texttt {TinyLlama/TinyLlama-1.1B-Chat-v1.0}}{table.9}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {VII}Limitations}{11}{section.7}\protected@file@percent }
-\newlabel{sec:limitations}{{VII}{11}{Limitations}{section.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {VIII}Conclusion}{11}{section.8}\protected@file@percent }
+\newlabel{sec:conclusion}{{VIII}{11}{Conclusion}{section.8}{}}
 \bibstyle{IEEEtran}
 \bibdata{reference}
 \bibcite{shan2025cognitivememoryllms}{1}
@@ -109,7 +111,5 @@
 \bibcite{sheng2023flexgen}{8}
 \bibcite{kwon2023vllm}{9}
 \bibcite{fawaz2024beyond}{10}
-\@writefile{toc}{\contentsline {section}{\numberline {VIII}Conclusion}{12}{section.8}\protected@file@percent }
-\newlabel{sec:conclusion}{{VIII}{12}{Conclusion}{section.8}{}}
 \@writefile{toc}{\contentsline {section}{References}{12}{section*.1}\protected@file@percent }
 \gdef \@abspage@last{12}
