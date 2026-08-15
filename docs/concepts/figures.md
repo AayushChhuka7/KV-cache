@@ -171,6 +171,7 @@ hatch + alpha 0.55.
 ## 3. Figure-by-figure specifications
 
 ### Figure A — `memory_vs_context.png`
+
 - **Panel**: peak GPU memory (y, MB) vs context length (x).
 - **Data**: `results.csv` rows with `Batch == 1` ONLY. **Exclude** NVFP4,
   MiniKV, xKV (they report Peak GPU MB = 0). Include the other 7 techniques.
@@ -183,6 +184,7 @@ hatch + alpha 0.55.
   plot them, the overlap is real and expected). GQA: 2124.9 -> 7074.9 MB.
 
 ### Figure B — `throughput_vs_context.png`
+
 - **Panel**: Tokens/s (y) vs context length (x).
 - **Data**: `Batch == 1`, exclude the 3 simulators. Include PagedAttention
   (its CPU-fallback numbers are real outputs; mark with `x`).
@@ -195,6 +197,7 @@ hatch + alpha 0.55.
   112.8-126.0; GQA 0.1-6.9.
 
 ### Figure C — `latency_vs_context.png`
+
 - **Panel**: Latency (s, y) vs context length (x).
 - **Data**: `Batch == 1`, exclude the 3 simulators.
 - **X axis**: log scale base 2. Y axis: **log scale** (GQA reaches ~238 s).
@@ -204,6 +207,7 @@ hatch + alpha 0.55.
 - Ranges (batch=1): GQA 4.66-237.73 s; all tiny-gpt2 techniques <= 0.36 s.
 
 ### Figure D — `memory_vs_batch.png`
+
 - **Panel**: peak GPU memory (y, MB) vs batch size (x).
 - **Data**: rows with `Context == 512` ONLY; exclude the 3 simulators.
   Batches on x: 1, 2, 4 (linear axis, could use 2^(x) spacing or plain 1/2/4).
@@ -214,6 +218,7 @@ hatch + alpha 0.55.
   Offloading identical 59.5/107.7/206.1; GQA 2219.7/2329.2/2562.0.
 
 ### Figure E — `summary_tokens_per_s.png`
+
 - **Panel**: horizontal bars, one per technique (7 real ones only — exclude
   the 3 simulators, whose value would be 0).
 - **Value**: mean of `Tokens/s` over ALL cells of that technique
@@ -234,6 +239,7 @@ hatch + alpha 0.55.
   fallback).
 
 ### Figure F — `summary_kv_mb.png`
+
 - **Panel**: horizontal bars, ALL 10 techniques (simulators included; this is
   their genuine metric).
 - **Value**: mean of `KV Cache MB` over ALL cells (computed live from the
@@ -289,26 +295,3 @@ If the plotting code is unavailable, implement Figures A-F from Section 3
 using matplotlib with the Section 1 data; the result must match the above.
 
 ---
-
-## 5. Copy-paste prompt for another AI
-
-> You have the full measured dataset for a research paper on KV cache
-> optimization (6 figures, matplotlib, DPI 150, PNG, saved next to the paper).
-> Data source: the CSV block in "Section 1. Canonical data" of this file
-> (columns: Technique, Category, Context, Batch, Peak GPU MB, CPU RSS MB,
-> KV Cache MB, Latency (s), Tokens/s, TTFT (s), Memory Saving (%),
-> Throughput Delta (%), Notes). Follow Section 2 (technique order, palette
-> `#1F3A5F #C8553D #588B8B #F28F3B #7C6F9C #3A6B35 #A66C29 #586F7D`,
-> marker `o` for real and `x` + alpha 0.55 for simulated/PagedAttention-CPU)
-> and Section 3 (per-figure filters, axes, scales, titles, labels) exactly.
-> Rules: never invent data — GQA ctx=4096 batch=2/4 rows do not exist (OOM);
-> the 3 simulators have zero latency/throughput/GPU-memory and appear only in
-> summary_kv_mb.png; PagedAttention is the CPU fallback (x marker). Generate
-> the six PNGs memory_vs_context.png, throughput_vs_context.png,
-> latency_vs_context.png, memory_vs_batch.png, summary_tokens_per_s.png,
-> summary_kv_mb.png. Verify each line against the CSV before plotting.
-
----
-
-*Generated from `coding/results/paper_sweep/results.csv` — do not hand-edit the
-data blocks; re-run `make_paper_figures.py` if the sweep changes.*
